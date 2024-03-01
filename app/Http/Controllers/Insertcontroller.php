@@ -47,7 +47,7 @@ function insertFuculty()
     $arr_faculty = [];
     $faculty = getInstituteFromAis($group);
     foreach ($faculty as $num => $value) {
-        DB::connection('mariadb')->insert("insert into faculty (name) values ('".$value."')");
+        //DB::connection('mariadb')->insert("insert into faculty (name) values ('".$value."')");
          //$arr_faculty[] = $value;
     }
     return redirect("/");//dd(json_encode($arr_faculty, JSON_UNESCAPED_UNICODE));
