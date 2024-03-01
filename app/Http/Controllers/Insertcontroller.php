@@ -50,7 +50,7 @@ function insertFuculty()
         DB::connection('mariadb')->query("insert into faculty (name) values ('".$value."')");
         // $arr_faculty[] = $value;
     }
-    return redirect("/");//dd(json_encode($arr_faculty, JSON_UNESCAPED_UNICODE));
+    return redirect("/in");//dd(json_encode($arr_faculty, JSON_UNESCAPED_UNICODE));
 }
 
 function getPortal($app, $skey, $module, $param_array = null)
