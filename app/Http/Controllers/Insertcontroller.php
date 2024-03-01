@@ -87,11 +87,11 @@ function insertProfiles()
     }
     // $prof = getProfilesFromAis($group);
     foreach ($profiles as $num => $value) {
-        $id_fuculty = DB::connection('mariadb')->select("SELECT id FROM faculty WHERE name = '" . $value[1] . "'")[0]['id'];
-        //print_r($value[0]." - ".$id_fuculty);
+        $id_faculty = DB::connection('mariadb')->select("SELECT id FROM faculty WHERE name = '" . $value[1] . "'")[0]->id;
+        //print_r($value[0]." - ".$id_faculty);
         //print '<br>';
-        dd($value);
-        //DB::connection('mariadb')->query("insert into Practices.profiles (name, faculty_id) values ('" . $value[0] . "'," . $id_fuculty . ")");
+        //dd($value);
+        DB::connection('mariadb')->query("insert into Practices.profiles (name, faculty_id) values ('" . $value[0] . "'," . $id_faculty . ")");
     }
 }
 
