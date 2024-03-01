@@ -26,16 +26,16 @@ class Insertcontroller extends Controller
 
     public static function post($request)
     {
-        if (isset($request->input('insertInst'))) {
+        if ($request->input('insertInst')) {
             insertFuculty();
         }
-        if (isset($_POST['insertProf'])) {
+        if ($_POST['insertProf']) {
             //insertProfiles();
         }
-        if (isset($_POST['insertStream'])) {
+        if ($_POST['insertStream']) {
             //insertStreams();
         }
-        if (isset($_POST['insertStud'])) {
+        if ($_POST['insertStud']) {
             //insertStud();
         }
     }
