@@ -115,6 +115,7 @@ function insertStreams()
 			$date = "20".$grp_yaer;
 		}
 		//КОСТЫЛЬ КОНЧИЛСЯ
+        if (intval($date) >= (intval(date("Y"))-6))
 		array_push($groups, [
 			$group["RecordSet"][$grp]["group_name"],
 			$group["RecordSet"][$grp]["spec_name"],
