@@ -27,7 +27,7 @@ class Insertcontroller extends Controller
     public static function post($request)
     {
         if ($request->input('insertInst')) {
-            insertFuculty();
+            return insertFuculty();
         }
         if ($request->input('insertProf')) {
             //insertProfiles();
@@ -48,9 +48,9 @@ function insertFuculty()
     $faculty = getInstituteFromAis($group);
     foreach ($faculty as $num => $value) {
         DB::connection('mariadb')->query("insert into faculty (name) values ('".$value."')");
-        // $arr_faculty[] = $value;
+         //$arr_faculty[] = $value;
     }
-    return redirect("/in");//dd(json_encode($arr_faculty, JSON_UNESCAPED_UNICODE));
+    return redirect("/");//dd(json_encode($arr_faculty, JSON_UNESCAPED_UNICODE));
 }
 
 function getPortal($app, $skey, $module, $param_array = null)
