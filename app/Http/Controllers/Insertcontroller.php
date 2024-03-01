@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class Insertcontroller extends Controller
 {
@@ -17,7 +18,9 @@ class Insertcontroller extends Controller
                         $arr_faculty[] = $value;
                 }
         $company = getPortal('3e927995-75ee-4c90-a9dc-b1c9e775e034', 'mNNxbKiXS9', 'practice.company');
-        return dd(json_encode($arr_faculty, JSON_UNESCAPED_UNICODE));
+        //return dd(json_encode($arr_faculty, JSON_UNESCAPED_UNICODE));
+        $users = DB::connection('sqlite')->select("select * from faculty");
+        dd($users);
     }
 
     
