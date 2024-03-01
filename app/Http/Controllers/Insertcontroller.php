@@ -90,7 +90,7 @@ function insertProfiles()
         $id_fuculty = DB::connection('mariadb')->select("SELECT id FROM faculty WHERE name = '" . $value[1] . "'")[0]['id'];
         //print_r($value[0]." - ".$id_fuculty);
         //print '<br>';
-        dd($id_fuculty);
+        dd($value);
         //DB::connection('mariadb')->query("insert into Practices.profiles (name, faculty_id) values ('" . $value[0] . "'," . $id_fuculty . ")");
     }
 }
