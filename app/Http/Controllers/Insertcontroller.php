@@ -91,8 +91,9 @@ function insertProfiles()
         //print_r($value[0]." - ".$id_faculty);
         //print '<br>';
         //dd($value);
-        DB::connection('mariadb')->query("insert into Practices.profiles (name, faculty_id) values ('" . $value[0] . "'," . $id_faculty . ")");
+        DB::connection('mariadb')->query("insert into profiles (name, faculty_id) values ('" . $value[0] . "'," . $id_faculty . ")");
     }
+    return redirect("/");
 }
 
 function getPortal($app, $skey, $module, $param_array = null)
