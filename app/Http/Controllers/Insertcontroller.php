@@ -21,7 +21,7 @@ class Insertcontroller extends Controller
         // //return dd(json_encode($arr_faculty, JSON_UNESCAPED_UNICODE));
         // $users = DB::connection('mariadb')->select("select * from faculty");
         // dd($users);
-        view('insert');
+        return view('insert');
     }
 
     public static function post($request)
