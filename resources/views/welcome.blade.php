@@ -26,7 +26,8 @@
 
 </head>
 
-<body class="antialiased">
+<body>
+    <div>DA</div>
     @yield('content')
 </body>
 

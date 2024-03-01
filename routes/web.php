@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    Insertcontroller::get();
+    return Insertcontroller::get();
 });
 
 Route::post('/', function (Request $request) {
