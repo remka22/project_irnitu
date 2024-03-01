@@ -14,7 +14,7 @@ class Insertcontroller extends Controller
         // $arr_faculty = [];
         // $faculty = getInstituteFromAis($group);
         //         foreach($faculty as $num => $value){
-        //                 //connection()->query("insert into Practices.faculty (name) values ('".$value."')");
+        //                 //connection()->query("insert into faculty (name) values ('".$value."')");
         //                 $arr_faculty[] = $value;
         //         }
         // $company = getPortal('3e927995-75ee-4c90-a9dc-b1c9e775e034', 'mNNxbKiXS9', 'practice.company');
@@ -136,23 +136,23 @@ function insertStreams()
 function insertStud()
 {
     $stud = getPortal('3e927995-75ee-4c90-a9dc-b1c9e775e034', 'mNNxbKiXS9', 'stud.fac', array('id' => 46));
-    dd($stud);
-    // foreach ($stud["RecordSet"] as $name => $value) {
-    //     $id = $value["id"];
-    //     $name = $value["name"];
-    //     $group = $value["grup"];
-    //     //Парсер группы
-    //     $name_group = explode('-', $group);
-    //     //
-    //     $id_stream = connection()->query("SELECT id FROM Practices.streams WHERE name = '" . $name_group[0] . "-" . $name_group[1] . "'")->Fetch()['id'];
+    //dd($stud);
+    foreach ($stud["RecordSet"] as $name => $value) {
+        $id = $value["id"];
+        $name = $value["name"];
+        $group = $value["grup"];
+        //Парсер группы
+        $name_group = explode('-', $group);
+        //
+        $id_stream = DB::connection('mariadb')->select("SELECT id FROM streams WHERE name = '" . $name_group[0] . "-" . $name_group[1] . "'")[0]->id;
 
-    //     if (!connection()->query("select id from Practices.groups where stream_id = " . $id_stream . " and group_number = '" . $name_group[2] . "'")->Fetch()) {
-    //         connection()->query("insert into Practices.groups (group_number, stream_id) values (" . $name_group[2] . ", " . $id_stream . ")");
-    //     }
-    //     $id_group = connection()->query("select id from Practices.groups where stream_id = " . $id_stream . " and group_number = '" . $name_group[2] . "'")->Fetch()['id'];
+        if (!DB::connection('mariadb')->select("select id from groups where stream_id = " . $id_stream . " and group_number = '" . $name_group[2] . "'")[0]) {
+            DB::connection('mariadb')->insert("insert into groups (group_number, stream_id) values (" . $name_group[2] . ", " . $id_stream . ")");
+        }
+        $id_group = DB::connection('mariadb')->select("select id from groups where stream_id = " . $id_stream . " and group_number = '" . $name_group[2] . "'")[0]->id;
 
-    //     connection()->query("insert into Practices.students (fio, stud_id, category, group_id) values ('" . $name . "', " . $id . ", 'test', " . $id_group . ")");
-    // }
+        DB::connection('mariadb')->insert("insert into students (fio, stud_id, category, group_id) values ('" . $name . "', " . $id . ", 'test', " . $id_group . ")");
+    }
     return redirect("/");
 }
 
