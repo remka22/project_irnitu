@@ -61,10 +61,10 @@ function insertComp()
     $company = getPortal('3e927995-75ee-4c90-a9dc-b1c9e775e034', 'mNNxbKiXS9', 'practice.company');
     $comp = [];
     foreach ($company as $num => $value) {
-        //DB::connection('mariabd')->insert("insert into faculty (name) values ('".$value."')");
-         $comp[] = $value;
+        DB::connection('mariadb')->insert("insert into companies (name, dbegin, dend) values ('".$value['name']."','".$value['dbegin']."','".$value['dend']."')");
+         //$comp[] = $value;
     }
-    return dd($comp);redirect("/");//dd(json_encode($arr_faculty, JSON_UNESCAPED_UNICODE));
+    return redirect("/");//dd(json_encode($arr_faculty, JSON_UNESCAPED_UNICODE));
 }
 
 function getPortal($app, $skey, $module, $param_array = null)
