@@ -148,7 +148,7 @@ function insertStud()
         //
         $id_stream = DB::connection('mariadb')->select("SELECT id FROM streams WHERE name = '" . $name_group[0] . "-" . $name_group[1] . "'")[0]->id;
 
-        if (DB::connection('mariadb')->select("select id from groups where stream_id = " . $id_stream . " and group_number = '" . $name_group[2] . "'")) {
+        if (!DB::connection('mariadb')->select("select id from groups where stream_id = " . $id_stream . " and group_number = '" . $name_group[2] . "'")) {
             DB::connection('mariadb')->insert("insert into groups (group_number, stream_id) values (" . $name_group[2] . ", " . $id_stream . ")");
         }
         $id_group = DB::connection('mariadb')->select("select id from groups where stream_id = " . $id_stream . " and group_number = '" . $name_group[2] . "'")[0]->id;
