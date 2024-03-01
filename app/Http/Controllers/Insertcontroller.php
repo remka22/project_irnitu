@@ -19,7 +19,7 @@ class Insertcontroller extends Controller
                 }
         $company = getPortal('3e927995-75ee-4c90-a9dc-b1c9e775e034', 'mNNxbKiXS9', 'practice.company');
         //return dd(json_encode($arr_faculty, JSON_UNESCAPED_UNICODE));
-        $users = DB::connection('sqlite')->select("select * from faculty");
+        $users = DB::connection('mariadb')->select("select * from faculty");
         dd($users);
     }
 
