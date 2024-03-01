@@ -29,13 +29,13 @@ class Insertcontroller extends Controller
         if ($request->input('insertInst')) {
             insertFuculty();
         }
-        if ($_POST['insertProf']) {
+        if ($request->input('insertProf')) {
             //insertProfiles();
         }
-        if ($_POST['insertStream']) {
+        if ($request->input('insertStream')) {
             //insertStreams();
         }
-        if ($_POST['insertStud']) {
+        if ($request->input('insertStud')) {
             //insertStud();
         }
     }
@@ -47,10 +47,10 @@ function insertFuculty()
     $arr_faculty = [];
     $faculty = getInstituteFromAis($group);
     foreach ($faculty as $num => $value) {
-        //connection()->query("insert into Practices.faculty (name) values ('".$value."')");
-        $arr_faculty[] = $value;
+        DB::connection('mariadb')->query("insert into faculty (name) values ('".$value."')");
+        // $arr_faculty[] = $value;
     }
-    return dd(json_encode($arr_faculty, JSON_UNESCAPED_UNICODE));
+    return redirect("/");//dd(json_encode($arr_faculty, JSON_UNESCAPED_UNICODE));
 }
 
 function getPortal($app, $skey, $module, $param_array = null)

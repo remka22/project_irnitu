@@ -27,7 +27,6 @@
 </head>
 
 <body>
-    <div>DA</div>
     @yield('content')
 </body>
 

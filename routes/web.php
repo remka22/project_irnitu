@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Insertcontroller;
-use GuzzleHttp\Psr7\Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*

@@ -3,6 +3,9 @@
 @section('content')
     <form method="POST" action="/">
         @csrf
-        <button type="button" class="btn btn-primary ">Block level button</button>
+        <input type="submit" name="insertInst" value="Импортить институты">
+        <input type="submit" name="insertProf" value="Импортить направления">
+        <input type="submit" name="insertStream" value="Импортить потоки">
+        <input type="submit" name="insertStud" value="Импортить студентов">
     </form>
 @endsection
