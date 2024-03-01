@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Insertcontroller;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,4 +17,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return Insertcontroller::get();
+});
+
+Route::post('/', function (Request $request) {
+    return Insertcontroller::post($request);
 });
