@@ -36,7 +36,7 @@ class Insertcontroller extends Controller
             return insertStreams();
         }
         if ($request->input('insertStud')) {
-            //insertStud();
+            return insertStud();
         }
         if ($request->input('insertComp')) {
             return insertComp();
@@ -105,24 +105,23 @@ function insertStreams()
     );
 
     $groups = [];
-	foreach($group["RecordSet"] as $grp => $value){
-		//ВНИМАНИЕ КОСТЫЛЬ!
-		$grp_yaer = preg_split("#\W*-#", $group["RecordSet"][$grp]["group_name"])[1];
-		if("20".$grp_yaer > date("Y")){
-			$date = "19".$grp_yaer;
-		}
-		else{
-			$date = "20".$grp_yaer;
-		}
-		//КОСТЫЛЬ КОНЧИЛСЯ
-        if (intval($date) >= (intval(date("Y"))-6))
-		array_push($groups, [
-			$group["RecordSet"][$grp]["group_name"],
-			$group["RecordSet"][$grp]["spec_name"],
-			$group["RecordSet"][$grp]["code"],
-			$date,
-			$group["RecordSet"][$grp]["fac_name"]
-		]);
+    foreach ($group["RecordSet"] as $grp => $value) {
+        //ВНИМАНИЕ КОСТЫЛЬ!
+        $grp_yaer = preg_split("#\W*-#", $group["RecordSet"][$grp]["group_name"])[1];
+        if ("20" . $grp_yaer > date("Y")) {
+            $date = "19" . $grp_yaer;
+        } else {
+            $date = "20" . $grp_yaer;
+        }
+        //КОСТЫЛЬ КОНЧИЛСЯ
+        if (intval($date) >= (intval(date("Y")) - 6))
+            array_push($groups, [
+                $group["RecordSet"][$grp]["group_name"],
+                $group["RecordSet"][$grp]["spec_name"],
+                $group["RecordSet"][$grp]["code"],
+                $date,
+                $group["RecordSet"][$grp]["fac_name"]
+            ]);
     }
 
     $streams = $groups;
@@ -132,6 +131,29 @@ function insertStreams()
 
         DB::connection('mariadb')->insert("insert into streams (name, full_name, code, year, profile_id) values ('" . $value[0] . "','" . $value[1] . "','" . $value[2] . "','" . $value[3] . "'," . $id_profiles . ")");
     }
+    return redirect("/");
+}
+function insertStud()
+{
+    $stud = getPortal('3e927995-75ee-4c90-a9dc-b1c9e775e034', 'mNNxbKiXS9', 'stud.fac', array('id' => 46));
+    dd($stud);
+    // foreach ($stud["RecordSet"] as $name => $value) {
+    //     $id = $value["id"];
+    //     $name = $value["name"];
+    //     $group = $value["grup"];
+    //     //Парсер группы
+    //     $name_group = explode('-', $group);
+    //     //
+    //     $id_stream = connection()->query("SELECT id FROM Practices.streams WHERE name = '" . $name_group[0] . "-" . $name_group[1] . "'")->Fetch()['id'];
+
+    //     if (!connection()->query("select id from Practices.groups where stream_id = " . $id_stream . " and group_number = '" . $name_group[2] . "'")->Fetch()) {
+    //         connection()->query("insert into Practices.groups (group_number, stream_id) values (" . $name_group[2] . ", " . $id_stream . ")");
+    //     }
+    //     $id_group = connection()->query("select id from Practices.groups where stream_id = " . $id_stream . " and group_number = '" . $name_group[2] . "'")->Fetch()['id'];
+
+    //     connection()->query("insert into Practices.students (fio, stud_id, category, group_id) values ('" . $name . "', " . $id . ", 'test', " . $id_group . ")");
+    // }
+    return redirect("/");
 }
 
 function getPortal($app, $skey, $module, $param_array = null)
