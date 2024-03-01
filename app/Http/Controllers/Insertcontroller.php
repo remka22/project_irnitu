@@ -60,7 +60,7 @@ function insertComp()
 {
     $company = getPortal('3e927995-75ee-4c90-a9dc-b1c9e775e034', 'mNNxbKiXS9', 'practice.company');
     $comp = [];
-    foreach ($company as $num => $value) {
+    foreach ($company["RecordSet"] as $num => $value) {
         DB::connection('mariadb')->insert("insert into companies (name, dbegin, dend) values ('".$value['name']."','".$value['dbegin']."','".$value['dend']."')");
          //$comp[] = $value;
     }
