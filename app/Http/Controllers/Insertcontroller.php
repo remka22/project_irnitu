@@ -30,7 +30,7 @@ class Insertcontroller extends Controller
             return insertFuculty();
         }
         if ($request->input('insertProf')) {
-            //insertProfiles();
+            return insertProfiles();
         }
         if ($request->input('insertStream')) {
             //insertStreams();
@@ -51,9 +51,9 @@ function insertFuculty()
     $faculty = getInstituteFromAis($group);
     foreach ($faculty as $num => $value) {
         //DB::connection('mariabd')->insert("insert into faculty (name) values ('".$value."')");
-         //$arr_faculty[] = $value;
+        //$arr_faculty[] = $value;
     }
-    return redirect("/");//dd(json_encode($arr_faculty, JSON_UNESCAPED_UNICODE));
+    return redirect("/"); //dd(json_encode($arr_faculty, JSON_UNESCAPED_UNICODE));
 }
 
 function insertComp()
@@ -62,9 +62,37 @@ function insertComp()
     $comp = [];
     foreach ($company["RecordSet"] as $num => $value) {
         //DB::connection('mariabd')->insert("insert into companies (name, dbegin, dend) values ('".$value['name']."','".$value['dbegin']."','".$value['dend']."')");
-         //$comp[] = $value;
+        //$comp[] = $value;
     }
-    return redirect("/");//dd(json_encode($arr_faculty, JSON_UNESCAPED_UNICODE));
+    return redirect("/"); //dd(json_encode($arr_faculty, JSON_UNESCAPED_UNICODE));
+}
+
+function insertProfiles()
+{
+    $group = getPortal(
+        '3e927995-75ee-4c90-a9dc-b1c9e775e034',
+        'mNNxbKiXS9',
+        'allspec.info'
+    );
+    $profiles = [];
+    foreach ($group["RecordSet"] as $grp => $value) {
+        $prof = $group["RecordSet"][$grp]["direct_name"];
+        $inst = $group["RecordSet"][$grp]["fac_name"];
+        if ($prof == "") {
+            $prof = "Нет названия";
+        }
+        if (!in_array([$prof, $inst], $profiles)) {
+            array_push($profiles, [$prof, $inst]);
+        }
+    }
+    // $prof = getProfilesFromAis($group);
+    foreach ($profiles as $num => $value) {
+        $id_fuculty = DB::connection('mariadb')->select("SELECT id FROM faculty WHERE name = '" . $value[1] . "'")[0]['id'];
+        //print_r($value[0]." - ".$id_fuculty);
+        //print '<br>';
+        dd($id_fuculty);
+        //DB::connection('mariadb')->query("insert into Practices.profiles (name, faculty_id) values ('" . $value[0] . "'," . $id_fuculty . ")");
+    }
 }
 
 function getPortal($app, $skey, $module, $param_array = null)
