@@ -1,7 +1,7 @@
 @extends('welcome')
 
 @section('content')
-    <form method="POST" action="/">
+    <form method="POST">
         @csrf
         <input type="submit" name="insertInst" value="Импортить институты">
         <input type="submit" name="insertProf" value="Импортить направления">
