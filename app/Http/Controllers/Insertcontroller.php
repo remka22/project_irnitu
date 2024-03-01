@@ -33,7 +33,7 @@ class Insertcontroller extends Controller
             return insertProfiles();
         }
         if ($request->input('insertStream')) {
-            //insertStreams();
+            return insertStreams();
         }
         if ($request->input('insertStud')) {
             //insertStud();
@@ -94,6 +94,43 @@ function insertProfiles()
         //DB::connection('mariabd')->insert("insert into profiles (name, faculty_id) values ('" . $value[0] . "'," . $id_faculty . ")");
     }
     return redirect("/");
+}
+
+function insertStreams()
+{
+    $group = getPortal(
+        '3e927995-75ee-4c90-a9dc-b1c9e775e034',
+        'mNNxbKiXS9',
+        'allspec.info'
+    );
+
+    $groups = [];
+	foreach($group["RecordSet"] as $grp => $value){
+		//ВНИМАНИЕ КОСТЫЛЬ!
+		$grp_yaer = preg_split("#\W*-#", $group["RecordSet"][$grp]["group_name"])[1];
+		if("20".$grp_yaer > date("Y")){
+			$date = "19".$grp_yaer;
+		}
+		else{
+			$date = "20".$grp_yaer;
+		}
+		//КОСТЫЛЬ КОНЧИЛСЯ
+		array_push($groups, [
+			$group["RecordSet"][$grp]["group_name"],
+			$group["RecordSet"][$grp]["spec_name"],
+			$group["RecordSet"][$grp]["code"],
+			$date,
+			$group["RecordSet"][$grp]["fac_name"]
+		]);
+    }
+
+    $streams = $groups;
+    foreach ($streams as $num => $value) {
+        $id_faculty = DB::connection('mariadb')->select("SELECT id FROM faculty WHERE name = '" . $value[4] . "'")[0]->id;
+        $id_profiles = DB::connection('mariadb')->select("SELECT id FROM profiles WHERE faculty_id = " . $id_faculty)[0]->id;
+
+        DB::connection('mariadb')->insert("insert into streams (name, full_name, code, year, profile_id) values ('" . $value[0] . "','" . $value[1] . "','" . $value[2] . "','" . $value[3] . "'," . $id_profiles . ")");
+    }
 }
 
 function getPortal($app, $skey, $module, $param_array = null)
