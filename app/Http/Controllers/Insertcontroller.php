@@ -129,7 +129,7 @@ function insertStreams()
         $id_faculty = DB::connection('mariadb')->select("SELECT id FROM faculty WHERE name = '" . $value[4] . "'")[0]->id;
         $id_profiles = DB::connection('mariadb')->select("SELECT id FROM profiles WHERE faculty_id = " . $id_faculty)[0]->id;
 
-        DB::connection('mariadb')->insert("insert into streams (name, full_name, code, year, profile_id) values ('" . $value[0] . "','" . $value[1] . "','" . $value[2] . "','" . $value[3] . "'," . $id_profiles . ")");
+        //DB::connection('mariabd')->insert("insert into streams (name, full_name, code, year, profile_id) values ('" . $value[0] . "','" . $value[1] . "','" . $value[2] . "','" . $value[3] . "'," . $id_profiles . ")");
     }
     return redirect("/");
 }
