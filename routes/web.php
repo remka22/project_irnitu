@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Insertcontroller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -16,9 +17,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return Insertcontroller::get();
+    //return Insertcontroller::get();
+    return AuthController::campus_auth();
 });
 
 Route::post('/', function (Request $request) {
-    return Insertcontroller::post($request);
+    //return Insertcontroller::post($request);
 });
