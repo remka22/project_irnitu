@@ -21,6 +21,6 @@ Route::get('/', function () {
     return AuthController::campus_auth();
 });
 
-Route::post('/', function (Request $request) {
-    //return Insertcontroller::post($request);
+Route::get('/bitrix', function (Request $request) {
+    dd($request);
 });

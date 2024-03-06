@@ -13,7 +13,7 @@ class AuthController extends Controller
         $return = false;
 
         $APP = [
-            'ID' => 'local.65e57544bd23d6.71638042 ',
+            'ID' => 'local.65e57544bd23d6.71638042',
             'CODE' => 'RtRYlevERpBl4jC4AjeOO8U8sivYstMpzwGsA954fId8OCtdWR'
         ];
         # ЭТАП 1 - авторизация учетной записи в ЛИЧНОМ КАБИНЕТЕ
