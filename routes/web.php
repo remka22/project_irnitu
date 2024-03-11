@@ -22,5 +22,27 @@ Route::get('/', function () {
 });
 
 Route::get('/bitrix', function (Request $request) {
-    dd($request);
+    // dd($request);
+    if (isset($_REQUEST['code'])) {
+        $APP = [
+            'ID' => 'local.65e57544bd23d6.71638042',
+            'CODE' => 'RtRYlevERpBl4jC4AjeOO8U8sivYstMpzwGsA954fId8OCtdWR'
+        ];
+        # формирование параметров запроса
+        $url = implode('&', [
+            'https://int.istu.edu/oauth/token/?grant_type=authorization_code',
+            'code=' . $_REQUEST['code'],
+            'client_id=' . $APP['ID'],
+            'client_secret=' . $APP['CODE']
+        ]);
+
+        # выполнение запроса и обработка ответа
+
+        $data = @file_get_contents($url);
+
+        if (explode(' ', $http_response_header[0])[1] !== '200') return false;
+        $data = json_decode($data, true);
+        
+        dd($data);
+    }
 });
