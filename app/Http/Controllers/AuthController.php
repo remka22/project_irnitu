@@ -54,7 +54,7 @@ class AuthController extends Controller
             $data = (string) $res->getBody();
             //$data = @file_get_contents($url);
 
-            if (explode(' ', $http_response_header[0])[1] !== '200') return false;
+            //if (explode(' ', $http_response_header[0])[1] !== '200') return false;
             $data = json_decode($data, true);
             # проверка наличия структуры данных
             if (isset($data['result']['email'])) $return = $data['result'];
