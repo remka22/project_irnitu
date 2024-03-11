@@ -16,18 +16,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
     //return Insertcontroller::get();
-    return AuthController::campus_auth();
+    // return AuthController::campus_auth();
+    $APP = [
+        'ID' => 'local.65e57544bd23d6.71638042',
+        'CODE' => 'RtRYlevERpBl4jC4AjeOO8U8sivYstMpzwGsA954fId8OCtdWR'
+    ];
+    return header('Location: https://int.istu.edu/oauth/authorize/?client_id=' . $APP['ID']);
 });
 
 Route::get('/bitrix', function (Request $request) {
     // dd($request);
+    $APP = [
+        'ID' => 'local.65e57544bd23d6.71638042',
+        'CODE' => 'RtRYlevERpBl4jC4AjeOO8U8sivYstMpzwGsA954fId8OCtdWR'
+    ];
     if (isset($_REQUEST['code'])) {
-        $APP = [
-            'ID' => 'local.65e57544bd23d6.71638042',
-            'CODE' => 'RtRYlevERpBl4jC4AjeOO8U8sivYstMpzwGsA954fId8OCtdWR'
-        ];
+        
         # формирование параметров запроса
         $url = implode('&', [
             'https://int.istu.edu/oauth/token/?grant_type=authorization_code',
