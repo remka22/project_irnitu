@@ -21,7 +21,7 @@ class AuthController extends Controller
         # редирект обратно после успешной авторизации
         // if (!isset($_REQUEST['code'])) {
         if (!$request->get('code')) {
-            header('HTTP 302 Found');
+            //header('HTTP 302 Found');
             return header('Location: https://int.istu.edu/oauth/authorize/?client_id=' . $APP['ID']);
             exit;
         }
