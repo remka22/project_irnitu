@@ -25,7 +25,7 @@ Route::get('/', function () {
     //     'CODE' => 'RtRYlevERpBl4jC4AjeOO8U8sivYstMpzwGsA954fId8OCtdWR'
     // ];
     // return header('Location: https://int.istu.edu/oauth/authorize/?client_id=' . $APP['ID']);
-    return header('Location: https://int.istu.edu/bitrix');
+    return header('Location: https://job.istu.edu/bitrix');
 });
 
 Route::get('/bitrix', function (Request $request) {
