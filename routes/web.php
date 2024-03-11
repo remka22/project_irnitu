@@ -38,6 +38,12 @@ Route::get('/bitrix', function (Request $request) {
 
         # выполнение запроса и обработка ответа
 
+        $client = new \GuzzleHttp\Client();
+        $res = $client->get($url);
+        $content = (string) $res->getBody();
+        
+        dd($content);
+
         $data = @file_get_contents($url);
 
         if (explode(' ', $http_response_header[0])[1] !== '200') return false;
