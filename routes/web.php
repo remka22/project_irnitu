@@ -55,7 +55,7 @@ Route::get('/bitrix', function (Request $request) {
         //if (explode(' ', $http_response_header[0])[1] !== '200') return false;
         $data = json_decode($data, true);
         
-        dd($data);
+        //dd($data);
     }
     if (isset($data['client_endpoint']) && isset($data['access_token'])) {
         # формирование параметров запроса
@@ -65,10 +65,11 @@ Route::get('/bitrix', function (Request $request) {
         //$data = @file_get_contents($url);
         $res = $client->get($url);
         $data = (string) $res->getBody();
-        dd($data);
+        //dd($data);
          
-        if (explode(' ', $http_response_header[0])[1] !== '200') return false;
+        //if (explode(' ', $http_response_header[0])[1] !== '200') return false;
         $data = json_decode($data, true);
+        dd($data);
         # проверка наличия структуры данных
         if (isset($data['result']['email'])) $return = $data['result'];
     }
