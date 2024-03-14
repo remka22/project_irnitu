@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
@@ -68,8 +69,9 @@ class AuthController extends Controller
 
 function auth($return){
     if($return['is_student']){
-
+        if(User::where('mira_id', $return['mira_id'][0])->get()->count() == 0)
         dd($return);
+
         return redirect('/student');
     }
     if($return['is_teacher']){
