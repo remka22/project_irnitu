@@ -39,7 +39,8 @@
                     <ul class="navbar-nav me-auto">
                         @guest
                         @else
-                            <div>{{ Auth::user()->second_name }} {{ Auth::user()->name }} {{ Auth::user()->last_name }}</div>
+                            <div>{{ Auth::user()->second_name }} {{ Auth::user()->name }} {{ Auth::user()->last_name }}
+                            </div>
                         @endguest
                     </ul>
 
@@ -48,7 +49,6 @@
                         <!-- Authentication Links -->
                         @guest
                         @else
-                            <div>{{ Auth::user()->second_name }} {{ Auth::user()->name }} {{ Auth::user()->last_name }}</div>
                             <a class='btn btn-primary' href='/logout'>Выход</a>
                         @endguest
                     </ul>
