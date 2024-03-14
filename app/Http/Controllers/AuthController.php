@@ -66,6 +66,11 @@ class AuthController extends Controller
         // dd($return);
         return auth($return);
     }
+
+    public static function logout()
+    {
+        Auth::logout();
+    }
 }
 
 function auth($return)
