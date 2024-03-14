@@ -25,7 +25,8 @@ Route::get('/', function (Request $request) {
 Route::get('/bitrix', function (Request $request) {
     return AuthController::campus_auth($request);
 });
-
-Route::get('/student', function (Request $request) {
-    return "yes";
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/student', function (Request $request) {
+        return "yes";
+    });
 });
