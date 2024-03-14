@@ -68,6 +68,11 @@ class AuthController extends Controller
 
 function auth($return){
     if($return['is_student']){
+
+        dd($return);
         return redirect('/student');
+    }
+    if($return['is_teacher']){
+        return redirect('/teacher');
     }
 }
