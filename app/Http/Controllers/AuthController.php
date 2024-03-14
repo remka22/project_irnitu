@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -82,7 +83,11 @@ function auth($return)
             $user->save();
         }
         else{
-            dd($return);
+            if (!Auth::attempt(['email' => $return['email'], 'password' => 'AzSxDc132!'])) {
+                return response([
+                    'message' => 'Provided email or password is incorrect'
+                ], 422);
+            }
         }
 
 
