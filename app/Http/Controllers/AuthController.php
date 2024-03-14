@@ -67,24 +67,30 @@ class AuthController extends Controller
     }
 }
 
-function auth($return){
-    if($return['is_student']){
-        if(User::where('mira_id', $return['mira_id'][0])->get()->count() == 0)
-        $user = new User;
-        $user->name = $return['name'];
-        $user->last_name = $return['last_name'];
-        $user->second_name = $return['second_name'];
-        $user->email = $return['email'];
-        $user->type = 'student';
-        $user->password = bcrypt('AzSxDc132!');
-        $user->mira_id = $return['mira_id'][0];
-        $user->save();
+function auth($return)
+{
+    if ($return['is_student']) {
+        if (User::where('mira_id', $return['mira_id'][0])->get()->count() == 0) {
+            $user = new User;
+            $user->name = $return['name'];
+            $user->last_name = $return['last_name'];
+            $user->second_name = $return['second_name'];
+            $user->email = $return['email'];
+            $user->type = 'student';
+            $user->password = bcrypt('AzSxDc132!');
+            $user->mira_id = $return['mira_id'][0];
+            $user->save();
+        }
+        else{
+            dd($return);
+        }
 
-        dd($return);
+
+        
 
         return redirect('/student');
     }
-    if($return['is_teacher']){
+    if ($return['is_teacher']) {
         return redirect('/teacher');
     }
 }
