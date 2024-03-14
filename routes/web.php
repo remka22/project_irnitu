@@ -32,6 +32,6 @@ Route::get('/logout', function(){
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/student', function (Request $request) {
-        return "yes";
+        return view('student.student');
     });
 });
