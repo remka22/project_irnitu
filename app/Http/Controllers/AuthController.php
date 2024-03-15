@@ -32,8 +32,7 @@ class AuthController extends Controller
                     return redirect('/student');
                     break;
             }
-        }
-        else{
+        } else {
             return view('goest');
         }
     }
@@ -128,7 +127,8 @@ function auth($return)
 
         return redirect('/student');
     }
-    if ($return['is_teacher']) {
+    //if ($return['is_teacher']) {
+    else {
 
         dd($return);
         return redirect('/teacher');
