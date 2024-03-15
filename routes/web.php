@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Insertcontroller;
 use App\Models\User;
@@ -38,4 +39,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/student', function (Request $request) {
         return view('student.student');
     });
+});
+
+Route::get('/admin', function (Request $request) {
+    return view('admin.login');
+});
+Route::post('/admin', function (Request $request) {
+    return AdminController::login($request);
 });
