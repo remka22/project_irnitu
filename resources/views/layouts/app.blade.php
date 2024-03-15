@@ -60,9 +60,9 @@
         <div class="row">
 
             <div class="col-2">
-                <div class="container  ">
-                    @guest
-                    @else
+                @guest
+                @else
+                    <div class="container  ">
                         <div class="row gy-2">
                             @if (Auth::user()->type == 'student' || Auth::user()->type == 'admin')
                                 <a href="/student/practika" class="btn btn-info ">Заявка</a>
@@ -87,8 +87,8 @@
                             @endif
 
                         </div>
-                    @endguest
-                </div>
+                    </div>
+                @endguest
             </div>
 
 
