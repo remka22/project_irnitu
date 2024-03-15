@@ -10,7 +10,7 @@ class AdminController extends Controller
     public static function login(Request $request)
     {
         $field = [
-            'login' => $request->login,
+            'email' => $request->login,
             'password' => $request->password
         ];
 
