@@ -27,6 +27,10 @@ Route::get('/test', function (Request $request) {
     return view('test');
 });
 
+Route::get('/insert', function (Request $request) {
+    return Insertcontroller::post($request);
+});
+
 Route::get('/bitrix', function (Request $request) {
     return AuthController::campus_auth($request);
 });

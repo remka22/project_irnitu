@@ -99,7 +99,7 @@
             <div class="col-2">
                 @guest
                 @else
-                    <form method="POST">
+                    <form method="POST" action="/insert">
                         @csrf
                         @if (Auth::user()->type == 'admin')
                             <div class="container  ">
