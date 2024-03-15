@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <form method="POST" action="{{ route('login') }}">
+    <form method="POST" action="/admin">
         @csrf
         <div class="container">
             <div class="row" style="padding-top: 3rem;">
