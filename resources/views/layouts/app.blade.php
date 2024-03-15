@@ -115,7 +115,7 @@
                                     <input type="submit"class="btn btn-warning" name="insertComp"
                                         value="Импортить компании">
                                     <input type="submit"class="btn btn-warning" name="insertTeach"
-                                        value="Импортить компании">
+                                        value="Импортить преподавателей">
                                 </div>
                             </div>
                         @endif
