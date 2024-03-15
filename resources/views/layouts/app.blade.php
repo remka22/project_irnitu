@@ -55,9 +55,29 @@
                 </div>
             </div>
         </nav>
-        <div class="conteiner-xxl">
-            @yield('content')
+
+        <div class="row">
+            @guest
+            @else
+                <div class="col-2">
+                    <div class="container  ">
+                        <div class="row gy-2">
+                            <button type="button " class="btn btn-info ">Мои группы</button>
+                            <button type="button " class="btn btn-info ">Мои группы</button>
+                        </div>
+                    </div>
+                </div>
+            @endguest
+
+            <div class="col gy-2">
+                @yield('content')
+            </div>
+
+            <div class="col-2">
+
+            </div>
         </div>
+
 </body>
 
 </html>

@@ -22,6 +22,10 @@ Route::get('/', function (Request $request) {
     return view('goest');
 });
 
+Route::get('/test', function (Request $request) {
+    return view('test');
+});
+
 Route::get('/bitrix', function (Request $request) {
     return AuthController::campus_auth($request);
 });
