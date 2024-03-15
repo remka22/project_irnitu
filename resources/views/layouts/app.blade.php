@@ -58,10 +58,11 @@
         </nav>
 
         <div class="row">
-            @guest
-            @else
-                <div class="col-2">
-                    <div class="container  ">
+
+            <div class="col-2">
+                <div class="container  ">
+                    @guest
+                    @else
                         <div class="row gy-2">
                             @if (Auth::user()->type == 'student' || Auth::user()->type == 'admin')
                                 <a href="/student/practika" class="btn btn-info ">Заявка</a>
@@ -86,9 +87,10 @@
                             @endif
 
                         </div>
-                    </div>
+                    @endguest
                 </div>
-            @endguest
+            </div>
+
 
             <div class="col gy-2">
                 @yield('content')
@@ -97,17 +99,27 @@
             <div class="col-2">
                 @guest
                 @else
-                    @if (Auth::user()->type == 'admin')
-                        <form method="POST">
-                            @csrf
-                            <input type="submit"class="btn btn-warning" name="insertInst" value="Импортить институты">
-                            <input type="submit"class="btn btn-warning" name="insertProf" value="Импортить направления">
-                            <input type="submit"class="btn btn-warning" name="insertStream" value="Импортить потоки">
-                            <input type="submit"class="btn btn-warning" name="insertStud" value="Импортить студентов">
-                            <input type="submit"class="btn btn-warning" name="insertComp" value="Импортить компании">
-                            <input type="submit"class="btn btn-warning" name="insertTeach" value="Импортить компании">
-                        </form>
-                    @endif
+                    <form method="POST">
+                        @csrf
+                        @if (Auth::user()->type == 'admin')
+                            <div class="container  ">
+                                <div class="row gy-2">
+                                    <input type="submit"class="btn btn-warning" name="insertInst"
+                                        value="Импортить институты">
+                                    <input type="submit"class="btn btn-warning" name="insertProf"
+                                        value="Импортить направления">
+                                    <input type="submit"class="btn btn-warning" name="insertStream"
+                                        value="Импортить потоки">
+                                    <input type="submit"class="btn btn-warning" name="insertStud"
+                                        value="Импортить студентов">
+                                    <input type="submit"class="btn btn-warning" name="insertComp"
+                                        value="Импортить компании">
+                                    <input type="submit"class="btn btn-warning" name="insertTeach"
+                                        value="Импортить компании">
+                                </div>
+                            </div>
+                        @endif
+                    </form>
                 @endguest
             </div>
         </div>
