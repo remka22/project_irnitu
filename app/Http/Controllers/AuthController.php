@@ -129,6 +129,8 @@ function auth($return)
         return redirect('/student');
     }
     if ($return['is_teacher']) {
+
+        dd($return);
         return redirect('/teacher');
     }
 }
