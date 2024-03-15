@@ -35,7 +35,7 @@ class AdminController extends Controller
             //         break;
             // }
         }
-        return redirect(route('login'));
+        return redirect('/');
     }
 
 
