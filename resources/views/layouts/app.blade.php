@@ -58,10 +58,10 @@
         </nav>
 
         <div class="row">
+            @guest
+            @else
+                <div class="col-2">
 
-            <div class="col-2">
-                @guest
-                @else
                     <div class="container  ">
                         <div class="row gy-2">
                             @if (Auth::user()->type == 'student' || Auth::user()->type == 'admin')
@@ -88,17 +88,19 @@
 
                         </div>
                     </div>
-                @endguest
-            </div>
+
+                </div>
+            @endguest
 
 
             <div class="col gy-2">
                 @yield('content')
             </div>
 
-            <div class="col-2">
-                @guest
-                @else
+
+            @guest
+            @else
+                <div class="col-2">
                     <form method="POST" action="/insert">
                         @csrf
                         @if (Auth::user()->type == 'admin')
@@ -120,8 +122,9 @@
                             </div>
                         @endif
                     </form>
-                @endguest
-            </div>
+                </div>
+            @endguest
+
         </div>
 
 </body>
