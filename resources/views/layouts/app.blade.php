@@ -63,19 +63,24 @@
                 <div class="col-2">
                     <div class="container  ">
                         <div class="row gy-2">
-                            @if (Auth::user()->type = 'student' || Auth::user()->type = 'admin')
+                            @if (Auth::user()->type = 'student' || (Auth::user()->type = 'admin'))
                                 <a href="/student/practika" class="btn btn-info ">Заявка</a>
                                 <a href="/student/otchet" class="btn btn-info ">Отчет</a>
-                            @elseif (Auth::user()->type = 'teacher' || Auth::user()->type = 'admin')
+                            @endif
+                            @if (Auth::user()->type = 'teacher' || (Auth::user()->type = 'admin'))
                                 <a href="/teacher/stud_practika" class="btn btn-info ">Заявки студентов</a>
                                 <a href="/teacher/stud_otchet" class="btn btn-info ">Отчетность студентов</a>
-                            @elseif (Auth::user()->type = 'rop' || Auth::user()->type = 'admin')
+                            @endif
+                            @if (Auth::user()->type = 'rop' || (Auth::user()->type = 'admin'))
                                 <a href="/teacher/stud_practika" class="btn btn-info ">Заявки студентов</a>
-                                <a href="/teacher/stud_otchet"  class="btn btn-info ">Отчетность студентов</a>
-                                <a href="/rop/control_activity_student" class="btn btn-info ">Контроль активности студентов</a>
-                            @elseif (Auth::user()->type = 'direct' || Auth::user()->type = 'admin')
+                                <a href="/teacher/stud_otchet" class="btn btn-info ">Отчетность студентов</a>
+                                <a href="/rop/control_activity_student" class="btn btn-info ">Контроль активности
+                                    студентов</a>
+                            @endif
+                            @if (Auth::user()->type = 'direct' || (Auth::user()->type = 'admin'))
                                 <a href="/direct/shablon_prikazy" class="btn btn-info ">Формирование шаблонов приказа</a>
-                            @elseif (Auth::user()->type = 'center' || Auth::user()->type = 'admin')
+                            @endif
+                            @if (Auth::user()->type = 'center' || (Auth::user()->type = 'admin'))
                                 <a href="/center/shablon_prikazy" class="btn btn-info ">Шаблоны приказов</a>
                                 <a href="/center/stud_dogovory" class="btn btn-info ">Договора студентов</a>
                             @endif
