@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function (Request $request) {
-    return view('goest');
+    return AuthController::check_auth();
 });
 
 Route::get('/test', function (Request $request) {

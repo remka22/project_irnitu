@@ -8,6 +8,35 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+    public static function check_auth()
+    {
+        if (Auth::check()) {
+            $user = Auth::user();
+            switch ($user->type) {
+                case "student":
+                    return redirect('/student');
+                    break;
+                case "teacher":
+                    return redirect('/teacher');
+                    break;
+                case "direct":
+                    return redirect('/direct');
+                    break;
+                case "center":
+                    return redirect('/center');
+                    break;
+                case "rop":
+                    return redirect('/rop');
+                    break;
+                case "admin":
+                    return redirect('/student');
+                    break;
+            }
+        }
+        else{
+            return view('goest');
+        }
+    }
 
     public static function campus_auth($request)
     {
@@ -86,8 +115,7 @@ function auth($return)
             $user->password = bcrypt('AzSxDc132!');
             $user->mira_id = $return['mira_id'][0];
             $user->save();
-        }
-        else{
+        } else {
             if (!Auth::attempt(['email' => $return['email'], 'password' => 'AzSxDc132!'])) {
                 return response([
                     'message' => 'Provided email or password is incorrect'
@@ -96,7 +124,7 @@ function auth($return)
         }
 
 
-        
+
 
         return redirect('/student');
     }
