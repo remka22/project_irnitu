@@ -63,24 +63,24 @@
                 <div class="col-2">
                     <div class="container  ">
                         <div class="row gy-2">
-                            @if (Auth::user()->type == 'student' || (Auth::user()->type == 'admin'))
+                            @if (Auth::user()->type == 'student' || Auth::user()->type == 'admin')
                                 <a href="/student/practika" class="btn btn-info ">Заявка</a>
                                 <a href="/student/otchet" class="btn btn-info ">Отчет</a>
                             @endif
-                            @if (Auth::user()->type == 'teacher' || (Auth::user()->type == 'admin'))
+                            @if (Auth::user()->type == 'teacher' || Auth::user()->type == 'admin')
                                 <a href="/teacher/stud_practika" class="btn btn-info ">Заявки студентов</a>
                                 <a href="/teacher/stud_otchet" class="btn btn-info ">Отчетность студентов</a>
                             @endif
-                            @if (Auth::user()->type == 'rop' || (Auth::user()->type == 'admin'))
+                            @if (Auth::user()->type == 'rop' || Auth::user()->type == 'admin')
                                 <a href="/teacher/stud_practika" class="btn btn-info ">Заявки студентов</a>
                                 <a href="/teacher/stud_otchet" class="btn btn-info ">Отчетность студентов</a>
                                 <a href="/rop/control_activity_student" class="btn btn-info ">Контроль активности
                                     студентов</a>
                             @endif
-                            @if (Auth::user()->type == 'direct' || (Auth::user()->type == 'admin'))
+                            @if (Auth::user()->type == 'direct' || Auth::user()->type == 'admin')
                                 <a href="/direct/shablon_prikazy" class="btn btn-info ">Формирование шаблонов приказа</a>
                             @endif
-                            @if (Auth::user()->type == 'center' || (Auth::user()->type == 'admin'))
+                            @if (Auth::user()->type == 'center' || Auth::user()->type == 'admin')
                                 <a href="/center/shablon_prikazy" class="btn btn-info ">Шаблоны приказов</a>
                                 <a href="/center/stud_dogovory" class="btn btn-info ">Договора студентов</a>
                             @endif
@@ -95,7 +95,17 @@
             </div>
 
             <div class="col-2">
-
+                @if (Auth::user()->type == 'admin')
+                    <form method="POST">
+                        @csrf
+                        <input type="submit"class="btn btn-warning" name="insertInst" value="Импортить институты">
+                        <input type="submit"class="btn btn-warning" name="insertProf" value="Импортить направления">
+                        <input type="submit"class="btn btn-warning" name="insertStream" value="Импортить потоки">
+                        <input type="submit"class="btn btn-warning" name="insertStud" value="Импортить студентов">
+                        <input type="submit"class="btn btn-warning" name="insertComp" value="Импортить компании">
+                        <input type="submit"class="btn btn-warning" name="insertTeach" value="Импортить компании">
+                    </form>
+                @endif
             </div>
         </div>
 
