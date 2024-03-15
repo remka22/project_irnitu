@@ -54,8 +54,8 @@ function insertTeach()
 {
     $teachers = getPortal('3e927995-75ee-4c90-a9dc-b1c9e775e034', 'mNNxbKiXS9', 'worker.fac', array('id' => 46));
     foreach ($teachers as $num => $value) {
-        $faculty = DB::connection('mariabd')->select("select id from faculty where name = ".$value['fac'])[0];
-        DB::connection('mariabd')->insert("insert into teachers (fio, post, mira_id, fac_id) values ('".$value['name']."','".$value['post']."',".$value['id'].",'".$faculty."',)");
+        $faculty = DB::connection('mariadb')->select("select id from faculty where name = ".$value['fac'])[0];
+        DB::connection('mariadb')->insert("insert into teachers (fio, post, mira_id, fac_id) values ('".$value['name']."','".$value['post']."',".$value['id'].",'".$faculty."',)");
         //$arr_faculty[] = $value;
     }
     return redirect("/"); //dd(json_encode($arr_faculty, JSON_UNESCAPED_UNICODE));
