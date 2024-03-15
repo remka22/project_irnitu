@@ -170,7 +170,7 @@ function insertStud()
         }
         $id_group = DB::connection('mariadb')->select("select id from groups where stream_id = " . $id_stream . " and group_number = '" . $name_group[2] . "'")[0]->id;
 
-        DB::connection('mariadb')->insert("insert into students (fio, stud_id, category, group_id) values ('" . $name . "', " . $id . ", 'test', " . $id_group . ")");
+        //DB::connection('mariadb')->insert("insert into students (fio, stud_id, category, group_id) values ('" . $name . "', " . $id . ", 'test', " . $id_group . ")");
     }
     return redirect("/");
 }
