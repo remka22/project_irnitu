@@ -40,7 +40,7 @@
                 @endif --}}
 
                 <form method="post" action="/student/practika">
-
+                    @csrf
                     <div class="block">
                         <label for="teacher" class="form-label">Руководитель:</label>
                         <select class="form-select zxc" id="teacher" required name="teacher_id" {{ $disabled }}>
