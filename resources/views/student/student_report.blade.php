@@ -115,10 +115,9 @@
                         <form method="POST" action="/insert">
                             @csrf
                             @if ($student_practic)
-                                <button type="submit" class="btn btn-primary btn-lg" name="cancel">Отменить
-                                    заявку</button>
+                                <input type="submit" class="btn btn-primary btn-lg" name="cancel" value="Отменить">
                             @else
-                                <button type="submit" class="btn btn-primary btn-lg" name="send">Отправить</button>
+                                <input type="submit" class="btn btn-primary btn-lg" name="send"value="Отправить">
                             @endif
                         </form>
                     </div>
