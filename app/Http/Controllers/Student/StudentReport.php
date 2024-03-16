@@ -22,6 +22,7 @@ class StudentReport extends Controller
         $user = Auth::user();
 
         if($user->type == "admin"){
+            $student = Student::all();
             if($request->get('id')){
                 $student = Student::find($request->get('id'));
             }
@@ -30,6 +31,7 @@ class StudentReport extends Controller
             }
         }
         else{
+            $students = [];
             $student = Student::where('mira_id', $user->mira_id)->get()->first();
         }
 
@@ -64,6 +66,7 @@ class StudentReport extends Controller
             'teachers' => $teachers,
             'companies' => $companies,
             'student_practic' => $student_practic,
+            'students' => $students,
             'student' => $student
         ]);
     }
