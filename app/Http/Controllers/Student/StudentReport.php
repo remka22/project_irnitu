@@ -36,7 +36,7 @@ class StudentReport extends Controller
                 $displayNone = 'style="display: none;"';
             }
         } else {
-            $student_practic = ['theme' => ''];
+            $student_practic = ['theme' => '""'];
             $disabled = "";
             $checked = "";
             $displayNone = "";
