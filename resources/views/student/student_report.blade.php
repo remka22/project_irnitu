@@ -34,7 +34,7 @@
                     <div>{{ $student->fio }}</div>
                     <select class="form-select zxc" id="students" required name="teacher_id">
                         @foreach ($students as $stud)
-                            <option><a href="/student/practika?id={{$stud->id}}">{{$stud->fio}}</option>
+                            <option><a href="/student/practika?id={{$stud->id}}">{{$stud->fio}}</a></option>
                         @endforeach
                     </select>
                 @endif
