@@ -112,12 +112,12 @@
 
 
                     <div class="d-flex justify-content-center">
-                        <form method="POST" action="/insert">
+                        <form method="POST">
                             @csrf
                             @if ($student_practic)
                                 <input type="submit" class="btn btn-primary btn-lg" name="cancel" value="Отменить">
                             @else
-                                <input type="submit" class="btn btn-primary btn-lg" name="send"value="Отправить">
+                                <input type="submit" class="btn btn-primary btn-lg" name="send" value="Отправить">
                             @endif
                         </form>
                     </div>
