@@ -79,7 +79,7 @@ class StudentReport extends Controller
         if ($request->input('send')) {
             return add_request_practic($request);
         } elseif ($request->input('cancel')) {
-            // cancel_request_practic($connect, $student_id);
+            return cancel_request_practic($request);
         }
     }
 }
@@ -98,6 +98,8 @@ function add_request_practic($request)
         $stud_prac->status = 0;
         $stud_prac->company_path = "No file";
 
+        decriment_work_load($request);
+
         if ($request->input('cbMyCompany')) {
             $stud_prac->company_id = null;
         } else {
@@ -106,7 +108,6 @@ function add_request_practic($request)
         $stud_prac->save();
 
         return redirect('/student/practika');
-
     } else {
         return response([
             'message' => 'Bad workload teacher, sorry, try again'
@@ -114,7 +115,15 @@ function add_request_practic($request)
     }
 }
 
+function decriment_work_load($request) {
+    $teachers = Teachers::find($request->teacher_id);
+    $teachers->update(['work_load' => $teachers->work_load - 1]);
+}
 
+function increase_work_load($request) {
+    $teachers = Teachers::find($request->teacher_id);
+    $teachers->update(['work_load' => $teachers->work_load + 1]);
+}
 
 function work_load_check($request)
 {
@@ -142,27 +151,26 @@ function work_load_check($request)
 // }
 
 
-// function cancel_request_practic($connect, $student_id)
-// {
-//     try {
-//         $student_request = $connect->query("SELECT * FROM Practices.student_practic WHERE student_id ='" . $student_id . "';")->Fetch();
-//         if ($student_request) {
-//             // Удаляется файл, если он существует
-//             if (file_exists($student_request['company_path'])) {
-//                 unlink($student_request['company_path']);
-//             }
+function cancel_request_practic($request)
+{
+    $user = Auth::user();
+    $student = Student::where('mira_id', $user->mira_id)->get()->first();
+    $student_practic = StudentPractic::where('student_id', $student->id)->get()->first();
+    if ($student_practic) {
+        // Удаляется файл, если он существует
+        // if (file_exists($student_request['company_path'])) {
+        //     unlink($student_request['company_path']);
+        // }
 
-//             // Увеличиваем рабочую нагрузку учителя, если заявка была отменена
-//             increase_work_load($connect, $student_request['teacher_id']);
+        // Увеличиваем рабочую нагрузку учителя, если заявка была отменена
+        increase_work_load($request);
 
-//             $connect->query("DELETE FROM Practices.student_practic WHERE student_id ='" . $student_id . "';");
+        $student_practic->delete();
 
-//             echo '<script type="text/javascript"> alert("Заявка успешно отменена!"); </script>';
-//             header("Refresh: 0");
-//         } else {
-//             echo '<script type="text/javascript"> alert("Заявка не найдена!"); </script>';
-//         }
-//     } catch (Exception $e) {
-//         die("[6] - delete_error");
-//     }
-// }
+        return redirect('/student/practika');
+    } else {
+        return response([
+            'message' => 'Bad request, sorry, try again'
+        ], 422);
+    }
+}
