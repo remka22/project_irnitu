@@ -95,9 +95,9 @@ function add_request_practic($request)
         $stud_prac->company_path = "No file";
 
         if ($request->input('cbMyCompany')) {
-            $stud_prac->company_id = $request->input('company_id');
-        } else {
             $stud_prac->company_id = null;
+        } else {
+            $stud_prac->company_id = $request->input('company_id');
         }
         $stud_prac->save();
 
