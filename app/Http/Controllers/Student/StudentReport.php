@@ -21,16 +21,14 @@ class StudentReport extends Controller
 
         $user = Auth::user();
 
-        if($user->type == "admin"){
+        if ($user->type == "admin") {
             $students = Student::all();
-            if($request->get('id')){
+            if ($request->get('id')) {
                 $student = Student::find($request->get('id'));
-            }
-            else{
+            } else {
                 $student = Student::all()->first();
             }
-        }
-        else{
+        } else {
             $students = [];
             $student = Student::where('mira_id', $user->mira_id)->get()->first();
         }
@@ -66,13 +64,107 @@ class StudentReport extends Controller
             'teachers' => $teachers,
             'companies' => $companies,
             'student_practic' => $student_practic,
-            'students' => $students,
-            'student' => $student
+            // 'students' => $students,
+            // 'student' => $student
         ]);
     }
 
-    public static function post()
+    public static function post(Request $request)
     {
+        dd($request);
+        // if ( $request->input('send')){
+        //     add_request_practic($request);
+        // } elseif ($request->input('cancel')) {
+        //     cancel_request_practic($connect, $student_id);
+        // }
     }
 }
 
+// function add_request_practic($connect, $student_id)
+// {
+
+//     if (work_load_check($request)) {
+//         $path = company_file_upload();
+//         $theme = $_POST['theme_field'];
+//         if ($_POST['cbMyCompany'] == false) {
+//             if ($_POST["theme"] != "Своя тема") {
+//                 $theme = $_POST["theme"];
+//             }
+//             print_r('<br>');
+//             print_r($student_id);
+//             print_r('<br>');
+//             print_r($_POST['company_id']);
+//             print_r('<br>');
+//             print_r($_POST['teacher_id']);
+//             print_r('<br>');
+//             print_r($theme);
+//             print_r('<br>');
+//             print_r($path);
+//             print_r('<br>');
+//             print_r($_POST['cbMyCompany']);
+//             $connect->query("INSERT INTO Practices.student_practic (student_id, teacher_id, company_id, theme, company_path, status) 
+//                       VALUES ('$student_id ','" . $_POST['teacher_id'] . "', '" . $_POST['company_id'] . "', '" . $theme . "', '" . $path . "', 0)");
+//         } else {
+//             $connect->query("INSERT INTO Practices.student_practic (student_id, teacher_id, theme, company_path, status) 
+//                       VALUES ('$student_id','" . $_POST['teacher_id'] . "', '" . $theme . "', '" . $path . "',0)");
+//         }
+
+//         work_load_decriment($connect);
+//         succesfull_insert();
+//     } else {
+//         work_over_load();
+//     }
+// }
+
+
+
+// function work_load_check($request)
+// {
+//     $work_load = Teachers::find($request->input());
+//     if ($result["work_load"] > 0) {
+//         return True;
+//     } else {
+//         return False;
+//     }
+// }
+
+// function work_load_decriment($connect)
+// {
+//     try {
+//         $resultset = $connect->query("SELECT work_load FROM Practices.teachers Where id = '" . $_POST['teacher_id'] . "'");
+//     } catch (Exception $e) {
+//         die("[3] - select_error");
+//     }
+//     $result = $resultset->Fetch()["work_load"];
+//     try {
+//         $connect->query("UPDATE Practices.teachers SET work_load = " . --$result . " WHERE id = " . $_POST['teacher_id']);
+//     } catch (Exception $e) {
+//         die("[4] - update_error");
+//     }
+// }
+
+
+// function cancel_request_practic($connect, $student_id)
+// {
+//     try {
+//         $student_request = $connect->query("SELECT * FROM Practices.student_practic WHERE student_id ='" . $student_id . "';")->Fetch();
+//         if ($student_request) {
+//             // Удаляется файл, если он существует
+//             if (file_exists($student_request['company_path'])) {
+//                 unlink($student_request['company_path']);
+//             }
+
+//             // Увеличиваем рабочую нагрузку учителя, если заявка была отменена
+//             increase_work_load($connect, $student_request['teacher_id']);
+
+//             $connect->query("DELETE FROM Practices.student_practic WHERE student_id ='" . $student_id . "';");
+
+//             echo '<script type="text/javascript"> alert("Заявка успешно отменена!"); </script>';
+//             header("Refresh: 0");
+//         } else {
+//             echo '<script type="text/javascript"> alert("Заявка не найдена!"); </script>';
+//         }
+//     } catch (Exception $e) {
+//         die("[6] - delete_error");
+//     }
+// }

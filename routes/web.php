@@ -55,6 +55,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/student/practika', function (Request $request) {
         return StudentReport::get($request);
     });
+    Route::post('/student/practika', function (Request $request) {
+        return StudentReport::post($request);
+    });
 });
 
 Route::get('/admin', function (Request $request) {

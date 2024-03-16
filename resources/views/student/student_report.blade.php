@@ -30,14 +30,14 @@
         <div class="all_fragments">
             <div class="fragment one">
 
-                @if (Auth::user()->type == 'admin')
+                {{-- @if (Auth::user()->type == 'admin')
                     <div>{{ $student->fio }}</div>
                     <select class="form-select zxc" id="students" required name="teacher_id">
                         @foreach ($students as $stud)
                             <option><a href="/student/practika?id={{$stud->id}}">{{$stud->fio}}</a></option>
                         @endforeach
                     </select>
-                @endif
+                @endif --}}
 
                 <form method="post" action="index.php" class="test" id="test" enctype="multipart/form-data">
 
