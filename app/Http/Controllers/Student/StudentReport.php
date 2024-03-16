@@ -98,7 +98,7 @@ function add_request_practic($request)
         $stud_prac->status = 0;
         $stud_prac->company_path = "No file";
 
-        decriment_work_load($request);
+        decriment_work_load($stud_prac->teacher_id);
 
         if ($request->input('cbMyCompany')) {
             $stud_prac->company_id = null;
@@ -115,19 +115,19 @@ function add_request_practic($request)
     }
 }
 
-function decriment_work_load($request) {
-    $teachers = Teachers::find($request->teacher_id);
+function decriment_work_load($teacher_id) {
+    $teachers = Teachers::find($teacher_id);
     $teachers->update(['work_load' => $teachers->work_load - 1]);
 }
 
-function increase_work_load($request) {
-    $teachers = Teachers::find($request->teacher_id);
+function increase_work_load($teacher_id) {
+    $teachers = Teachers::find($teacher_id);
     $teachers->update(['work_load' => $teachers->work_load + 1]);
 }
 
-function work_load_check($teacher_id)
+function work_load_check($request)
 {
-    $work_load = Teachers::find($teacher_id)->get()->first()->work_load;
+    $work_load = Teachers::find($request->input('teacher_id'))->get()->first()->work_load;
     if ($work_load > 0) {
         return True;
     } else {
