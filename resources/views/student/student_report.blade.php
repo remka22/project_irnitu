@@ -78,7 +78,7 @@
     </script>
 
 
-    <body onload="init()">
+    <div onload="init()">
 
         <div class="all_fragments">
             <div class="fragment one">
@@ -104,8 +104,8 @@
 
                     <div class="block">
                         <label for="company" class="form-label">Компания:</label>
-                        <select class="form-select zxc" id="company" name="company_id" required
-                            {{ $disabled }} {{ $displayNone }}>
+                        <select class="form-select zxc" id="company" name="company_id" required {{ $disabled }}
+                            {{ $displayNone }}>
                             @if ($disabled && !$checked)
                                 <option value={{ $companies['id'] }}> {{ $companies['name'] }} </option>
                             @else
@@ -146,7 +146,7 @@
                         {{-- <select class="form-select zxc" id="theme" required name="theme" onchange="theme_check()"
                             {{ $disabled }}></select> --}}
                         <input type="text" class="form-control zxc" style="margin-left: 0" required
-                            value={{ $student_practic['theme'] }} id="theme_field" name="theme_field" {{ $disabled }}>
+                           id="theme_field" name="theme_field" {{ $disabled }}  value={{ $student_practic['theme'] }}>
 
                         <div class="invalid-feedback">
                             Пожалуйста, не забудьте написать тему.
@@ -167,7 +167,8 @@
                     </div>
                 </form>
             </div>
-    </body>
+        </div>
+    </div>
     <style>
         body {
             background-image: linear-gradient(to right, rgba(192, 217, 214, 0.2) 10%, rgba(167, 207, 206, 0.6) 40%, rgba(27, 62, 84) 80%);
