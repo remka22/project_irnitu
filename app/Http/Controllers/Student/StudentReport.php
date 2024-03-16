@@ -161,26 +161,4 @@ class StudentReport extends Controller
 ?>
 
 
-<?php
-if ($student_request && $student_request['company_path']) {
-    $status_message = '';
-    switch ($student_request['status']) {
-        case 0:
-            $status_message = 'Ждите уведомление о принятии руководителем заявки на практику!';
-            $status_color = 'primary';
-            break;
-        case 1:
-            $status_message = 'Руководитель принял вашу заявку!';
-            $status_color = 'success';
-            break;
-        case 2:
-            $status_message = 'Преподаватель отклонил вашу заявку, для получения большей информации свяжитесь с ним.';
-            $status_color = 'danger';
-            break;
-    }
 
-    if ($status_message) {
-        echo '<div class="alert alert-' . $status_color . ' mt-2">' . $status_message . '</div>';
-    }
-}
-?>
