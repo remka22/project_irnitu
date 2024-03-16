@@ -112,7 +112,7 @@
 
 
                     <div class="d-flex justify-content-center">
-                        @if ($student_practic)
+                        @if (!$student_practic)
                             <input type="submit" class="btn btn-primary btn-lg" name="cancel" value="Отменить">
                         @else
                             <input type="submit" class="btn btn-primary btn-lg" name="send" value="Отправить">
