@@ -2,51 +2,9 @@
 @section('content')
     <script>
         function init() {
-            // get_options();
             change_company_format();
         }
 
-        // function get_options() {
-        //     let company_id = document.getElementById("company").value
-
-        //     // // let test = fetch("company_api.php/?company_options=" + company_id, {
-        //     // //     method: 'get',
-        //     // }).then(function(response) {
-        //     //     if (response.status >= 200 && response.status < 300) {
-        //     //         return response.json()
-        //     //     }
-        //     //     throw new Error(response.statusText)
-        //     // }).then(function(response) {
-        //     //     change_options(response);
-        //     // })
-        // }
-
-        // function change_options(new_options) {
-        //     let select = document.getElementById("theme");
-        //     delete_options("theme");
-        //     var opt = document.createElement('option');
-        //     opt.value = "Своя тема";
-        //     opt.innerHTML = "Своя тема";
-        //     select.appendChild(opt);
-
-        //     for (let option of new_options) {
-        //         let opt = document.createElement('option');
-        //         opt.value = option;
-        //         opt.innerHTML = option;
-        //         select.appendChild(opt);
-        //     }
-        //     select.options[0].defaultSelected = true;
-
-        // }
-
-        // function delete_options(id) {
-        //     let select_item = document.getElementById(id);
-        //     let options = select_item.getElementsByTagName('option');
-
-        //     for (let i = options.length; i--;) {
-        //         select_item.removeChild(options[i]);
-        //     }
-        // }
 
         function change_company_format() {
             let cbMyCompany = document.getElementById("cbMyCompany");
@@ -65,16 +23,6 @@
 
         }
 
-        // function theme_check() {
-        //     let option = document.getElementById("theme").value;
-        //     let test = document.getElementById("theme_field");
-        //     if (option == "Своя тема") {
-        //         document.getElementById("theme_field").style.display = "block";
-        //     } else {
-        //         test.value = "";
-        //         document.getElementById("theme_field").style.display = "none";
-        //     }
-        // }
     </script>
 
 
