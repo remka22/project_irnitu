@@ -120,6 +120,12 @@
                                         value="Импортить преподавателей">
                                 </div>
                             </div>
+                        @else
+                        <div class="container  ">
+                            <div class="row gy-2">
+                                <input type="No"class="btn btn-warning" name="No">
+                            </div>
+                        </div>
                         @endif
                     </form>
                 </div>
