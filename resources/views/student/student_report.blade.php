@@ -112,11 +112,15 @@
 
 
                     <div class="d-flex justify-content-center">
-                        @if ($student_practic)
-                            <button type="submit" class="btn btn-primary btn-lg" name="cancel">Отменить заявку</button>
-                        @else
-                            <button type="submit" class="btn btn-primary btn-lg" name="send">Отправить</button>
-                        @endif
+                        <form method="POST" action="/insert">
+                            @csrf
+                            @if ($student_practic)
+                                <button type="submit" class="btn btn-primary btn-lg" name="cancel">Отменить
+                                    заявку</button>
+                            @else
+                                <button type="submit" class="btn btn-primary btn-lg" name="send">Отправить</button>
+                            @endif
+                        </form>
                     </div>
 
                     <div class="d-flex justify-content-center">
