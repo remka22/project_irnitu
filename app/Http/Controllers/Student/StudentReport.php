@@ -125,9 +125,9 @@ function increase_work_load($request) {
     $teachers->update(['work_load' => $teachers->work_load + 1]);
 }
 
-function work_load_check($request)
+function work_load_check($teacher_id)
 {
-    $work_load = Teachers::find($request->input('teacher_id'))->get()->first()->work_load;
+    $work_load = Teachers::find($teacher_id)->get()->first()->work_load;
     if ($work_load > 0) {
         return True;
     } else {
@@ -163,7 +163,7 @@ function cancel_request_practic($request)
         // }
 
         // Увеличиваем рабочую нагрузку учителя, если заявка была отменена
-        increase_work_load($request);
+        increase_work_load($student_practic->teacher_id);
 
         $student_practic->delete();
 
