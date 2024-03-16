@@ -71,7 +71,7 @@ class StudentReport extends Controller
 
     public static function post(Request $request)
     {
-        dd($request);
+        // dd($request);
         if ($request->input('send')) {
             add_request_practic($request);
         } elseif ($request->input('cancel')) {
