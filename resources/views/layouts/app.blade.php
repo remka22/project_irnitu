@@ -123,7 +123,7 @@
                         @else
                         <div class="container  ">
                             <div class="row gy-2">
-                                <input type="No"class="btn btn-warning" name="No">
+                                <input type="No" name="No">
                             </div>
                         </div>
                         @endif
