@@ -42,9 +42,13 @@ class StudentReport extends Controller
         if ($student_practic) {
             $disabled = "disabled";
             $teachers = Teachers::find($student_practic->teacher_id);
-            if (!$student_practic['company_id']) {
+            if (!$student_practic->company_id) {
                 $checked = "checked";
+                $companies = [];
+                $displayNone = "";
             } else {
+                $checked = "";
+                $companies = Company::find($student_practic->company_id);
                 $displayNone = 'style="display: none;"';
             }
         } else {
