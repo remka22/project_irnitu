@@ -73,7 +73,7 @@ class StudentReport extends Controller
     {
         // dd($request);
         if ($request->input('send')) {
-            add_request_practic($request);
+            return add_request_practic($request);
         } elseif ($request->input('cancel')) {
             // cancel_request_practic($connect, $student_id);
         }
