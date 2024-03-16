@@ -26,7 +26,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar fixed-top navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -57,7 +57,7 @@
             </div>
         </nav>
 
-        <div class="row">
+        <div class="row mt-2">
             @guest
             @else
                 <div class="col-2">
