@@ -72,61 +72,55 @@ class StudentReport extends Controller
     public static function post(Request $request)
     {
         dd($request);
-        // if ( $request->input('send')){
-        //     add_request_practic($request);
-        // } elseif ($request->input('cancel')) {
-        //     cancel_request_practic($connect, $student_id);
-        // }
+        if ($request->input('send')) {
+            add_request_practic($request);
+        } elseif ($request->input('cancel')) {
+            // cancel_request_practic($connect, $student_id);
+        }
     }
 }
 
-// function add_request_practic($connect, $student_id)
-// {
+function add_request_practic($request)
+{
 
-//     if (work_load_check($request)) {
-//         $path = company_file_upload();
-//         $theme = $_POST['theme_field'];
-//         if ($_POST['cbMyCompany'] == false) {
-//             if ($_POST["theme"] != "Своя тема") {
-//                 $theme = $_POST["theme"];
-//             }
-//             print_r('<br>');
-//             print_r($student_id);
-//             print_r('<br>');
-//             print_r($_POST['company_id']);
-//             print_r('<br>');
-//             print_r($_POST['teacher_id']);
-//             print_r('<br>');
-//             print_r($theme);
-//             print_r('<br>');
-//             print_r($path);
-//             print_r('<br>');
-//             print_r($_POST['cbMyCompany']);
-//             $connect->query("INSERT INTO Practices.student_practic (student_id, teacher_id, company_id, theme, company_path, status) 
-//                       VALUES ('$student_id ','" . $_POST['teacher_id'] . "', '" . $_POST['company_id'] . "', '" . $theme . "', '" . $path . "', 0)");
-//         } else {
-//             $connect->query("INSERT INTO Practices.student_practic (student_id, teacher_id, theme, company_path, status) 
-//                       VALUES ('$student_id','" . $_POST['teacher_id'] . "', '" . $theme . "', '" . $path . "',0)");
-//         }
+    if (work_load_check($request)) {
+        //$path = company_file_upload();
+        $user = Auth::user();
+        $student = Student::where('mira_id', $user->mira_id)->get()->first();
+        $stud_prac = new StudentPractic();
+        $stud_prac->student_id = $student->id;
+        $stud_prac->teacher_id = $request->input('teacher_id');
+        $stud_prac->theme = $request->input('theme_field');
+        $stud_prac->status = 0;
+        $stud_prac->company_path = "No file";
 
-//         work_load_decriment($connect);
-//         succesfull_insert();
-//     } else {
-//         work_over_load();
-//     }
-// }
+        if ($request->input('cbMyCompany')) {
+            $stud_prac->company_id = $request->input('company_id');
+        } else {
+            $stud_prac->company_id = null;
+        }
+        $stud_prac->save();
+
+        return redirect('/student/practika');
+
+    } else {
+        return response([
+            'message' => 'Bad workload teacher, sorry, try again'
+        ], 422);
+    }
+}
 
 
 
-// function work_load_check($request)
-// {
-//     $work_load = Teachers::find($request->input());
-//     if ($result["work_load"] > 0) {
-//         return True;
-//     } else {
-//         return False;
-//     }
-// }
+function work_load_check($request)
+{
+    $work_load = Teachers::find($request->input('teacher_id'))->get()->first()->work_load;
+    if ($work_load > 0) {
+        return True;
+    } else {
+        return False;
+    }
+}
 
 // function work_load_decriment($connect)
 // {
