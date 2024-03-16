@@ -32,7 +32,7 @@ Route::get('/test', function (Request $request) {
                                             'teachers' => [['id' => 1, 'fio' => "Пилипенко", 'work_load' => 1]], 
                                             'companies' => [['id' => 1, 'name' => "Компания"]],
                                             'student_request' => ['theme' => 'Тема_моя'],
-                                            'student_practic' => []
+                                            'student_practic' => ['theme' => 'Тема_моя']
     ]);
 });
 

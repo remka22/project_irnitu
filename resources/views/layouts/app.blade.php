@@ -57,7 +57,7 @@
             </div>
         </nav>
 
-        <div class="row">
+        <div class="row-12">
             @guest
             @else
                 <div class="col-2">
