@@ -16,11 +16,23 @@ use Illuminate\Support\Facades\Auth;
 
 class StudentReport extends Controller
 {
-    public static function get()
+    public static function get(Request $request)
     {
 
         $user = Auth::user();
-        $student = Student::where('mira_id', $user->mira_id)->get()->first();
+
+        if($user->type == "admin"){
+            if($request->get('id')){
+                $student = Student::find($request->get('id'));
+            }
+            else{
+                $student = Student::all()->first();
+            }
+        }
+        else{
+            $student = Student::where('mira_id', $user->mira_id)->get()->first();
+        }
+
         $group = Group::find($student->group_id);
         $stream = Stream::find($group->stream_id);
         $profile = Profile::find($stream->profile_id);
@@ -51,7 +63,8 @@ class StudentReport extends Controller
             'displayNone' => $displayNone,
             'teachers' => $teachers,
             'companies' => $companies,
-            'student_practic' => $student_practic
+            'student_practic' => $student_practic,
+            'student' => $student
         ]);
     }
 

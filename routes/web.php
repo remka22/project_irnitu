@@ -53,7 +53,7 @@ Route::middleware('auth:sanctum')->group(function () {
         return view('student.student');
     });
     Route::get('/student/practika', function (Request $request) {
-        return StudentReport::get();
+        return StudentReport::get($request);
     });
 });
 
