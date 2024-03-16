@@ -10,4 +10,8 @@ class Teachers extends Model
     use HasFactory;
     protected $table = 'teachers';
     public $timestamps = false;
+
+    protected $fillable = [
+        'work_load',
+    ];
 }
