@@ -22,7 +22,7 @@ class StudentReport extends Controller
         $user = Auth::user();
 
         if($user->type == "admin"){
-            $student = Student::all();
+            $students = Student::all();
             if($request->get('id')){
                 $student = Student::find($request->get('id'));
             }
