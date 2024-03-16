@@ -112,7 +112,7 @@
 
 
                     <div class="d-flex justify-content-center">
-                        <form method="POST">
+                        <form method="POST" action="/student/practika">
                             @csrf
                             @if ($student_practic)
                                 <input type="submit" class="btn btn-primary btn-lg" name="cancel" value="Отменить">
