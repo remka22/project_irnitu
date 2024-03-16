@@ -10,31 +10,7 @@ class AuthController extends Controller
 {
     public static function check_auth()
     {
-        if (Auth::check()) {
-            $user = Auth::user();
-            switch ($user->type) {
-                case "student":
-                    return redirect('/student');
-                    break;
-                case "teacher":
-                    return redirect('/teacher');
-                    break;
-                case "direct":
-                    return redirect('/direct');
-                    break;
-                case "center":
-                    return redirect('/center');
-                    break;
-                case "rop":
-                    return redirect('/rop');
-                    break;
-                case "admin":
-                    return redirect('/student');
-                    break;
-            }
-        } else {
-            return view('goest');
-        }
+        return route_auth();
     }
 
     public static function campus_auth($request)
@@ -103,34 +79,62 @@ class AuthController extends Controller
 
 function auth($return)
 {
-    if ($return['is_student']) {
-        if (User::where('mira_id', $return['mira_id'][0])->get()->count() == 0) {
-            $user = new User;
-            $user->name = $return['name'];
-            $user->last_name = $return['last_name'];
-            $user->second_name = $return['second_name'];
-            $user->email = $return['email'];
+    if (User::where('mira_id', $return['mira_id'][0])->get()->count() == 0) {
+        $user = new User;
+        $user->name = $return['name'];
+        $user->last_name = $return['last_name'];
+        $user->second_name = $return['second_name'];
+        $user->email = $return['email'];
+
+        
+        if ($return['is_student']) {
             $user->type = 'student';
-            $user->password = bcrypt('AzSxDc132!');
-            $user->mira_id = $return['mira_id'][0];
-            $user->save();
-        } else {
-            if (!Auth::attempt(['email' => $return['email'], 'password' => 'AzSxDc132!'])) {
-                return response([
-                    'message' => 'Provided email or password is incorrect'
-                ], 422);
-            }
+
+        }
+        //if ($return['is_teacher']) {
+        else {
+            $user->type = 'teacher';
+            dd($return);
         }
 
+        $user->password = bcrypt('AzSxDc132!');
+        $user->mira_id = $return['mira_id'][0];
+        $user->save();
+    } 
 
-
-
-        return redirect('/student');
+    if (!Auth::attempt(['email' => $return['email'], 'password' => 'AzSxDc132!'])) {
+        return response([
+            'message' => 'Provided email or password is incorrect'
+        ], 422);
     }
-    //if ($return['is_teacher']) {
-    else {
 
-        dd($return);
-        return redirect('/teacher');
+    return route_auth();
+}
+
+function route_auth(){
+    if (Auth::check()) {
+        $user = Auth::user();
+        switch ($user->type) {
+            case "student":
+                return redirect('/student');
+                break;
+            case "teacher":
+                return redirect('/teacher');
+                break;
+            case "direct":
+                return redirect('/direct');
+                break;
+            case "center":
+                return redirect('/center');
+                break;
+            case "rop":
+                return redirect('/rop');
+                break;
+            case "admin":
+                return redirect('/student');
+                break;
+        }
+    } else {
+        return view('goest');
     }
 }
