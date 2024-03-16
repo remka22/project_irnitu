@@ -86,7 +86,7 @@
                         </div>
 
                         <input type="file" required name="company_file" class="company_file" id="company_file"
-                            {{ $disabled }}>
+                            {{ $disabled }} >
 
                         @if ($disabled)
                             <button class="btn btn-success" name="download">Скачать договор</button>
@@ -112,7 +112,7 @@
 
 
                     <div class="d-flex justify-content-center">
-                        @if (!$student_practic)
+                        @if ($disabled)
                             <input type="submit" class="btn btn-primary btn-lg" name="cancel" value="Отменить">
                         @else
                             <input type="submit" class="btn btn-primary btn-lg" name="send" value="Отправить">
