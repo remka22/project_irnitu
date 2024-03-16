@@ -39,7 +39,7 @@
                     </select>
                 @endif --}}
 
-                <form method="post" action="index.php" class="test" id="test" enctype="multipart/form-data">
+                <form method="post" action="/student/practika">
 
                     <div class="block">
                         <label for="teacher" class="form-label">Руководитель:</label>
@@ -112,14 +112,11 @@
 
 
                     <div class="d-flex justify-content-center">
-                        <form method="POST" action="/student/practika">
-                            @csrf
-                            @if ($student_practic)
-                                <input type="submit" class="btn btn-primary btn-lg" name="cancel" value="Отменить">
-                            @else
-                                <input type="submit" class="btn btn-primary btn-lg" name="send" value="Отправить">
-                            @endif
-                        </form>
+                        @if ($student_practic)
+                            <input type="submit" class="btn btn-primary btn-lg" name="cancel" value="Отменить">
+                        @else
+                            <input type="submit" class="btn btn-primary btn-lg" name="send" value="Отправить">
+                        @endif
                     </div>
 
                     <div class="d-flex justify-content-center">
