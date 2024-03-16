@@ -123,7 +123,7 @@
                         @else
                         <div class="container  ">
                             <div class="row gy-2">
-                                <input type="No" name="No">
+                                <input style="display: none;">
                             </div>
                         </div>
                         @endif
