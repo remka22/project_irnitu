@@ -26,11 +26,11 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar fixed-top navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                    aria-expanded="false">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -57,7 +57,7 @@
             </div>
         </nav>
 
-        <div class="row-12">
+        <div class="row">
             @guest
             @else
                 <div class="col-2">
@@ -79,7 +79,8 @@
                                     студентов</a>
                             @endif
                             @if (Auth::user()->type == 'direct' || Auth::user()->type == 'admin')
-                                <a href="/direct/shablon_prikazy" class="btn btn-info ">Формирование шаблонов приказа</a>
+                                <a href="/direct/shablon_prikazy" class="btn btn-info ">Формирование шаблонов
+                                    приказа</a>
                             @endif
                             @if (Auth::user()->type == 'center' || Auth::user()->type == 'admin')
                                 <a href="/center/shablon_prikazy" class="btn btn-info ">Шаблоны приказов</a>
@@ -121,17 +122,18 @@
                                 </div>
                             </div>
                         @else
-                        <div class="container  ">
-                            <div class="row gy-2">
-                                <input style="display: none;">
+                            <div class="container  ">
+                                <div class="row gy-2">
+                                    <input style="display: none;">
+                                </div>
                             </div>
-                        </div>
                         @endif
                     </form>
                 </div>
             @endguest
 
         </div>
+
 
 </body>
 
