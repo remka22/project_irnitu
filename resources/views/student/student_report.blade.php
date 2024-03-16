@@ -146,7 +146,7 @@
                         {{-- <select class="form-select zxc" id="theme" required name="theme" onchange="theme_check()"
                             {{ $disabled }}></select> --}}
                         <input type="text" class="form-control zxc" style="margin-left: 0" required
-                            value={{ $student_practic['theme'] ?? "" }} id="theme_field" name="theme_field" {{ $disabled }}>
+                            value={{ $student_practic['theme'] }} id="theme_field" name="theme_field" {{ $disabled }}>
 
                         <div class="invalid-feedback">
                             Пожалуйста, не забудьте написать тему.
