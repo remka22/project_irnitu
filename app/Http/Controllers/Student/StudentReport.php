@@ -41,7 +41,7 @@ class StudentReport extends Controller
         $student_practic = StudentPractic::where('student_id', $student->id)->get()->first();
         if ($student_practic) {
             $disabled = "disabled";
-            $teacher = 'WHERE id = ' . $student['teacher_id'];
+            $teachers = Teachers::find($student_practic->teacher_id);
             if (!$student_practic['company_id']) {
                 $checked = "checked";
             } else {
