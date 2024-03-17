@@ -13,6 +13,7 @@ use App\Models\StudentPractic;
 use App\Models\Teachers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class StudentReport extends Controller
 {
@@ -88,7 +89,17 @@ function add_request_practic($request)
 {
 
     if (work_load_check($request)) {
-        //$path = company_file_upload();
+        $user = Auth::user();
+        $student = Student::where('mira_id', $user->mira_id)->get()->first();
+        $group = Group::find($student->group_id);
+        $stream = Stream::find($group->stream_id);
+
+        $path = Storage::putFileAs(
+            'student_doc',
+            $request->file('company_file'),
+            $student->fio + "_" + $stream->name + "_" + $group->group_number + ".docx"
+        );
+
         $user = Auth::user();
         $student = Student::where('mira_id', $user->mira_id)->get()->first();
         $stud_prac = new StudentPractic();
@@ -96,7 +107,7 @@ function add_request_practic($request)
         $stud_prac->teacher_id = $request->input('teacher_id');
         $stud_prac->theme = $request->input('theme_field');
         $stud_prac->status = 0;
-        $stud_prac->company_path = "No file";
+        $stud_prac->company_path = $path;
 
         decriment_work_load($stud_prac->teacher_id);
 
@@ -115,12 +126,14 @@ function add_request_practic($request)
     }
 }
 
-function decriment_work_load($teacher_id) {
+function decriment_work_load($teacher_id)
+{
     $teachers = Teachers::find($teacher_id);
     $teachers->update(['work_load' => $teachers->work_load - 1]);
 }
 
-function increase_work_load($teacher_id) {
+function increase_work_load($teacher_id)
+{
     $teachers = Teachers::find($teacher_id);
     $teachers->update(['work_load' => $teachers->work_load + 1]);
 }
@@ -158,9 +171,7 @@ function cancel_request_practic($request)
     $student_practic = StudentPractic::where('student_id', $student->id)->get()->first();
     if ($student_practic) {
         // Удаляется файл, если он существует
-        // if (file_exists($student_request['company_path'])) {
-        //     unlink($student_request['company_path']);
-        // }
+        Storage::delete($student_practic->path);
 
         // Увеличиваем рабочую нагрузку учителя, если заявка была отменена
         increase_work_load($student_practic->teacher_id);
