@@ -25,7 +25,8 @@ class TeacherSetudentRequest extends Controller
         
         return view('teacher.teacher_student_request', [
             'student_practics' => $student_practics,
-            'teacher' => $teacher
+            'teacher' => $teacher,
+            'check' => $request->get('check')
         ]);
     }
 
@@ -33,11 +34,16 @@ class TeacherSetudentRequest extends Controller
     {
         if ($request->input('done')) {
             done_request_practic($request);
-            return redirect('/teacher/stud_practika');
         } elseif ($request->input('remake')) {
             cancel_request_practic($request);
-            return redirect('/teacher/stud_practika');
         }
+        if($request->get('check')){
+            $path = '/teacher/stud_practika?check=true';
+        }
+        else{
+            $path = '/teacher/stud_practika';
+        }
+        return redirect($path);
     }
 }
 

@@ -11,7 +11,11 @@
                 <p class="mar-off">Показать отмененные: </p>
                 <form method="post">
                     <label class="label-check">
-                        <a class="btn btn-warning btn-sm ms-1" href="?check=true">Отклоненные</a>
+                        @if ($check)
+                            <a class="btn btn-info btn-sm ms-1" href="?check=true">Показать</a>
+                        @else
+                            <a class="btn btn-warning btn-sm ms-1" href="?check=true">Убрать</a>
+                        @endif
                     </label>
                 </form>
             </div>
@@ -83,11 +87,11 @@
                                 @csrf
                                 @if ($stud_prac->status == 0 || $stud_prac->status == 2)
                                     <button type="sumbit" name="done" value={{ $stud_prac->id }}
-                                            class="btn dropdown-item1"></button>
+                                        class="btn dropdown-item1"></button>
                                 @endif
                                 @if ($stud_prac->status == 0 || $stud_prac->status == 1)
                                     <button type="sumbit" name="remake" value={{ $stud_prac->id }}
-                                            class="btn dropdown-item2"></button>
+                                        class="btn dropdown-item2"></button>
                                 @endif
                             </form>
                         </ul>
