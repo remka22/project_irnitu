@@ -38,7 +38,7 @@ function done_request_practic($request)
 {
     $user = Auth::user();
     $teacher = Teachers::where('mira_id', $user->mira_id)->get()->first();
-    $stud_prac = StudentPractic::where('id', $request->input['done'])->get();
+    $stud_prac = StudentPractic::find($request->input['done']);
     if($stud_prac->status == 2){
         decriment_work_load($teacher->id);
     }   
