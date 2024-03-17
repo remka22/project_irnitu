@@ -97,7 +97,7 @@ function add_request_practic($request)
         $path = Storage::putFileAs(
             'student_doc',
             $request->file('company_file'),
-            $student->fio + "_" + $stream->name + "_" + $group->group_number + ".docx"
+            $student->fio."_".$stream->name."_".$group->group_number.".docx"
         );
 
         $user = Auth::user();
