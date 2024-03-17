@@ -25,9 +25,11 @@ class TeacherSetudentRequest extends Controller
     public static function post(Request $request)
     {
         if ($request->input('done')) {
-            return done_request_practic($request);
+            done_request_practic($request);
+            return redirect('/teacher/stud_practika');
         } elseif ($request->input('remake')) {
-            return cancel_request_practic($request);
+            cancel_request_practic($request);
+            return redirect('/teacher/stud_practika');
         }
     }
 }

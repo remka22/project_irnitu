@@ -82,7 +82,7 @@ Route::middleware('auth:sanctum')->group(function () {
         return TeacherSetudentRequest::get($request);
     });
     Route::post('/teacher/stud_practika', function (Request $request) {
-        // return StudentReport::post($request);
+        return StudentReport::post($request);
     });
 });
 
