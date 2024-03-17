@@ -147,21 +147,6 @@ function work_load_check($request)
     }
 }
 
-// function work_load_decriment($connect)
-// {
-//     try {
-//         $resultset = $connect->query("SELECT work_load FROM Practices.teachers Where id = '" . $_POST['teacher_id'] . "'");
-//     } catch (Exception $e) {
-//         die("[3] - select_error");
-//     }
-//     $result = $resultset->Fetch()["work_load"];
-//     try {
-//         $connect->query("UPDATE Practices.teachers SET work_load = " . --$result . " WHERE id = " . $_POST['teacher_id']);
-//     } catch (Exception $e) {
-//         die("[4] - update_error");
-//     }
-// }
-
 
 function cancel_request_practic($request)
 {
@@ -170,7 +155,7 @@ function cancel_request_practic($request)
     $student_practic = StudentPractic::where('student_id', $student->id)->get()->first();
     if ($student_practic) {
         // Удаляется файл, если он существует
-        Storage::delete($student_practic->path);
+        Storage::delete($student_practic->company_path);
 
         // Увеличиваем рабочую нагрузку учителя, если заявка была отменена
         increase_work_load($student_practic->teacher_id);
