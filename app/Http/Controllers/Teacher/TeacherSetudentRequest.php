@@ -37,7 +37,7 @@ class TeacherSetudentRequest extends Controller
         } elseif ($request->input('remake')) {
             cancel_request_practic($request);
         }
-        if($request->get('check')){
+        if($request->post('check')){
             $path = '/teacher/stud_practika?check=true';
         }
         else{
