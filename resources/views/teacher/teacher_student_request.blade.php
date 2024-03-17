@@ -11,7 +11,7 @@
                 <p class="mar-off">Показать отмененные</p>
                 <form method="post">
                     <label class="label-check">
-                        <a class="btn btn-warning" href="?check=true">
+                        <a class="btn btn-warning" href="?check=true">Отклоненные</a>
                     </label>
                 </form>
             </div>

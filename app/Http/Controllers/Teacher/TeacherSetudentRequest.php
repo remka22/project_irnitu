@@ -15,7 +15,14 @@ class TeacherSetudentRequest extends Controller
         $user = Auth::user();
         $teacher = Teachers::where('mira_id', $user->mira_id)->get()->first();
 
-        $student_practics = StudentPractic::where('teacher_id', '=', $teacher->id)->with('company', 'student')->get();
+        if($request->get('check')){
+            $student_practics = StudentPractic::where('teacher_id', '=', $teacher->id)->with('company', 'student')->get();
+        }
+        else{
+            $student_practics = StudentPractic::where([['teacher_id', '=', $teacher->id], ['status', "<>", 2]])->with('company', 'student')->get();
+        }
+
+        
         return view('teacher.teacher_student_request', [
             'student_practics' => $student_practics,
             'teacher' => $teacher
