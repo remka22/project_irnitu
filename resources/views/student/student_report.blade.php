@@ -120,26 +120,24 @@
                     </div>
 
                     <div class="d-flex justify-content-center">
-                        @if ($student_practic)
-                            @switch($student_practic['status'])
-                                @case(0)
-                                    <div class="alert alert-primary mt-2">Ждите уведомление о принятии руководителем заявки на
-                                        практику!
-                                    </div>
-                                @break
+                        @switch($student_practic['status'])
+                            @case(0)
+                                <div class="alert alert-primary mt-2">Ждите уведомление о принятии руководителем заявки на
+                                    практику!
+                                </div>
+                            @break
 
-                                @case(1)
-                                    <div class="alert alert-success mt-2">Руководитель принял вашу заявку!</div>
-                                @break
+                            @case(1)
+                                <div class="alert alert-success mt-2">Руководитель принял вашу заявку!</div>
+                            @break
 
-                                @case(2)
-                                    <div class="alert alert-danger mt-2">Преподаватель отклонил вашу заявку, для получения большей
-                                        информации свяжитесь с ним.</div>
-                                @break
+                            @case(2)
+                                <div class="alert alert-danger mt-2">Преподаватель отклонил вашу заявку, для получения большей
+                                    информации свяжитесь с ним.</div>
+                            @break
 
-                                @default
-                            @endswitch
-                        @endif
+                            @default
+                        @endswitch
                     </div>
                 </form>
             </div>
