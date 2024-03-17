@@ -163,7 +163,8 @@ function cancel_request_practic($request)
         // Удаляется файл, если он существует
         Storage::delete($student_practic->company_path);
 
-        // Увеличиваем рабочую нагрузку учителя, если заявка была отменена
+        // Увеличиваем рабочую нагрузку учителя, если заявка была отменена студентом
+        if ($student_practic->status == 0)
         increase_work_load($student_practic->teacher_id);
 
         $student_practic->delete();

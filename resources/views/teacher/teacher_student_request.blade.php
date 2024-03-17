@@ -57,13 +57,19 @@
                         <button name="download" value={{ $stud_prac->student->id }} class="btn">Файл</button>
                     </td>
 
-                    @if ($stud_prac->status)
+                    @if ($stud_prac->status == 0)
+                        <td class="td td-status">
+                            <div class="block-status_check">
+                                <span class="status-check">Ожидает</span>
+                            </div>
+                        </td>
+                    @elseif ($stud_prac->status == 1)
                         <td class="td td-status">
                             <div class="block-status_ok">
                                 <span class="status-check_ok">Принят</span>
                             </div>
                         </td>
-                    @else
+                    @elseif ($stud_prac->status == 2)
                         <td class="td td-status">
                             <div class="block-status_fail">
                                 <span class="status-check_fail">Не принят</span>
@@ -73,13 +79,16 @@
 
                     <td class="td">
                         <ul class="action" aria-labelledby="btnGroupDrop1">
-                            <form>
-                                <li><button type="sumbit" name="done" value={{ $stud_prac->id }}
-                                        class="btn dropdown-item1" href="#"></button></li>
-                            </form>
-                            <form>
-                                <li><button type="sumbit" name="remake" value={{ $stud_prac->id }}
-                                        class="btn dropdown-item2" href="#"></button></li>
+                            <form method="post" action="/teacher/stud_practika">
+                                @csrf
+                                @if ($stud_prac->status == 0 || $stud_prac->status == 2)
+                                    <li><input type="sumbit" name="done" value={{ $stud_prac->id }}
+                                            class="btn dropdown-item1"></li>
+                                @endif
+                                @if ($stud_prac->status == 0 || $stud_prac->status == 1)
+                                    <li><input type="sumbit" name="remake" value={{ $stud_prac->id }}
+                                            class="btn dropdown-item2"></li>
+                                @endif
                             </form>
                         </ul>
                     </td>
@@ -91,7 +100,6 @@
 
 
 <style>
-
     /*========================= ОСНОВА =========================*/
     /*========================= ОСНОВА =========================*/
 
@@ -125,11 +133,11 @@
         vertical-align: middle;
     }
 
-    .td-status{
+    .td-status {
         width: 150px;
     }
 
-    .block-div{
+    .block-div {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -150,7 +158,7 @@
         color: #1E8EC2;
     }
 
-    .btn:hover{
+    .btn:hover {
         text-decoration: underline;
         color: #1E8EC2;
     }
@@ -169,7 +177,8 @@
     }
 
     .dropdown-item1 {
-        background: url(https://cdn-icons-png.flaticon.com/512/5629/5629189.png) 50% 50% no-repeat; /*(https://cdn-icons-png.flaticon.com/512/8832/8832098.png)*/
+        background: url(https://cdn-icons-png.flaticon.com/512/5629/5629189.png) 50% 50% no-repeat;
+        /*(https://cdn-icons-png.flaticon.com/512/8832/8832098.png)*/
         background-size: contain;
         border-radius: 100%;
         width: 30px;
@@ -181,7 +190,8 @@
     }
 
     .dropdown-item2 {
-        background: url(https://cdn-icons-png.flaticon.com/512/10727/10727988.png) 50% 50% no-repeat; /*(https://cdn-icons-png.flaticon.com/512/179/179386.png)*/
+        background: url(https://cdn-icons-png.flaticon.com/512/10727/10727988.png) 50% 50% no-repeat;
+        /*(https://cdn-icons-png.flaticon.com/512/179/179386.png)*/
         background-size: contain;
         border-radius: 100%;
         width: 30px;
@@ -196,17 +206,25 @@
     /*========================= СТАТУС =========================*/
 
     .block-status_ok {
-        display: inline-block; 
-        background-color: #b1f0ad; 
-        padding: 7px; 
+        display: inline-block;
+        background-color: #b1f0ad;
+        padding: 7px;
         border-radius: 15px;
         text-align: center;
     }
 
     .block-status_fail {
-        display: inline-block; 
-        background-color: #fadadd; 
-        padding: 7px; 
+        display: inline-block;
+        background-color: #fadadd;
+        padding: 7px;
+        border-radius: 15px;
+        text-align: center;
+    }
+
+    .block-status_check {
+        display: inline-block;
+        background-color: #eec896;
+        padding: 7px;
         border-radius: 15px;
         text-align: center;
     }
@@ -217,6 +235,10 @@
 
     .status-check_ok {
         color: #1F9254;
+    }
+
+    .status-check {
+        color: #924d1f;
     }
 
     /*======================= НАД ТАБЛИЦЕЙ =======================*/
@@ -244,10 +266,9 @@
         margin: 2px 0 0 3px;
     }
 
-    .label-check{
+    .label-check {
         display: flex;
         align-items: center;
         justify-content: center;
     }
-
 </style>
