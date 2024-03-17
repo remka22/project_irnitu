@@ -120,7 +120,7 @@
                     </div>
 
                     <div class="d-flex justify-content-center">
-                        @switch($student_request['status'])
+                        @switch($student_practic['status'])
                             @case(0)
                                 <div class="alert alert-primary mt-2">Ждите уведомление о принятии руководителем заявки на практику!
                                 </div>
