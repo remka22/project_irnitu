@@ -82,12 +82,12 @@
                             <form method="post" action="/teacher/stud_practika">
                                 @csrf
                                 @if ($stud_prac->status == 0 || $stud_prac->status == 2)
-                                    <input type="sumbit" name="done" value={{ $stud_prac->id }}
-                                            class="btn dropdown-item1">
+                                    <li><button type="sumbit" name="done" value={{ $stud_prac->id }}
+                                            class="btn dropdown-item1"></button></li>
                                 @endif
                                 @if ($stud_prac->status == 0 || $stud_prac->status == 1)
-                                    <input type="sumbit" name="remake" value={{ $stud_prac->id }}
-                                            class="btn dropdown-item2">
+                                    <li><button type="sumbit" name="remake" value={{ $stud_prac->id }}
+                                            class="btn dropdown-item2"></button></li>
                                 @endif
                             </form>
                         </ul>
