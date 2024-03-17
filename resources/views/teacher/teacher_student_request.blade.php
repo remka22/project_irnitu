@@ -8,10 +8,10 @@
             </div>
 
             <div class="remote-rigth">
-                <p class="mar-off">Показать отмененные</p>
+                <p class="mar-off">Показать отмененные: </p>
                 <form method="post">
                     <label class="label-check">
-                        <a class="btn btn-warning" href="?check=true">Отклоненные</a>
+                        <a class="btn btn-warning btn-sm" href="?check=true">Отклоненные</a>
                     </label>
                 </form>
             </div>
