@@ -12,9 +12,9 @@ class StudentPractic extends Model
     public $timestamps = false;
 
     public function company(){
-        return $this->hasOne(Company::class, 'company_id', 'id');
+        return $this->hasOne(Company::class, 'id', 'company_id');
     }
     public function student(){
-        return $this->hasOne(Student::class, 'student_id', 'id');
+        return $this->hasOne(Student::class, 'id', 'student_id');
     }
 }
