@@ -39,7 +39,7 @@
                     </select>
                 @endif --}}
 
-                <form method="post" action="/student/practika">
+                <form method="post" action="/student/practika" enctype="multipart/form-data">
                     @csrf
                     <div class="block">
                         <label for="teacher" class="form-label">Руководитель:</label>
