@@ -14,7 +14,7 @@
                         @if (!$check)
                             <a class="btn btn-info btn-sm ms-1" href="?check=true">Показать</a>
                         @else
-                            <a class="btn btn-warning btn-sm ms-1" href="/">Убрать</a>
+                            <a class="btn btn-warning btn-sm ms-1" href="#">Убрать</a>
                         @endif
                     </label>
                 </form>
