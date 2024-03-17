@@ -164,7 +164,7 @@ function cancel_request_practic($request)
         Storage::delete($student_practic->company_path);
 
         // Увеличиваем рабочую нагрузку учителя, если заявка была отменена студентом
-        if ($student_practic->status == 0)
+        if ($student_practic->status == 0 || $student_practic->status == 1)
         increase_work_load($student_practic->teacher_id);
 
         $student_practic->delete();
