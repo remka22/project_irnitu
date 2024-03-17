@@ -87,7 +87,7 @@ class StudentReport extends Controller
 
 function add_request_practic($request)
 {
-
+    dd($request);
     if (work_load_check($request)) {
         $user = Auth::user();
         $student = Student::where('mira_id', $user->mira_id)->get()->first();
