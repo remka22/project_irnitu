@@ -51,7 +51,9 @@ function cancel_request_practic($request)
     $user = Auth::user();
     $teacher = Teachers::where('mira_id', $user->mira_id)->get()->first();
     increase_work_load($teacher->id);
-    StudentPractic::find($request->input('cancel'))->update(['status' => 2]);
+    $stud_prac = StudentPractic::find($request->input('cancel'));
+    $stud_prac->update(['status' => 2]);
+    $stud_prac->save();
 }
 
 function increase_work_load($teacher_id)
