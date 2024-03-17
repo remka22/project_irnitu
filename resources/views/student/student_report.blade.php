@@ -89,7 +89,7 @@
                             {{ $disabled }} >
 
                         @if ($disabled)
-                            <input type="submit" class="btn btn-success" name="download" placeholder="Скачать договор">
+                            <input type="submit" class="btn btn-success" name="download" value="Скачать договор">
                         @endif
 
                         <div class="invalid-feedback">
