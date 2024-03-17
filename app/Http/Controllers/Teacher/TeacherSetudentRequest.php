@@ -16,7 +16,8 @@ class TeacherSetudentRequest extends Controller
 
         $student_practics = StudentPractic::where('teacher_id', $teacher->id)->with('company', 'student')->get();
         return view('teacher.teacher_student_request', [
-            'student_practics' => $student_practics
+            'student_practics' => $student_practics,
+            'teacher' => $teacher
         ]);
     }
 
