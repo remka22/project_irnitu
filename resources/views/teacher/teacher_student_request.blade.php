@@ -11,7 +11,7 @@
                 <p class="mar-off">Показать отмененные</p>
                 <form method="post">
                     <label class="label-check">
-                        Тут будет чекбокс просмотреть уже принятых
+                        <a class="btn btn-warning" href="?check=true">
                     </label>
                 </form>
             </div>
