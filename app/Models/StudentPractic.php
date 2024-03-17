@@ -17,4 +17,8 @@ class StudentPractic extends Model
     public function student(){
         return $this->hasOne(Student::class, 'id', 'student_id');
     }
+
+    protected $fillable = [
+        'status',
+    ];
 }
