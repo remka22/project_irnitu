@@ -85,7 +85,7 @@
                             </div>
                         </div>
 
-                        <input type="file" required name="company_file" class="company_file" id="company_file"
+                        <input type="file" required name="company_file" class="company_file" id="company_file" accept=".docx"
                             {{ $disabled }} >
 
                         @if ($disabled)
