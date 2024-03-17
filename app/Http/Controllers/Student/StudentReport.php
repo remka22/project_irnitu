@@ -81,7 +81,13 @@ class StudentReport extends Controller
             return add_request_practic($request);
         } elseif ($request->input('cancel')) {
             return cancel_request_practic($request);
+        }elseif ($request->input('download')) {
+            $user = Auth::user();
+            $student = Student::where('mira_id', $user->mira_id)->get()->first();
+            $student_practic = StudentPractic::where('student_id', $student->id)->get()->first();
+            return Storage::download($student_practic->company_path);
         }
+        
     }
 }
 
