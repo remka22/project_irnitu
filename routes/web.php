@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Insertcontroller;
 use App\Http\Controllers\Student\StudentReport;
+use App\Http\Controllers\Teacher\TeacherSetudentRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -73,6 +74,16 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/student/practika', function (Request $request) {
         return StudentReport::post($request);
     });
+
+    Route::get('/teacher', function (Request $request) {
+        return view('teacher.teacher');
+    });
+    Route::get('/teacher/stud_practika', function (Request $request) {
+        return TeacherSetudentRequest::get($request);
+    });
+    Route::post('/teacher/stud_practika', function (Request $request) {
+        // return StudentReport::post($request);
+    });
 });
 
 Route::get('/admin', function (Request $request) {
@@ -81,3 +92,4 @@ Route::get('/admin', function (Request $request) {
 Route::post('/admin', function (Request $request) {
     return AdminController::login($request);
 });
+
