@@ -151,7 +151,7 @@
             @else
                 <div class="col-2 d-flex justify-content-end">
                     <div class="d-flex flex-column flex-shrink-0 p-3 text-dark bg-white "
-                        style="width: auto; height: auto;">
+                        style="width: auto; height: fit-content;">
                         <ul class="nav nav-pills flex-column">
                             <span class="fs-4">{{ Auth::user()->last_name }}</span>
                             <span class="fs-6">{{ Auth::user()->name }}</span>
