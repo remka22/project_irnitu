@@ -3,7 +3,7 @@
     <div class="remote mt-3">
 
         <div class="remote-left">
-            <h5 class="mar-off text-white">Осталось мест: {{ $teacher->work_load }}</h5>
+            <h5 class="mar-off text-black btn-custom">Осталось мест: {{ $teacher->work_load }}</h5>
         </div>
 
         <div class="remote-rigth">
