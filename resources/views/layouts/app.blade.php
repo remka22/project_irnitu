@@ -148,39 +148,6 @@
     <div class="container-fluid">
         <div class="row">
             @guest
-                <div class="col-2 d-flex justify-content-end">
-                    <div class="d-flex flex-column flex-shrink-0 p-3 text-dark bg-white"
-                        style="width: auto; min-height: 400;">
-                        <ul class="nav nav-pills flex-column">
-                            <span class="fs-4">Авторизуйтесь</span>
-                            <span class="fs-6">Авторизуйтесь</span>
-                            <span class="fs-6">Авторизуйтесь</span>
-                        </ul>
-
-                        <hr>
-
-                        <ul class="nav nav-pills flex-column mb-auto">
-                            <li class="nav-item mb-2">
-                                <a href="/center/shablon_prikazy" class="btn btn-custom ">Шаблоны приказов</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/center/stud_dogovory" class="btn btn-custom ">Договора студентов</a>
-                            </li>
-                        </ul>
-
-
-                        <hr>
-
-                        <ul class="nav nav-pills flex-column ">
-                            <li class="nav-item">
-                                <a class='btn btn-custom' href='/logout'>Выход</a>
-                            </li>
-
-                        </ul>
-
-                        <hr>
-                    </div>
-                </div>
             @else
                 <div class="col-2 d-flex justify-content-end">
                     <div class="d-flex flex-column flex-shrink-0 p-3 text-dark bg-white "
@@ -194,39 +161,39 @@
                         <hr>
                         <ul class="nav nav-pills flex-column mb-auto">
                             @if (Auth::user()->type == 'student' || Auth::user()->type == 'admin')
-                                <li class="nav-item">
+                                <li class="nav-item mb-2">
                                     <a href="/student/practika" class="btn btn-custom ">Заявка</a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item mb-2">
                                     <a href="/student/otchet" class="btn btn-custom ">Отчет</a>
                                 </li>
                             @endif
                             @if (Auth::user()->type == 'teacher' || Auth::user()->type == 'admin' || Auth::user()->type == 'rop')
-                                <li class="nav-item">
+                                <li class="nav-item mb-2">
                                     <a href="/teacher/stud_practika" class="btn btn-custom ">Заявки студентов</a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item mb-2">
                                     <a href="/teacher/stud_otchet" class="btn btn-custom ">Отчетность студентов</a>
                                 </li>
                             @endif
                             @if (Auth::user()->type == 'rop' || Auth::user()->type == 'admin')
-                                <li class="nav-item">
+                                <li class="nav-item mb-2">
                                     <a href="/rop/control_activity_student" class="btn btn-custom ">Контроль активности
                                         студентов</a>
                                 </li>
                             @endif
                             @if (Auth::user()->type == 'direct' || Auth::user()->type == 'admin')
-                                <li class="nav-item">
+                                <li class="nav-item mb-2">
                                     <a href="/direct/shablon_prikazy" class="btn btn-custom ">Формирование шаблонов
                                         приказа</a>
                                 </li>
                             @endif
                             @if (Auth::user()->type == 'center' || Auth::user()->type == 'admin')
-                                <li class="nav-item">
+                                <li class="nav-item mb-2">
                                     <a href="/center/shablon_prikazy" class="btn btn-custom ">Шаблоны приказов</a>
                                 </li>
 
-                                <li class="nav-item">
+                                <li class="nav-item mb-2">
                                     <a href="/center/stud_dogovory" class="btn btn-custom ">Договора студентов</a>>
                                 </li>
                             @endif
