@@ -159,7 +159,7 @@
                         </ul>
 
                         <hr>
-                        <ul class="nav nav-pills flex-column mb-auto">
+                        <ul class="nav nav-pills flex-column ">
                             @if (Auth::user()->type == 'student' || Auth::user()->type == 'admin')
                                 <li class="nav-item mb-2">
                                     <a href="/student/practika" class="btn btn-custom ">Подать заявку</a>
