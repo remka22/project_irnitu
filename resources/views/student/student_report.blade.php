@@ -102,8 +102,13 @@
                         <label for="theme" class="form-label">Тема:</label>
                         {{-- <select class="form-select zxc" id="theme" required name="theme" onchange="theme_check()"
                             {{ $disabled }}></select> --}}
-                        <input type="text" class="form-control zxc" style="margin-left: 0" required id="theme_field"
-                            name="theme_field" {{ $disabled }} value={{ $student_practic['theme'] }}>
+                        @if ($student_practic)
+                            <label class="form-control zxc">{{ $student_practic['theme'] }}</label>
+                        @else
+                            <input type="text" class="form-control zxc" style="margin-left: 0" required id="theme_field"
+                                name="theme_field" {{ $disabled }}>
+                        @endif
+
 
                         <div class="invalid-feedback">
                             Пожалуйста, не забудьте написать тему.
@@ -120,24 +125,26 @@
                     </div>
 
                     <div class="d-flex justify-content-center">
-                        @switch($student_practic['status'])
-                            @case(0)
-                                <div class="alert alert-primary mt-2">Ждите уведомление о принятии руководителем заявки на
-                                    практику!
-                                </div>
-                            @break
+                        @if ($student_practic)
+                            @switch($student_practic['status'])
+                                @case(0)
+                                    <div class="alert alert-primary mt-2">Ждите уведомление о принятии руководителем заявки на
+                                        практику!
+                                    </div>
+                                @break
 
-                            @case(1)
-                                <div class="alert alert-success mt-2">Руководитель принял вашу заявку!</div>
-                            @break
+                                @case(1)
+                                    <div class="alert alert-success mt-2">Руководитель принял вашу заявку!</div>
+                                @break
 
-                            @case(2)
-                                <div class="alert alert-danger mt-2">Преподаватель отклонил вашу заявку, для получения большей
-                                    информации свяжитесь с ним.</div>
-                            @break
+                                @case(2)
+                                    <div class="alert alert-danger mt-2">Преподаватель отклонил вашу заявку, для получения большей
+                                        информации свяжитесь с ним.</div>
+                                @break
 
-                            @default
-                        @endswitch
+                                @default
+                            @endswitch
+                        @endif
                     </div>
                 </form>
             </div>
