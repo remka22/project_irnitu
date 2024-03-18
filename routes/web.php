@@ -49,7 +49,7 @@ Route::get('/', function (Request $request) {
 //     // elseif ($request->input('cancel')){
 //     //     Storage::delete('student_doc/ТЕСТ.docx');
 //     // }
-    
+
 // });
 
 Route::post('/insert', function (Request $request) {
@@ -92,4 +92,3 @@ Route::get('/admin', function (Request $request) {
 Route::post('/admin', function (Request $request) {
     return AdminController::login($request);
 });
-
