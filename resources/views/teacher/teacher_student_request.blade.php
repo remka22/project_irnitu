@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <table class="table">
-        <div class="remote">
+        <div class="remote mt-3">
 
             <div class="remote-left">
                 <p class="mar-off">Осталось мест: {{ $teacher->work_load }}</p>
@@ -20,7 +20,7 @@
                 </form>
             </div>
         </div>
-        <thead class="thead">
+        <thead class="thead mt-2">
             <tr class="tr">
                 <th class="th">ФИО студента</th>
                 <th class="th">Компания</th>
