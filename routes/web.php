@@ -26,18 +26,18 @@ Route::get('/', function (Request $request) {
     return AuthController::check_auth();
 });
 
-// Route::get('/test', function (Request $request) {
-//     // return view('student.student_report', [
-//     //                                         'disabled' => "",
-//     //                                         'checked' => "checked",
-//     //                                         'displayNone' => 'style="display: none;"', 
-//     //                                         'teachers' => [['id' => 1, 'fio' => "Пилипенко", 'work_load' => 1]], 
-//     //                                         'companies' => [['id' => 1, 'name' => "Компания"]],
-//     //                                         'student_request' => ['theme' => 'Тема_моя'],
-//     //                                         'student_practic' => ['theme' => 'Тема_моя']
-//     // ]);
-//     return view('test');
-// });
+Route::get('/test', function (Request $request) {
+    // return view('student.student_report', [
+    //                                         'disabled' => "",
+    //                                         'checked' => "checked",
+    //                                         'displayNone' => 'style="display: none;"', 
+    //                                         'teachers' => [['id' => 1, 'fio' => "Пилипенко", 'work_load' => 1]], 
+    //                                         'companies' => [['id' => 1, 'name' => "Компания"]],
+    //                                         'student_request' => ['theme' => 'Тема_моя'],
+    //                                         'student_practic' => ['theme' => 'Тема_моя']
+    // ]);
+    return view('test');
+});
 // Route::post('/test', function (Request $request) {
 //     // // $path = $request->file('company_file')->store('student_doc');
 //     // if ($request->input('send')){
@@ -49,7 +49,7 @@ Route::get('/', function (Request $request) {
 //     // elseif ($request->input('cancel')){
 //     //     Storage::delete('student_doc/ТЕСТ.docx');
 //     // }
-
+    
 // });
 
 Route::post('/insert', function (Request $request) {
@@ -92,3 +92,4 @@ Route::get('/admin', function (Request $request) {
 Route::post('/admin', function (Request $request) {
     return AdminController::login($request);
 });
+
