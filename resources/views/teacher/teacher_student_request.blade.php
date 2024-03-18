@@ -1,26 +1,26 @@
 @extends('layouts.app')
 @section('content')
-    <table class="table">
-        <div class="remote mt-3">
+    <div class="remote mt-3">
 
-            <div class="remote-left">
-                <p class="mar-off">Осталось мест: {{ $teacher->work_load }}</p>
-            </div>
-
-            <div class="remote-rigth">
-                <p class="mar-off">Показать отмененные: </p>
-                <form method="post">
-                    <label class="label-check">
-                        @if (!$check)
-                            <a class="btn btn-info btn-sm ms-1" href="?check=true">Показать</a>
-                        @else
-                            <a class="btn btn-warning btn-sm ms-1" href="/teacher/stud_practika">Убрать</a>
-                        @endif
-                    </label>
-                </form>
-            </div>
+        <div class="remote-left">
+            <p class="mar-off">Осталось мест: {{ $teacher->work_load }}</p>
         </div>
-        <thead class="thead mt-2">
+
+        <div class="remote-rigth">
+            <p class="mar-off">Показать отмененные: </p>
+            <form method="post">
+                <label class="label-check">
+                    @if (!$check)
+                        <a class="btn btn-info btn-sm ms-1" href="?check=true">Показать</a>
+                    @else
+                        <a class="btn btn-warning btn-sm ms-1" href="/teacher/stud_practika">Убрать</a>
+                    @endif
+                </label>
+            </form>
+        </div>
+    </div>
+    <table class="table mt-2">
+        <thead class="thead ">
             <tr class="tr">
                 <th class="th">ФИО студента</th>
                 <th class="th">Компания</th>
