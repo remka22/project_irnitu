@@ -8,15 +8,13 @@
 
         <div class="remote-rigth">
             <p class="mar-off">Показать отмененные: </p>
-            <form method="post">
-                <label class="label-check">
-                    @if (!$check)
-                        <a class="btn btn-info btn-sm ms-1" href="?check=true">Показать</a>
-                    @else
-                        <a class="btn btn-warning btn-sm ms-1" href="/teacher/stud_practika">Убрать</a>
-                    @endif
-                </label>
-            </form>
+            <label class="label-check">
+                @if (!$check)
+                    <a class="btn btn-info btn-sm ms-1" href="?check=true">Показать</a>
+                @else
+                    <a class="btn btn-warning btn-sm ms-1" href="/teacher/stud_practika">Убрать</a>
+                @endif
+            </label>
         </div>
     </div>
     <table class="table mt-2">
