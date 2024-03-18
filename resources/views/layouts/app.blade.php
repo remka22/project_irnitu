@@ -151,7 +151,7 @@
             @else
                 <div class="col-2 d-flex justify-content-end">
                     <div class="d-flex flex-column flex-shrink-0 p-3 text-dark bg-white "
-                        style="width: auto; min-height: 400;">
+                        style="width: auto;">
                         <ul class="nav nav-pills flex-column">
                             <span class="fs-4">{{ Auth::user()->last_name }}</span>
                             <span class="fs-6">{{ Auth::user()->name }}</span>
@@ -162,10 +162,10 @@
                         <ul class="nav nav-pills flex-column mb-auto">
                             @if (Auth::user()->type == 'student' || Auth::user()->type == 'admin')
                                 <li class="nav-item mb-2">
-                                    <a href="/student/practika" class="btn btn-custom ">Заявка</a>
+                                    <a href="/student/practika" class="btn btn-custom ">Подать заявку</a>
                                 </li>
                                 <li class="nav-item mb-2">
-                                    <a href="/student/otchet" class="btn btn-custom ">Отчет</a>
+                                    <a href="/student/otchet" class="btn btn-custom ">Отправить отчет</a>
                                 </li>
                             @endif
                             @if (Auth::user()->type == 'teacher' || Auth::user()->type == 'admin' || Auth::user()->type == 'rop')
