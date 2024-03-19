@@ -21,37 +21,14 @@ class Templates extends Controller
     // dd($profile_z);
     $faculty = Faculty::where('id', '<>', null)->with('profiles.streams_b.groups', 'profiles.streams_m.groups', 'profiles.streams_z.groups')->get();
     // dd($faculty);
-    $color = "";
-    $colorText = "";
-    $Text = "";
+    $formEducation = ["Bakalavr" => "Бакалавриат", "Magis" => "Магистратура", "Zaoch" => "Заочное обучение"];
 
-    $formEducation = ["Bakalavr", "Magis", "Zaoch"];
-    $formRusArr = [];
-    $formRus = "";
-    foreach ($formEducation as $form) {
-      switch ($form) {
-        case "Bakalavr":
-          $formRus = "Бакалавриат";
-          break;
-        case "Magis":
-          $formRus = "Магистратура";
-          break;
-        case "Zaoch":
-          $formRus = "Заочное обучение";
-          break;
-      }
-      $formRusArr[] = $formRus;
-    }
 
 
 
     return view('center.templates', [
       'facultys' => $faculty,
-      'formEducation' => $formEducation,
-      'formRus' => $formRusArr,
-      'color' => $color,
-      'colorText' => $colorText,
-      'Text' => $Text,
+      'formEducation' => $formEducation
     ]);
   }
 }

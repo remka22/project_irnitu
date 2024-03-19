@@ -1,1 +1,1 @@
-{{$profiles->name}}
+{{$streams->name}}
