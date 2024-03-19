@@ -175,6 +175,13 @@
                                 <li class="nav-item mb-2">
                                     <a href="/teacher/stud_otchet" class="btn btn-custom ">Отчетность студентов</a>
                                 </li>
+                                <li class="nav-item mb-2">
+                                    <a href="/center/shablon_prikazy" class="btn btn-custom ">Шаблоны приказов</a>
+                                </li>
+                                <li class="nav-item mb-2">
+                                    <a href="/direct/shablon_prikazy" class="btn btn-custom ">Формирование шаблонов
+                                        приказа</a>
+                                </li>
                             @endif
                             @if (Auth::user()->type == 'rop' || Auth::user()->type == 'admin')
                                 <li class="nav-item mb-2">

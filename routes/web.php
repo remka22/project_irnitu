@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CenterCareer\Tamplates;
 use App\Http\Controllers\Insertcontroller;
 use App\Http\Controllers\Student\StudentReport;
 use App\Http\Controllers\Teacher\TeacherSetudentRequest;
@@ -83,6 +84,16 @@ Route::middleware('auth:sanctum')->group(function () {
     });
     Route::post('/teacher/stud_practika', function (Request $request) {
         return TeacherSetudentRequest::post($request);
+    });
+
+    Route::get('/center', function (Request $request) {
+        return redirect('/center/shablon_prikazy');
+    });
+    Route::get('/center/shablon_prikazy', function (Request $request) {
+        return Tamplates::get($request);
+    });
+    Route::post('/center/shablon_prikazy', function (Request $request) {
+        // return TeacherSetudentRequest::post($request);
     });
 });
 
