@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Faculty;
 use Illuminate\Http\Request;
 
-class Tamplates extends Controller
+class Templates extends Controller
 {
     public static function get(Request $request)
   {
@@ -45,7 +45,7 @@ class Tamplates extends Controller
 
 
 
-    return view('prikazy', [
+    return view('center.templates', [
       'facultys' => $faculty,
       'formEducation' => $formEducation,
       'formRus' => $formRusArr,
