@@ -13,7 +13,7 @@ class Stream extends Model
 
     public function groups()
     {
-        return $this->hasMany(group::class);
+        return $this->hasMany(Group::class);
     }
 }
 
