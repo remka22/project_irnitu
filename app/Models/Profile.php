@@ -18,8 +18,7 @@ class Profile extends Model
             $year++;
         }
         return $this->hasMany(Stream::class)
-            ->whereNotIn('profile_id', [1])
-            ->where('name', 'like', '%б-%')
+            ->where('name', 'LIKE', '%б-%')
             ->where('year', '>=', $year)
             ->orderBy('name');
     }
@@ -31,8 +30,7 @@ class Profile extends Model
         $year++;
         }
         return $this->hasMany(Stream::class)
-            ->whereNotIn('profile_id', [1])
-            ->where('name', 'like', '%м-%')
+            ->where('name', 'LIKE', '%м-%')
             ->where('year', '>=', $year)
             ->orderBy('name');
     }
@@ -43,8 +41,7 @@ class Profile extends Model
         $year++;
         }
         return $this->hasMany(Stream::class)
-            ->whereNotIn('profile_id', [1])
-            ->where('name', 'like', '%з-%')
+            ->where('name', 'LIKE', '%з-%')
             ->where('year', '>=', $year)
             ->orderBy('name');
     }
