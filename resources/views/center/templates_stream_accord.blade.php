@@ -77,7 +77,7 @@
                                         <form method="post" action="/prikazy" enctype="text/plain">
                                             @csrf
                                             <div class="input-group input-group-sm mb-0" style= "margin: 0;">
-                                                @if ($gr->templates->decanat_check == 1)
+                                                @if ($gr->templates->decanat_check == 0)
                                                     <button type="submit" name="done" value="{{ $gr->templates['id'] }}"
                                                         class="btn dropdown-item1"
                                                         style = "border-radius: 5px;"></button>
@@ -107,6 +107,17 @@
     </div>
 @endforeach
 
+<script>
+    function showComment(id) {
+        let comment = document.getElementById('comment' + id);
+        let bt_comment = document.getElementById('reqComment' + id);
+        let sh_comment = document.getElementById('showComment' + id);
+        comment.style.display = 'block';
+        bt_comment.style.display = 'block';
+        sh_comment.style.display = 'none';
+
+    }
+</script>
 
 <style>
     .temp_check {
@@ -136,6 +147,93 @@
     .custom_column {
         font-family: Helvetica Neue OTS, sans-serif;
         text-align: center;
+    }
+
+    .accordion-header {
+        cursor: pointer;
+        border-radius: 3px;
+        font-size: 14px;
+        font-family: 'Helvetica Neue OTS', sans-serif;
+        font-weight: 400;
+
+    }
+
+    .accordion-item {
+        background-color: #fff;
+        border: 1px solid rgba(0, 0, 0, 125) !important;
+        border-radius: 3px;
+        margin: 1px;
+    }
+
+    .accordion-item:first-child {
+        border: 1px solid rgba(0, 0, 0, 125) !important;
+        margin-bottom: 0px;
+    }
+
+    .accordion-button.collapsed {
+        cursor: pointer;
+        border-radius: 3px !important;
+        border-top-left-radius: 1px solid rgba(0, 0, 0, 125);
+    }
+
+    .accordion-collapse.collapsing {
+        border-top: 1px solid rgba(0, 0, 0, 125);
+    }
+
+    .accordion-collapse.collapse {
+        border-top: 1px solid rgba(0, 0, 0, 125);
+    }
+
+    .accordion-button:not(.collapsed) {
+        color: #1E8EC2 !important;
+        background-color: #E1F3F9 !important;
+        border-radius: 3px !important;
+    }
+
+    .table {
+        background: #ffffff !important;
+        border-collapse: collapse;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+        font-size: 14px;
+        text-align: left;
+        max-width: 1450px;
+        min-width: 800px;
+        width: 100%;
+    }
+
+    .table th,
+    .table td {
+        text-align: center;
+    }
+
+
+    .tr:nth-child(odd) .td {
+        background-color: #ffffff !important;
+    }
+
+    .tr:nth-child(even) .td {
+        background-color: #E1F3F9 !important;
+    }
+
+    .td:last-child .select {
+        width: 100%;
+    }
+
+    .btn {
+        margin-right: 5px;
+        margin-left: 5px !important;
+        background: none;
+        color: inherit;
+        border: none;
+        padding: 0;
+        display: inline-block;
+        font: inherit;
+        cursor: pointer;
+        outline: inherit;
+    }
+
+    .btn:hover {
+        text-decoration: underline;
     }
 
     .dropdown-item1 {
