@@ -13,5 +13,6 @@ class Template extends Model
 
     protected $fillable = [
         'decanat_check',
+        'comment'
     ];
 }
