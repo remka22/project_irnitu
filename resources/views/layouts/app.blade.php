@@ -227,36 +227,34 @@
 
             @guest
             @else
-                <div class="col-2">
-                    <div class="col-2">
-                        <form method="POST" action="/insert">
-                            @csrf
-                            @if (Auth::user()->type == 'admin')
-                                <div class="container  ">
-                                    <div class="row gy-2">
-                                        <input type="submit"class="btn btn-warning" name="insertInst"
-                                            value="Импортить институты">
-                                        <input type="submit"class="btn btn-warning" name="insertProf"
-                                            value="Импортить направления">
-                                        <input type="submit"class="btn btn-warning" name="insertStream"
-                                            value="Импортить потоки">
-                                        <input type="submit"class="btn btn-warning" name="insertStud"
-                                            value="Импортить студентов">
-                                        <input type="submit"class="btn btn-warning" name="insertComp"
-                                            value="Импортить компании">
-                                        <input type="submit"class="btn btn-warning" name="insertTeach"
-                                            value="Импортить преподавателей">
-                                    </div>
+                <div class="col-1">
+                    <form method="POST" action="/insert">
+                        @csrf
+                        @if (Auth::user()->type == 'admin')
+                            <div class="container  ">
+                                <div class="row gy-2">
+                                    <input type="submit"class="btn btn-warning" name="insertInst"
+                                        value="Импортить институты">
+                                    <input type="submit"class="btn btn-warning" name="insertProf"
+                                        value="Импортить направления">
+                                    <input type="submit"class="btn btn-warning" name="insertStream"
+                                        value="Импортить потоки">
+                                    <input type="submit"class="btn btn-warning" name="insertStud"
+                                        value="Импортить студентов">
+                                    <input type="submit"class="btn btn-warning" name="insertComp"
+                                        value="Импортить компании">
+                                    <input type="submit"class="btn btn-warning" name="insertTeach"
+                                        value="Импортить преподавателей">
                                 </div>
-                            @else
-                                <div class="container  ">
-                                    <div class="row gy-2">
-                                        <input style="display: none;">
-                                    </div>
+                            </div>
+                        @else
+                            <div class="container  ">
+                                <div class="row gy-2">
+                                    <input style="display: none;">
                                 </div>
-                            @endif
-                        </form>
-                    </div>
+                            </div>
+                        @endif
+                    </form>
                 </div>
             @endguest
         </div>
