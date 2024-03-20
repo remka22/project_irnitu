@@ -35,17 +35,17 @@ class TemplatesController extends Controller
       return Storage::download($student_practic->company_path);
     }
     if ($request->input('done')) {
-      Template::find($request->input('done'))->update(['decanat_check ' => 1]);
+      Template::find($request->input('done'))->update(['decanat_check' => 1]);
       return redirect('/center/shablon_prikazy');
       // $connect->query("UPDATE Practices.templates SET decanat_check = 1, comment = '' WHERE id =". $_GET['done'] .";");
     }
     if ($request->input('noShow')) {
-      Template::find($request->input('noShow'))->update(['decanat_check ' => 0]);
+      Template::find($request->input('noShow'))->update(['decanat_check' => 0]);
       return redirect('/center/shablon_prikazy');
       // $connect->query("UPDATE Practices.templates SET decanat_check = 0, comment = '' WHERE id =". $_GET['noShow'] .";");
     }
     if ($request->input('remake')) {
-      Template::find($request->input('remake'))->update(['decanat_check ' => 2, 'comment' => $request->input('comment')]);
+      Template::find($request->input('remake'))->update(['decanat_check' => 2, 'comment' => $request->input('comment')]);
       return redirect('/center/shablon_prikazy');
       // $connect->query("UPDATE Practices.templates SET decanat_check = 2, comment = '". $_GET['comment'] ."' WHERE id =". $_GET['remake'] .";");
     }
