@@ -100,8 +100,8 @@
                                         </td>
                                     </tr>
                                 @endforeach
-                            @endforeach
-                        @endif
+                            @endif
+                        @endforeach
                     </tbody>
                 </table>
             </div>
