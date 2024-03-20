@@ -78,22 +78,27 @@
                                             @csrf
                                             <div class="input-group input-group-sm mb-0" style= "margin: 0;">
                                                 @if ($gr->templates->decanat_check == 0)
-                                                    <button type="submit" name="done" value="{{ $gr->templates['id'] }}"
-                                                        class="btn dropdown-item1"
+                                                    <button type="submit" name="done"
+                                                        value="{{ $gr->templates['id'] }}" class="btn dropdown-item1"
                                                         style = "border-radius: 5px;"></button>
                                                 @endif
-                                                <textarea class="form-control" name="comment" placeholder="{{ $gr->templates['comment'] }}" id="comment{{ $gr->templates['id'] }}"
-                                                    rows="1" style = "display: none; border-radius: 5px;" aria-label="Комментарий" aria-describedby="basic-addon2"
-                                                    placeholder="Комментарий"></textarea>
-                                                <a class="btn dropdown-item3" id="showComment{{ $gr->templates['id'] }}"
+                                                <textarea class="form-control" name="comment" placeholder="{{ $gr->templates['comment'] }}"
+                                                    id="comment{{ $gr->templates['id'] }}" rows="1" style = "display: none; border-radius: 5px;"
+                                                    aria-label="Комментарий" aria-describedby="basic-addon2" placeholder="Комментарий"></textarea>
+                                                <a class="btn dropdown-item3"
+                                                    id="showComment{{ $gr->templates['id'] }}"
                                                     style = "border-radius: 5px;"
                                                     onclick="showComment({{ $gr->templates['id'] }})"></a>
-                                                <button type="submit" value="{{ $gr->templates['id'] }}" name="remake"
-                                                    class="btn dropdown-item3" id="reqComment{{ $gr->templates['id'] }}"
+                                                <button type="submit" value="{{ $gr->templates['id'] }}"
+                                                    name="remake" class="btn dropdown-item3"
+                                                    id="reqComment{{ $gr->templates['id'] }}"
                                                     style = "border-radius: 5px; display: none;"></button>
-                                                <button type="submit" name="noShow" value="{{ $gr->templates['id'] }}"
-                                                    class="btn dropdown-item2"
-                                                    style = "border-radius: 5px; display: none;"></button>
+                                                @if ($gr->templates->decanat_check != 0)
+                                                    <button type="submit" name="noShow"
+                                                        value="{{ $gr->templates['id'] }}" class="btn dropdown-item2"
+                                                        style = "border-radius: 5px; display: block;"></button>
+                                                @endif
+
                                             </div>
                                         </form>
                                     </td>
