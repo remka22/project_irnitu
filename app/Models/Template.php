@@ -10,4 +10,8 @@ class Template extends Model
     use HasFactory;
     public $timestamps = false;
     protected $table = 'templates';
+
+    protected $fillable = [
+        'decanat_check',
+    ];
 }

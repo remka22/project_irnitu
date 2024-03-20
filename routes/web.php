@@ -93,7 +93,7 @@ Route::middleware('auth:sanctum')->group(function () {
         return TemplatesController::get($request);
     });
     Route::post('/center/shablon_prikazy', function (Request $request) {
-        // return TeacherSetudentRequest::post($request);
+        return TemplatesController::post($request);
     });
 });
 

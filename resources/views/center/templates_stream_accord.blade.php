@@ -74,7 +74,7 @@
                                     </td>
                                     <td class="td"
                                         style= "width: 400px; text-align: center; vertical-align: middle; margin: 0;">
-                                        <form method="post" action="/prikazy" enctype="text/plain">
+                                        <form method="post" action="/center/shablon_prikazy" enctype="text/plain">
                                             @csrf
                                             <div class="input-group input-group-sm mb-0" style= "margin: 0;">
                                                 @if ($gr->templates->decanat_check == 0)
