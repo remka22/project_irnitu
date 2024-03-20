@@ -1,94 +1,61 @@
-<table class="table">
-    <thead>
-        <tr class="tr">
-            <th class="th">Группа</th>
-            <th class="th">Шаблон приказа</th>
-            <th class="th">Статус</th>
-            <th class="th">Действие</th>
-        </tr>
-    </thead>
-    <tbody>
-
-        <tr class="tr">
-            <td class="td custom_column" style="width: 100px;  vertical-align: middle;">
-                <strong class="strong">
-                    BCN,20-1
-                </strong>
-            </td>
-            <td class="td custom_column" style= "width: 200px; color: #1E8EC2;  vertical-align: middle;">
-                <form method="post" action="/prikazy" enctype="text/plain">
-                    @csrf
-                    <button name="download" value="1"
-                        style="color: #1E8EC2; font-family: Helvetica Neue OTS, sans-serif;"
-                        class="btn">Файл</button>
-                </form>
-            </td>
-            <td class="td" style= "width: 200px; vertical-align: middle;">
-                <div style="display: flex; justify-content: center; align-items: center;">
-
-                    <div class="custom_column temp_check"
-                        style="display: inline-block; padding: 5px; border-radius: 15px;  ">
-                        <span class="temp_check">
-                            Не проверено
-                        </span>
-                    </div>
-
-                </div>
-            </td>
-            <td class="td" style= "width: 400px; text-align: center; vertical-align: middle; margin: 0;">
-                <form method="post" action="/prikazy" enctype="text/plain">
-                    @csrf
-                    <div class="input-group input-group-sm mb-0" style= "margin: 0;">
-
-                            <button type="submit" name="done" value="1" class="btn dropdown-item1"
-                                style = "border-radius: 5px;"></button>
-
-                        <textarea class="form-control" name="comment" placeholder="RJVTYN" id="comment1"
-                            rows="1" style = "display: none; border-radius: 5px;" aria-label="Комментарий" aria-describedby="basic-addon2"
-                            placeholder="Комментарий"></textarea>
-                        <a class="btn dropdown-item3" id="showComment1" style = "border-radius: 5px;"
-                            ></a>
-                        <button type="submit" value="1" name="remake" class="btn dropdown-item3"
-                            id="reqComment1" style = "border-radius: 5px; display: none;"></button>
-                        <button type="submit" name="noShow" value="1" class="btn dropdown-item2"
-                            style = "border-radius: 5px; display: none;"></button>
-                    </div>
-                </form>
-            </td>
-        </tr>
-
-
-    </tbody>
-</table>
+@extends('layouts.app')
+@section('content')
+    <form method="post" action="/prikazy" enctype="text/plain">
+        @csrf
+        <div class="input-group input-group-sm mb-0" style= "margin: 0;">
+            <button type="submit" name="done" value="1" class="btn dropdown-item1"
+                style = "border-radius: 5px;"></button>
+            <textarea class="form-control" name="comment" placeholder=" Comentttttt " id="comment1" rows="1"
+                style = "display: none; border-radius: 5px;" aria-label="Комментарий" aria-describedby="basic-addon2"
+                placeholder="Комментарий"></textarea>
+            <a class="btn dropdown-item3" id="showComment1" style = "border-radius: 5px;" onclick="showComment(1)"></a>
+            <button type="submit" value="1" name="remake" class="btn dropdown-item3" id="reqComment1"
+                style = "border-radius: 5px; display: none;"></button>
+            <button type="submit" name="noShow" value="1" class="btn dropdown-item2"
+                style = "border-radius: 5px; display: none;"></button>
+        </div>
+    </form>
+@endsection
 
 
 <style>
-    .temp_check {
-        background-color: #FEF2E5;
+    .dropdown-item1 {
+        background: url(https://cdn-icons-png.flaticon.com/512/8832/8832098.png) 50% 50% no-repeat;
+        background-size: cover;
+        width: 30px;
+        height: 30px;
+
     }
 
-    .temp_check span {
-        color: #CD6200;
+    .dropdown-item1:hover {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
     }
 
-    .temp_done {
-        background-color: #b1f0ad;
+    .dropdown-item2 {
+        background: url(https://cdn-icons-png.flaticon.com/512/179/179386.png) 50% 50% no-repeat;
+
+        background-size: cover;
+        width: 30px;
+        height: 30px;
+
     }
 
-    .temp_done span {
-        color: #1F9254
+    .dropdown-item2:hover {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
     }
 
-    .temp_remake {
-        background-color: #fadadd;
+    .dropdown-item3 {
+        background: url(https://cdn-icons-png.flaticon.com/512/1159/1159876.png) 50% 50% no-repeat;
+        background-size: cover;
+        width: 30px;
+        height: 30px;
+
     }
 
-    .temp_remake span {
-        color: #f23a11
-    }
+    .dropdown-item3:hover {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 
-    .custom_column {
-        font-family: Helvetica Neue OTS, sans-serif;
-        text-align: center;
     }
 </style>

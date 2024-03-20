@@ -137,4 +137,44 @@
         font-family: Helvetica Neue OTS, sans-serif;
         text-align: center;
     }
+
+    .dropdown-item1 {
+        background: url(https://cdn-icons-png.flaticon.com/512/8832/8832098.png) 50% 50% no-repeat;
+        background-size: cover;
+        width: 30px;
+        height: 30px;
+
+    }
+
+    .dropdown-item1:hover {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+    }
+
+    .dropdown-item2 {
+        background: url(https://cdn-icons-png.flaticon.com/512/179/179386.png) 50% 50% no-repeat;
+
+        background-size: cover;
+        width: 30px;
+        height: 30px;
+
+    }
+
+    .dropdown-item2:hover {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+    }
+
+    .dropdown-item3 {
+        background: url(https://cdn-icons-png.flaticon.com/512/1159/1159876.png) 50% 50% no-repeat;
+        background-size: cover;
+        width: 30px;
+        height: 30px;
+
+    }
+
+    .dropdown-item3:hover {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+    }
 </style>
