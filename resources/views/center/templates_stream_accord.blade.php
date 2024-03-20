@@ -31,7 +31,7 @@
                                     </td>
                                     <td class="td custom_column"
                                         style= "width: 200px; color: #1E8EC2;  vertical-align: middle;">
-                                        <form method="post" action="/prikazy" enctype="text/plain">
+                                        <form method="post" action="/center/shablon_prikazy">
                                             @csrf
                                             <button name="download" value="{{ $gr->templates->id }}"
                                                 style="color: #1E8EC2; font-family: Helvetica Neue OTS, sans-serif;"
@@ -74,7 +74,7 @@
                                     </td>
                                     <td class="td"
                                         style= "width: 400px; text-align: center; vertical-align: middle; margin: 0;">
-                                        <form method="post" action="/center/shablon_prikazy" enctype="text/plain">
+                                        <form method="post" action="/center/shablon_prikazy">
                                             @csrf
                                             <div class="input-group input-group-sm mb-0" style= "margin: 0;">
                                                 @if ($gr->templates->decanat_check == 0)
