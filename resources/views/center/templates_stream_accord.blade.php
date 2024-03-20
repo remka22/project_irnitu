@@ -11,19 +11,19 @@
             aria-labelledby="headingStream{{ $st['id'] }}"
             data-bs-parent="#accordionStream{{ $form }}{{ $inst['id'] }}">
             <div class="accordion-body">
+
                 <body>
                     <table class="table">
                         <thead>
                             <tr class="tr">
                                 <th class="th">Группа</th>
-                                <th class="th">Шаблон приказа
-                                </th>
+                                <th class="th">Шаблон приказа</th>
                                 <th class="th">Статус</th>
                                 <th class="th">Действие</th>
                             </tr>
                         </thead>
                         <tbody>
-                            
+
                         </tbody>
                     </table>
                 </body>
