@@ -201,7 +201,7 @@
                                 </li>
 
                                 <li class="nav-item mb-2">
-                                    <a href="/center/stud_dogovory" class="btn btn-custom ">Договора студентов</a>>
+                                    <a href="/center/stud_dogovory" class="btn btn-custom ">Договора студентов</a>
                                 </li>
                             @endif
                         </ul>

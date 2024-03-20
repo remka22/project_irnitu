@@ -86,21 +86,24 @@ function auth($return)
         $user->second_name = $return['second_name'];
         $user->email = $return['email'];
 
-        
+
         if ($return['is_student']) {
             $user->type = 'student';
-
         }
-        //if ($return['is_teacher']) {
-        else {
-            $user->type = 'teacher';
-            dd($return);
+        if ($return['is_teacher']) {
+            if (strpos($return['data_teacher']['dep'], 'Отдел по работе со студентами') === true) {
+                $user->type = 'direct';
+            } elseif (strpos($return['data_teacher']['dep'], 'Центр карьеры') === true) {
+                $user->type = 'center';
+            } else {
+                $user->type = 'teacher';
+            }
         }
 
         $user->password = bcrypt('AzSxDc132!');
         $user->mira_id = $return['mira_id'][0];
         $user->save();
-    } 
+    }
 
     if (!Auth::attempt(['email' => $return['email'], 'password' => 'AzSxDc132!'])) {
         return response([
@@ -111,7 +114,8 @@ function auth($return)
     return route_auth();
 }
 
-function route_auth(){
+function route_auth()
+{
     if (Auth::check()) {
         $user = Auth::user();
         switch ($user->type) {
@@ -131,7 +135,7 @@ function route_auth(){
                 return redirect('/rop');
                 break;
             case "admin":
-                return redirect('/student');
+                return redirect('/admin/home');
                 break;
         }
     } else {

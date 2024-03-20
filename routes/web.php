@@ -22,11 +22,6 @@ use Illuminate\Support\Facades\Storage;
 |
 */
 
-
-Route::get('/', function (Request $request) {
-    return AuthController::check_auth();
-});
-
 Route::get('/test', function (Request $request) {
     // return view('student.student_report', [
     //                                         'disabled' => "",
@@ -50,13 +45,13 @@ Route::get('/test', function (Request $request) {
 //     // elseif ($request->input('cancel')){
 //     //     Storage::delete('student_doc/ТЕСТ.docx');
 //     // }
-    
+
 // });
 
-Route::post('/insert', function (Request $request) {
-    return Insertcontroller::post($request);
-});
 
+Route::get('/', function (Request $request) {
+    return AuthController::check_auth();
+});
 Route::get('/bitrix', function (Request $request) {
     return AuthController::campus_auth($request);
 });
@@ -66,34 +61,53 @@ Route::get('/logout', function () {
 })->name('logout');
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/student', function (Request $request) {
-        return view('student.student');
-    });
-    Route::get('/student/practika', function (Request $request) {
-        return StudentReport::get($request);
-    });
-    Route::post('/student/practika', function (Request $request) {
-        return StudentReport::post($request);
+    Route::get('/admin/home', function (Request $request) {
+        return view('admin.admin');
     });
 
-    Route::get('/teacher', function (Request $request) {
-        return view('teacher.teacher');
-    });
-    Route::get('/teacher/stud_practika', function (Request $request) {
-        return TeacherSetudentRequest::get($request);
-    });
-    Route::post('/teacher/stud_practika', function (Request $request) {
-        return TeacherSetudentRequest::post($request);
+    Route::middleware('role:admin')->group(function () {
+        Route::post('/insert', function (Request $request) {
+            return Insertcontroller::post($request);
+        });
     });
 
-    Route::get('/center', function (Request $request) {
-        return redirect('/center/shablon_prikazy');
+    Route::middleware('role:student,admin')->group(function () {
+        Route::get('/student', function (Request $request) {
+            return view('student.student');
+        });
+        Route::get('/student/practika', function (Request $request) {
+            return StudentReport::get($request);
+        });
+        Route::post('/student/practika', function (Request $request) {
+            return StudentReport::post($request);
+        });
     });
-    Route::get('/center/shablon_prikazy', function (Request $request) {
-        return TemplatesController::get($request);
+
+    Route::middleware('role:teacher,rop,admin')->group(function () {
+        Route::get('/teacher', function (Request $request) {
+            return view('teacher.teacher');
+        });
+        Route::get('/teacher/stud_practika', function (Request $request) {
+            return TeacherSetudentRequest::get($request);
+        });
+        Route::post('/teacher/stud_practika', function (Request $request) {
+            return TeacherSetudentRequest::post($request);
+        });
     });
-    Route::post('/center/shablon_prikazy', function (Request $request) {
-        return TemplatesController::post($request);
+
+    Route::middleware('role:center,admin')->group(function () {
+        Route::get('/center', function (Request $request) {
+            return redirect('/center/shablon_prikazy');
+        });
+        Route::get('/center/shablon_prikazy', function (Request $request) {
+            return TemplatesController::get($request);
+        });
+        Route::post('/center/shablon_prikazy', function (Request $request) {
+            return TemplatesController::post($request);
+        });
+    });
+
+    Route::middleware('role:direct,admin')->group(function () {
     });
 });
 
@@ -103,4 +117,3 @@ Route::get('/admin', function (Request $request) {
 Route::post('/admin', function (Request $request) {
     return AdminController::login($request);
 });
-
