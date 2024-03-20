@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Faculty;
 use Illuminate\Http\Request;
 
-class Templates extends Controller
+class TemplatesController extends Controller
 {
     public static function get(Request $request)
   {
