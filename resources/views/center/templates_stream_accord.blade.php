@@ -1,6 +1,6 @@
 @foreach ($streams as $st)
     <div class="accordion-item">
-        <h2 class="accordion-header" id="headingStream{{ $st['id'] }}">
+        <h2 class="accordion-header" id="headingStream{{ $st->id }}">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                 data-bs-target="#collapseStream{{ $st['id'] }}" aria-expanded="false"
                 aria-controls="collapseStream{{ $st['id'] }}">
@@ -11,7 +11,6 @@
             aria-labelledby="headingStream{{ $st['id'] }}"
             data-bs-parent="#accordionStream{{ $form }}{{ $inst['id'] }}">
             <div class="accordion-body">
-
                 <body>
                     <table class="table">
                         <thead>
