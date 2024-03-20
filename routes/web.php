@@ -95,7 +95,7 @@ Route::middleware('auth:sanctum')->group(function () {
         });
     });
 
-    Route::middleware('role:center,admin')->group(function () {
+    Route::middleware('role:center,teacher,admin')->group(function () {
         Route::get('/center', function (Request $request) {
             return redirect('/center/shablon_prikazy');
         });
@@ -107,7 +107,7 @@ Route::middleware('auth:sanctum')->group(function () {
         });
     });
 
-    Route::middleware('role:direct,admin')->group(function () {
+    Route::middleware('role:direct,teacher,admin')->group(function () {
     });
 });
 
