@@ -16,7 +16,7 @@
                         <div class="accordion" id="accordionFormat{{ $inst['id'] }}">
                             @foreach ($formEducation as $form_key => $form_rus)
                                 <div class="accordion-item">
-                                    <h2 class="accordion-header" id="heading{{ $form_key}}{{ $inst['id'] }}">
+                                    <h2 class="accordion-header" id="heading{{ $form_key }}{{ $inst['id'] }}">
                                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                             data-bs-target="#collapse{{ $form_key }}{{ $inst['id'] }}"
                                             aria-expanded="false"
@@ -34,22 +34,17 @@
                                                     id="accordionStream{{ $form_key }}{{ $inst['id'] }}">
                                                     @switch($form_key)
                                                         @case('Bakalavr')
-                                                            @foreach ($prof->streams_b as $st)
-                                                                {{ view('center.templates_stream_accord', ['inst' => $inst, 'streams' => $st, 'form' => $form_key]) }}
-                                                            @endforeach
+                                                            {{ view('center.templates_stream_accord', ['inst' => $inst, 'streams' => $prof->streams_b, 'form' => $form_key]) }}
                                                         @break
 
                                                         @case('Magis')
-                                                            @foreach ($prof->streams_m as $st)
-                                                                {{ view('center.templates_stream_accord', ['inst' => $inst, 'streams' => $st, 'form' => $form_key]) }}
-                                                            @endforeach
+                                                            {{ view('center.templates_stream_accord', ['inst' => $inst, 'streams' => $prof->streams_b, 'form' => $form_key]) }}
                                                         @break
 
                                                         @case('Zaoch')
-                                                            @foreach ($prof->streams_z as $st)
-                                                                {{ view('center.templates_stream_accord', ['inst' => $inst, 'streams' => $st, 'form' => $form_key]) }}
-                                                            @endforeach
+                                                            {{ view('center.templates_stream_accord', ['inst' => $inst, 'streams' => $prof->streams_b, 'form' => $form_key]) }}
                                                         @break
+
                                                         @default
                                                     @endswitch
                                                 </div>
