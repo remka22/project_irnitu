@@ -19,7 +19,7 @@ class TemplatesController extends Controller
     // dump($profile_b);
     // dump($profile_m);
     // dd($profile_z);
-    $faculty = Faculty::where('id', '<>', null)->with('profiles.streams_b.groups', 'profiles.streams_m.groups', 'profiles.streams_z.groups')->get();
+    $faculty = Faculty::where('id', '<>', null)->with('profiles.streams_b.groups.templates', 'profiles.streams_m.groups.templates', 'profiles.streams_z.groups.templates')->get();
     // dd($faculty);
     $formEducation = ["Bakalavr" => "Бакалавриат", "Magis" => "Магистратура", "Zaoch" => "Заочное обучение"];
 
