@@ -33,14 +33,14 @@
                                         style= "width: 200px; color: #1E8EC2;  vertical-align: middle;">
                                         <form method="post" action="/prikazy" enctype="text/plain">
                                             @csrf
-                                            <button name="download" value="{{ $tmp->id }}"
+                                            <button name="download" value="{{ $gr->templates->id }}"
                                                 style="color: #1E8EC2; font-family: Helvetica Neue OTS, sans-serif;"
                                                 class="btn">Файл</button>
                                         </form>
                                     </td>
                                     <td class="td" style= "width: 200px; vertical-align: middle;">
                                         <div style="display: flex; justify-content: center; align-items: center;">
-                                            @switch($tmp->decanat_check)
+                                            @switch($gr->templates->decanat_check)
                                                 @case(0)
                                                     <div class="custom_column temp_check"
                                                         style="display: inline-block; padding: 5px; border-radius: 15px;  ">
@@ -77,21 +77,21 @@
                                         <form method="post" action="/prikazy" enctype="text/plain">
                                             @csrf
                                             <div class="input-group input-group-sm mb-0" style= "margin: 0;">
-                                                @if ($tmp->decanat_check == 1)
-                                                    <button type="submit" name="done" value="{{ $tmp['id'] }}"
+                                                @if ($gr->templates->decanat_check == 1)
+                                                    <button type="submit" name="done" value="{{ $gr->templates['id'] }}"
                                                         class="btn dropdown-item1"
                                                         style = "border-radius: 5px;"></button>
                                                 @endif
-                                                <textarea class="form-control" name="comment" placeholder="{{ $tmp['comment'] }}" id="comment{{ $tmp['id'] }}"
+                                                <textarea class="form-control" name="comment" placeholder="{{ $gr->templates['comment'] }}" id="comment{{ $gr->templates['id'] }}"
                                                     rows="1" style = "display: none; border-radius: 5px;" aria-label="Комментарий" aria-describedby="basic-addon2"
                                                     placeholder="Комментарий"></textarea>
-                                                <a class="btn dropdown-item3" id="showComment{{ $tmp['id'] }}"
+                                                <a class="btn dropdown-item3" id="showComment{{ $gr->templates['id'] }}"
                                                     style = "border-radius: 5px;"
-                                                    onclick="showComment({{ $tmp['id'] }})"></a>
-                                                <button type="submit" value="{{ $tmp['id'] }}" name="remake"
-                                                    class="btn dropdown-item3" id="reqComment{{ $tmp['id'] }}"
+                                                    onclick="showComment({{ $gr->templates['id'] }})"></a>
+                                                <button type="submit" value="{{ $gr->templates['id'] }}" name="remake"
+                                                    class="btn dropdown-item3" id="reqComment{{ $gr->templates['id'] }}"
                                                     style = "border-radius: 5px; display: none;"></button>
-                                                <button type="submit" name="noShow" value="{{ $tmp['id'] }}"
+                                                <button type="submit" name="noShow" value="{{ $gr->templates['id'] }}"
                                                     class="btn dropdown-item2"
                                                     style = "border-radius: 5px; display: none;"></button>
                                             </div>
