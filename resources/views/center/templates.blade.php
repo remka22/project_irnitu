@@ -35,19 +35,19 @@
                                                     @switch($form_key)
                                                         @case('Bakalavr')
                                                             @foreach ($prof->streams_b as $st)
-                                                                {{ view('center.templates_stream_accord', ['streams' => $st]) }}
+                                                                {{ view('center.templates_stream_accord', ['inst' => $inst, 'streams' => $st, 'form' => $form_key]) }}
                                                             @endforeach
                                                         @break
 
                                                         @case('Magis')
                                                             @foreach ($prof->streams_m as $st)
-                                                                {{ view('center.templates_stream_accord', ['streams' => $st]) }}
+                                                                {{ view('center.templates_stream_accord', ['inst' => $inst, 'streams' => $st, 'form' => $form_key]) }}
                                                             @endforeach
                                                         @break
 
                                                         @case('Zaoch')
                                                             @foreach ($prof->streams_z as $st)
-                                                                {{ view('center.templates_stream_accord', ['streams' => $st]) }}
+                                                                {{ view('center.templates_stream_accord', ['inst' => $inst, 'streams' => $st, 'form' => $form_key]) }}
                                                             @endforeach
                                                         @break
                                                         @default
