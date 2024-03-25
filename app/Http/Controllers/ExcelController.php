@@ -141,19 +141,22 @@ function insert_workload($groupStrTeacher)
                     $teacher_score = new TeacherScore();
                     $teacher_score->teacher_id = $teacher->id;
                     $teacher_score->score = $g[1];
-                    // $teacher_score->save();
+                    $teacher_score->save();
                     preg_match_all('#(\W+-\d+-\d+)(,|\()#', $g[0], $arr);
                     foreach ($arr[1] as $a) {
                         preg_match_all('#(\W+-\d+)-(\d+)#', $a, $arr1);
-                        dump($arr1);
                         $stream = Stream::where('name', $arr1[1][0])->get()->first();
-                        dump($stream);
                         $group = Group::where([['stream_id', '=', $stream->id], ['group_number', '=', $arr1[2][0]]])->get()->first();
-                        dd($group);
+                        if(!$group){
+                            $group = new Group();
+                            $group->group_number = $arr1[2][0];
+                            $group->stream_id = $stream->id;
+                            $group->save();
+                        }
                         $group_score = new GroupScore();
                         $group_score->teacher_score_id = $teacher_score->id;
                         $group_score->group_id = $group->id;
-                        // $group_score->save();
+                        $group_score->save();
                         // $result[$count][] = ['stream' => $arr1[1], 'group' => $arr1[2]];
                     }
                 }
