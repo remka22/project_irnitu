@@ -52,6 +52,10 @@ Route::get('/test', function (Request $request) {
 
 
 Route::get('/', function (Request $request) {
+    // return AuthController::check_auth();
+    return redirect('/out');
+});
+Route::get('/in', function (Request $request) {
     return AuthController::check_auth();
 });
 Route::get('/bitrix', function (Request $request) {
