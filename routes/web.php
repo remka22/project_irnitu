@@ -61,8 +61,11 @@ Route::get('/logout', function () {
 })->name('logout');
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/admin/home', function (Request $request) {
-        return view('admin.admin');
+
+    Route::prefix('admin')->middleware('role:admin')->group(function () {
+        Route::get('/home', function (Request $request) {
+            return view('admin.admin');
+        });
     });
 
     Route::middleware('role:admin')->group(function () {
@@ -109,6 +112,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::middleware('role:direct,teacher,admin')->group(function () {
     });
+    
 });
 
 Route::get('/admin', function (Request $request) {
