@@ -131,7 +131,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::prefix('direct')->middleware('role:direct,teacher,admin')->group(function () {
         Route::get('/', function (Request $request) {
-            return view('direct.direct');
+            return DirectController::get();
         });
         Route::post('/twl', function (Request $request) {
             return ExcelController::work_load_teacher($request);
