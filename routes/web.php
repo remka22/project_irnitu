@@ -129,11 +129,11 @@ Route::middleware('auth:sanctum')->group(function () {
         });
     });
 
-    Route::prefix('directs')->middleware('role:direct,teacher,admin')->group(function () {
+    Route::prefix('direct')->middleware('role:direct,teacher,admin')->group(function () {
         Route::get('/', function (Request $request) {
             return view('direct.direct');
         });
-        Route::get('/twl', function (Request $request) {
+        Route::post('/twl', function (Request $request) {
             return ExcelController::work_load_teacher($request);
         });
     });
