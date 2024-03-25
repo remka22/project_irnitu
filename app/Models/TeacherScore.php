@@ -9,7 +9,7 @@ class TeacherScore extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $table = 'teacher-score';
+    protected $table = 'teacher_score';
 
     public function groups()
     {
