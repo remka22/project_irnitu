@@ -71,14 +71,14 @@ Route::middleware('auth:sanctum')->group(function () {
         });
     });
 
-    Route::middleware('role:student,admin')->group(function () {
-        Route::get('/student', function (Request $request) {
+    Route::prefix('student')->middleware('role:student,admin')->group(function () {
+        Route::get('/', function (Request $request) {
             return view('student.student');
         });
-        Route::get('/student/practika', function (Request $request) {
+        Route::get('/practika', function (Request $request) {
             return StudentReport::get($request);
         });
-        Route::post('/student/practika', function (Request $request) {
+        Route::post('/practika', function (Request $request) {
             return StudentReport::post($request);
         });
     });
