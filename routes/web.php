@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CenterCareer\TemplatesController;
+use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\Insertcontroller;
 use App\Http\Controllers\Student\StudentReport;
 use App\Http\Controllers\Teacher\TeacherSetudentRequest;
@@ -32,6 +33,7 @@ Route::get('/test', function (Request $request) {
     //                                         'student_request' => ['theme' => 'Тема_моя'],
     //                                         'student_practic' => ['theme' => 'Тема_моя']
     // ]);
+    return ExcelController::work_load_teacher();
     return view('test');
 });
 // Route::post('/test', function (Request $request) {
@@ -112,7 +114,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::middleware('role:direct,teacher,admin')->group(function () {
     });
-    
+
 });
 
 Route::get('/admin', function (Request $request) {
