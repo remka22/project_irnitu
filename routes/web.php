@@ -129,7 +129,7 @@ Route::middleware('auth:sanctum')->group(function () {
         });
     });
 
-    Route::prefix('center')->middleware('role:direct,teacher,admin')->group(function () {
+    Route::prefix('direct')->middleware('role:direct,teacher,admin')->group(function () {
         Route::get('/', function (Request $request) {
             return view('direct.direct');
         });
