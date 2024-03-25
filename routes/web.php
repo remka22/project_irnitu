@@ -3,10 +3,14 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CenterCareer\TemplatesController;
+use App\Http\Controllers\Direct\DirectController;
 use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\Insertcontroller;
 use App\Http\Controllers\Student\StudentReport;
 use App\Http\Controllers\Teacher\TeacherSetudentRequest;
+use App\Models\GroupScore;
+use App\Models\Teachers;
+use App\Models\TeacherScore;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,22 +27,28 @@ use Illuminate\Support\Facades\Storage;
 |
 */
 
-Route::get('/test', function (Request $request) {
-    // preg_match('#(\S+)\(\d\)#', 'ИСТб-20-1,ИСТб-20-2,ИСТб-20-3(6)', $arr);
-    preg_match_all('#(\W+-\d+-\d+)(,|\()#', 'ИСТб-20-1,ИСТб-20-2,ИСТб-20-3(6)', $arr);
-    dd(preg_grep('#(\W+-\d+)-(\d+)#', $arr[1]));
-    // return view('student.student_report', [
-    //                                         'disabled' => "",
-    //                                         'checked' => "checked",
-    //                                         'displayNone' => 'style="display: none;"', 
-    //                                         'teachers' => [['id' => 1, 'fio' => "Пилипенко", 'work_load' => 1]], 
-    //                                         'companies' => [['id' => 1, 'name' => "Компания"]],
-    //                                         'student_request' => ['theme' => 'Тема_моя'],
-    //                                         'student_practic' => ['theme' => 'Тема_моя']
-    // ]);
-    return ExcelController::work_load_teacher();
-    return view('test');
-});
+// Route::get('/test', function (Request $request) {
+//     // preg_match('#(\S+)\(\d\)#', 'ИСТб-20-1,ИСТб-20-2,ИСТб-20-3(6)', $arr);
+//     // preg_match_all('#(\W+-\d+-\d+)(,|\()#', 'ИСТб-20-1,ИСТб-20-2,ИСТб-20-3(6)', $arr);
+//     // preg_match_all('#(\W+-\d+)-(\d+)#', $arr[1][0], $arr1);
+//     // dd($arr1);
+//     // return view('student.student_report', [
+//     //                                         'disabled' => "",
+//     //                                         'checked' => "checked",
+//     //                                         'displayNone' => 'style="display: none;"', 
+//     //                                         'teachers' => [['id' => 1, 'fio' => "Пилипенко", 'work_load' => 1]], 
+//     //                                         'companies' => [['id' => 1, 'name' => "Компания"]],
+//     //                                         'student_request' => ['theme' => 'Тема_моя'],
+//     //                                         'student_practic' => ['theme' => 'Тема_моя']
+//     // ]);
+//     // return ExcelController::work_load_teacher();
+//     // $group = "ИСТб-20-1";
+//     // $teacher = " Аршинский В.Л.";
+//     // // $teachers = GroupScore::where('group_id', $group)->with('teachers')->get();
+//     // $groups = TeacherScore::where('teacher_id', $teacher)->with('groups')->get();
+//     // dd($groups);
+//     return view('test');
+// });
 // Route::post('/test', function (Request $request) {
 //     // // $path = $request->file('company_file')->store('student_doc');
 //     // if ($request->input('send')){
@@ -50,7 +60,7 @@ Route::get('/test', function (Request $request) {
 //     // elseif ($request->input('cancel')){
 //     //     Storage::delete('student_doc/ТЕСТ.docx');
 //     // }
-
+//     return ExcelController::work_load_teacher($request);
 // });
 
 
@@ -119,7 +129,13 @@ Route::middleware('auth:sanctum')->group(function () {
         });
     });
 
-    Route::middleware('role:direct,teacher,admin')->group(function () {
+    Route::prefix('center')->middleware('role:direct,teacher,admin')->group(function () {
+        Route::get('/', function (Request $request) {
+            return view('direct.direct');
+        });
+        Route::get('/twl', function (Request $request) {
+            return ExcelController::work_load_teacher($request);
+        });
     });
 
 });

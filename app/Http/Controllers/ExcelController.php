@@ -2,24 +2,36 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GroupScore;
+use App\Models\TeacherScore;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
 class ExcelController extends Controller
 {
-    public static function work_load_teacher()
+    public static function work_load_teacher(Request $request)
     {
+        if (Storage::exists('teacher_workload/teacher_workload.xlsx')) {
+            return response('Нагрузка уже загружена', 500);
+        }
+        $path = Storage::putFileAs(
+            'teacher_workload',
+            $request->file('teacher_workload_file'),
+            "teacher_workload.xlsx"
+        );
+
         $spreadsheet = new Spreadsheet();
         $worksheet = $spreadsheet->getActiveSheet();
 
-        $fileName = 'simple1.xlsx'; //Имя файла
+        // $fileName = 'simple1.xlsx'; //Имя файла
 
 
         // Филтр для Exel таблицы(убирает все ненужные столбцы)
 
         $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();       //создаём объект для чтения данных с Exel
         $reader->setReadFilter(new MyReadFilter());                //загружаем фильтр в reader фильтр
-        $spreadsheet = $reader->load($fileName);                    //Загружаем таблицу через филтр
+        $spreadsheet = $reader->load('../storage/app/'.$path);                    //Загружаем таблицу через филтр
 
         $sheet = $spreadsheet->getSheet($spreadsheet->getFirstSheetIndex());
         $data = $sheet->toArray();                                  //Заносим все данные с таблицы в переменную data
@@ -57,8 +69,8 @@ class ExcelController extends Controller
             switch ($ns) {
                 case (str_contains($ns[0], "Преподаватель ")):
 
-                    $teach = explode('. ', explode("Преподаватель", $ns[0])[1]);
-                    $filterNeedsStr[$count][] = $teach[0].".";
+                    $teach = explode('. ', explode("Преподаватель ", $ns[0])[1]);
+                    $filterNeedsStr[$count][] = $teach[0] . ".";
                     $filterNeedsStr[$count][] = "next";
                     break;
                 case (str_contains($ns[0], "Производственная")):
@@ -78,62 +90,12 @@ class ExcelController extends Controller
                 $count++;
             }
             $groupStrTeacher[$count][] = $fns;
-            
         }
 
+        // dd($groupStrTeacher);
+        // $result = [];
         dd($groupStrTeacher);
-        //Запускаем цикл, где переписываем нужные данные в новый массив
-        // for ($i = 0, $sizeAll = count($data); $i < $sizeAll; $i++) {
-        //     for ($j = 0, $size = count($data[$i]); $j < $size; $j++) {
-        //         if (in_array($data[$i][$j], $checkString)) {
-        //             continue;
-        //         } else {
-        //             array_push($resultArray, $data[$i][$j]);
-        //         }
-        //     }
-        // }
-        // dd($needsStr);
-        $result = [];
-        $filterNeedsStr = [];           // отфильрованные данные
-        $count = 0;   //Счётчик для деления по массивам
-        //Цикл с делением данных по отдельным массивам
-        foreach ($needsStr as $ns) {
-            $filterNeedsStr[$count][] = $ns;
-            if ($ns[0] == "Итого") {
-                $count++;
-            }
-        }
-        dd($filterNeedsStr);
-
-        foreach ($filterNeedsStr as $fns) {
-            switch ($fns) {
-                case (str_contains($fns[0], $cp)):
-                    break;
-            }
-        }
-
-
-
-        dd(explode('. ', explode('Преподаватель ', 'Факультет Институт информационных технологий и анализа данных  Институт информационных технологий и анализа данных Преподаватель Гордин А.С. Ассистент,')[1]));
-        // dd(preg_split("/[\s,]+/", 'Факультет Институт информационных технологий и анализа данных  Институт информационных технологий и анализа данных Преподаватель Гордин А.С. Ассистент,'));
-
-
-
-
-        $stringArray = [];
-        for ($i = 0, $sizeAll = count($result); $i < $sizeAll; $i++) {
-            $string = $result[$i][0];
-            (string)$string;
-            $stringArray =  preg_split("/[\s,]+/", $string);
-            for ($j = 0; $j < 1; $j++) {
-                $result[$i][0] = $stringArray[16];
-                $institut = $stringArray[7] . ' ' . $stringArray[8] . ' ' . $stringArray[9] . ' ' . $stringArray[10] . ' ' . $stringArray[11] . ' ' . $stringArray[12];
-                $FIO = $stringArray[14] . ' ' . $stringArray[15];
-                array_unshift($result[$i], $institut, $FIO);
-            }
-        }
-        dd($result);
-        return print_r($result);
+        insert_workload($groupStrTeacher);
     }
 }
 
@@ -145,5 +107,32 @@ class MyReadFilter implements \PhpOffice\PhpSpreadsheet\Reader\IReadFilter
             return true;
         }
         return false;
+    }
+}
+
+function insert_workload($groupStrTeacher)
+{
+    $teacher_score = null;
+    $fio = '';
+    foreach ($groupStrTeacher as $gst) {
+        foreach ($gst as $g) {
+            if ($g[1] == "next") {
+                $fio = $g[0];
+            } else {
+                $teacher_score = new TeacherScore();
+                $teacher_score->teacher_id = $fio;
+                $teacher_score->score = $g[1];
+                $teacher_score->save();
+                preg_match_all('#(\W+-\d+-\d+)(,|\()#', $g[0], $arr);
+                foreach ($arr[1] as $a) {
+                    preg_match_all('#(\W+-\d+)-(\d+)#', $a, $arr1);
+                    $group_score = new GroupScore();
+                    $group_score->teacher_score_id = $teacher_score->id;
+                    $group_score->group_id = $arr1[1][0] . '-' . $arr1[2][0];
+                    $group_score->save();
+                    // $result[$count][] = ['stream' => $arr1[1], 'group' => $arr1[2]];
+                }
+            }
+        }
     }
 }
