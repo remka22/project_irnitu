@@ -24,6 +24,9 @@ use Illuminate\Support\Facades\Storage;
 */
 
 Route::get('/test', function (Request $request) {
+    // preg_match('#(\S+)\(\d\)#', 'ИСТб-20-1,ИСТб-20-2,ИСТб-20-3(6)', $arr);
+    preg_match_all('#(\W+-\d+-\d+)(,|\()#', 'ИСТб-20-1,ИСТб-20-2,ИСТб-20-3(6)', $arr);
+    dd(preg_grep('#(\W+-\d+)-(\d+)#', $arr[1]));
     // return view('student.student_report', [
     //                                         'disabled' => "",
     //                                         'checked' => "checked",

@@ -61,11 +61,6 @@ class ExcelController extends Controller
                     $filterNeedsStr[$count][] = $teach[0].".";
                     $filterNeedsStr[$count][] = "next";
                     break;
-                case (str_contains($ns[0], "Учебная")):
-                    $groups = explode("Учебная практика ", $ns[0]);
-                    $filterNeedsStr[$count][] = $groups[1];
-                    $filterNeedsStr[$count][] = $ns[12];
-                    break;
                 case (str_contains($ns[0], "Производственная")):
                     $groups = explode("Производственная практика ", $ns[0]);
                     $filterNeedsStr[$count][] = $groups[1];
@@ -146,7 +141,7 @@ class MyReadFilter implements \PhpOffice\PhpSpreadsheet\Reader\IReadFilter
 {
     function readCell($columnAddress, $rows, $worksheetName = '')
     {
-        if (($columnAddress == 'A' || $columnAddress == 'M' || $columnAddress == 'N')) {
+        if (($columnAddress == 'A' || $columnAddress == 'N')) {
             return true;
         }
         return false;
