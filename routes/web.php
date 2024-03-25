@@ -83,26 +83,26 @@ Route::middleware('auth:sanctum')->group(function () {
         });
     });
 
-    Route::middleware('role:teacher,rop,admin')->group(function () {
-        Route::get('/teacher', function (Request $request) {
+    Route::prefix('teacher')->middleware('role:teacher,rop,admin')->group(function () {
+        Route::get('/', function (Request $request) {
             return view('teacher.teacher');
         });
-        Route::get('/teacher/stud_practika', function (Request $request) {
+        Route::get('/stud_practika', function (Request $request) {
             return TeacherSetudentRequest::get($request);
         });
-        Route::post('/teacher/stud_practika', function (Request $request) {
+        Route::post('/stud_practika', function (Request $request) {
             return TeacherSetudentRequest::post($request);
         });
     });
 
-    Route::middleware('role:center,teacher,admin')->group(function () {
-        Route::get('/center', function (Request $request) {
+    Route::prefix('center')->middleware('role:center,teacher,admin')->group(function () {
+        Route::get('/', function (Request $request) {
             return redirect('/center/shablon_prikazy');
         });
-        Route::get('/center/shablon_prikazy', function (Request $request) {
+        Route::get('/shablon_prikazy', function (Request $request) {
             return TemplatesController::get($request);
         });
-        Route::post('/center/shablon_prikazy', function (Request $request) {
+        Route::post('/shablon_prikazy', function (Request $request) {
             return TemplatesController::post($request);
         });
     });
