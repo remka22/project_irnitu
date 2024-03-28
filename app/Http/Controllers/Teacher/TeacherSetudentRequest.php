@@ -8,6 +8,7 @@ use App\Models\Teachers;
 use App\Models\TeacherScore;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class TeacherSetudentRequest extends Controller
 {
@@ -46,6 +47,8 @@ class TeacherSetudentRequest extends Controller
             done_request_practic($request);
         } elseif ($request->input('remake')) {
             cancel_request_practic($request);
+        }elseif ($request->input('download')) {
+            return Storage::download($request->input('download'));
         }
         return redirect('/teacher/stud_practika');
     }

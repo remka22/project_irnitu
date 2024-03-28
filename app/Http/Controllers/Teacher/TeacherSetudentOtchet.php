@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Teacher;
 
 use App\Http\Controllers\Controller;
+use App\Models\StudentOtchet;
 use App\Models\StudentPractic;
 use App\Models\Teachers;
 use App\Models\TeacherScore;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class TeacherSetudentOtchet extends Controller
 {
@@ -39,42 +41,29 @@ class TeacherSetudentOtchet extends Controller
     public static function post(Request $request)
     {
         if ($request->input('done')) {
-            done_request_practic($request);
+            done_request_otchet($request);
         } elseif ($request->input('remake')) {
-            cancel_request_practic($request);
+            cancel_request_otchet($request);
+        }elseif ($request->input('download')) {
+            return Storage::download($request->input('download'));
         }
-        return redirect('/teacher/stud_practika');
+        return redirect('/teacher/stud_otchet');
     }
 }
 
-function done_request_practic($request)
+function done_request_otchet($request)
 {
     $user = Auth::user();
-    $stud_prac = StudentPractic::find($request->input('done'));
-    if ($stud_prac->status == 2) {
-        decriment_work_load($stud_prac->teacher_id);
-    }
-    $stud_prac->update(['status' => 1]);
-    $stud_prac->save();
+    $stud_otchet = StudentOtchet::find($request->input('done'));
+    $stud_otchet->update(['status' => 1]);
+    $stud_otchet->save();
 }
 
-function cancel_request_practic($request)
+function cancel_request_otchet($request)
 {
     $user = Auth::user();
-    $stud_prac = StudentPractic::find($request->input('remake'));
-    increase_work_load($stud_prac->teacher_id);
-    $stud_prac->update(['status' => 2]);
-    $stud_prac->save();
+    $stud_otchet = StudentOtchet::find($request->input('remake'));
+    $stud_otchet->update(['status' => 2]);
+    $stud_otchet->save();
 }
 
-function increase_work_load($teacher_id)
-{
-    $teachers = TeacherScore::find($teacher_id);
-    $teachers->update(['score' => $teachers->score + 1]);
-}
-
-function decriment_work_load($teacher_id)
-{
-    $teachers = TeacherScore::find($teacher_id);
-    $teachers->update(['score' => $teachers->score - 1]);
-}
