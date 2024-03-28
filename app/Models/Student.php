@@ -13,6 +13,6 @@ class Student extends Model
 
     public function group()
     {
-        return $this->hasOne(Group::class, 'group_id', 'id');
+        return $this->hasOne(Group::class, 'id', 'group_id');
     }
 }
