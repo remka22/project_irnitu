@@ -10,6 +10,9 @@ class TeacherScore extends Model
     use HasFactory;
     public $timestamps = false;
     protected $table = 'teacher_score';
+    protected $fillable = [
+        'score',
+    ];
 
     public function group_scores()
     {
