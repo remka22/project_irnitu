@@ -90,7 +90,7 @@
 
                         @if ($disabled)
                             {{-- <input type="submit" class="btn btn-success" name="download" value="Скачать договор"> --}}
-                            <button type="submit" name="download" value={{ $student_practic['company_path'] }} class="btn btn-success">Скачать договор</button>
+                            <button type="submit" name="download" value="{{ $student_practic['company_path'] }}" class="btn btn-success">Скачать договор</button>
                         @endif
 
                         <div class="invalid-feedback">

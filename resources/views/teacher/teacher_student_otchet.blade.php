@@ -53,7 +53,7 @@
                     </td>
                     @if ($stud_prac->student->otchet)
                         <td class="td">
-                            <button type="submit" name="download" value={{ $stud_prac->student->student_otchet->link_ya }}
+                            <button type="submit" name="download" value="{{ $stud_prac->student->student_otchet->link_ya }}"
                                 class="btn">Файл</button>
                             @switch($stud_prac->student->student_otchet->status)
                                 @case(0)

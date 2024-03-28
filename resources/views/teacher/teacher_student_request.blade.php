@@ -64,7 +64,7 @@
                     </td>
 
                     <td class="td">
-                        <button type="submit" name="download" value={{ $stud_prac->company_path }} class="btn">Файл</button>
+                        <button type="submit" name="download" value="{{ $stud_prac->company_path }}" class="btn">Файл</button>
                     </td>
                     @switch($stud_prac->status)
                         @case(0)
