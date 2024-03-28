@@ -10,4 +10,8 @@ class StudentOtchet extends Model
     use HasFactory;
     protected $table = 'student_otchet';
     public $timestamps = false;
+
+    protected $fillable = [
+        'status',
+    ];
 }

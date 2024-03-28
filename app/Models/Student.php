@@ -15,4 +15,9 @@ class Student extends Model
     {
         return $this->hasOne(Group::class, 'id', 'group_id');
     }
+
+    public function otchet()
+    {
+        return $this->hasOne(StudentOtchet::class, 'student_id', 'id');
+    }
 }
