@@ -16,7 +16,7 @@ class GroupScore extends Model
         return $this->hasOne(TeacherScore::class, 'id', 'teacher_score_id');
     }
 
-    public function group()
+    public function groups()
     {
         return $this->hasOne(Group::class, 'id', 'group_id');
     }
