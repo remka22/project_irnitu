@@ -19,6 +19,6 @@ class Group extends Model
 
     public function stream()
     {
-        return $this->hasOne(Stream::class);
+        return $this->hasOne(Stream::class, 'id', 'stream_id');
     }
 }
