@@ -3,7 +3,7 @@
     <div class="remote mt-3">
 
         <div class="remote-left">
-            <h5 class="mar-off text-black btn-custom">Осталось мест: {{ $teacher->work_load }}</h5>
+            <h5 class="mar-off text-black btn-custom">Осталось мест: {{ $work_load }}</h5>
         </div>
 
         <div class="remote-rigth">
@@ -21,6 +21,7 @@
         <thead class="thead ">
             <tr class="tr">
                 <th class="th">ФИО студента</th>
+                <th class="th">Группа</th>
                 <th class="th">Компания</th>
                 <th class="th">Тема практики</th>
                 <th class="th">Договор</th>
@@ -35,6 +36,11 @@
                     <td class="td">
                         <div class="block-div">
                             <strong class="strong">{{ $stud_prac->student->fio }} </strong>
+                        </div>
+                    </td>
+                    <td class="td">
+                        <div class="block-div">
+                            <strong class="strong">{{$stud_prac->student->group->stream->name}}-{{ $stud_prac->student->group }} </strong>
                         </div>
                     </td>
 

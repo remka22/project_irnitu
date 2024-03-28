@@ -10,4 +10,9 @@ class Student extends Model
     use HasFactory;
     public $timestamps = false;
     protected $table = 'students';
+
+    public function group()
+    {
+        return $this->hasOne(Group::class, 'group_id', 'id');
+    }
 }
