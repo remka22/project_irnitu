@@ -11,12 +11,12 @@ class TeacherScore extends Model
     public $timestamps = false;
     protected $table = 'teacher_score';
 
-    public function group_score()
+    public function group_scores()
     {
         return $this->hasMany(GroupScore::class);
     }
 
-    public function teachers(){
+    public function teacher(){
         return $this->hasOne(Teachers::class, 'id', 'teacher_id');
     }
 }

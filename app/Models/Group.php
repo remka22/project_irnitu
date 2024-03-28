@@ -16,4 +16,9 @@ class Group extends Model
     {
         return $this->hasOne(Template::class);
     }
+
+    public function stream()
+    {
+        return $this->hasOne(Stream::class);
+    }
 }
