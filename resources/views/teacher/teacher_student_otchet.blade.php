@@ -53,8 +53,11 @@
                     </td>
                     @if ($stud_prac->student->otchet)
                         <td class="td">
-                            <button type="submit" name="download" value="{{ $stud_prac->student->student_otchet->link_ya }}"
-                                class="btn">Файл</button>
+                            <form method="post" action="/teacher/stud_practic">
+                                @csrf
+                                <button type="submit" name="download"
+                                    value="{{ $stud_prac->student->student_otchet->link_ya }}" class="btn">Файл</button>
+                            </form>
                             @switch($stud_prac->student->student_otchet->status)
                                 @case(0)
                                 <td class="td td-status">
@@ -87,11 +90,13 @@
                                 <form method="post" action="/teacher/stud_practika">
                                     @csrf
                                     @if ($stud_prac->status == 0 || $stud_prac->status == 2)
-                                        <button type="sumbit" name="done" value={{ $stud_prac->student->student_otchet->id }}
+                                        <button type="sumbit" name="done"
+                                            value={{ $stud_prac->student->student_otchet->id }}
                                             class="btn dropdown-item1"></button>
                                     @endif
                                     @if ($stud_prac->status == 0 || $stud_prac->status == 1)
-                                        <button type="sumbit" name="remake" value={{ $stud_prac->student->student_otchet->id }}
+                                        <button type="sumbit" name="remake"
+                                            value={{ $stud_prac->student->student_otchet->id }}
                                             class="btn dropdown-item2"></button>
                                     @endif
                                 </form>

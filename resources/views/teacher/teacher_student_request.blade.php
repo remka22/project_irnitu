@@ -64,7 +64,11 @@
                     </td>
 
                     <td class="td">
-                        <button type="submit" name="download" value="{{ $stud_prac->company_path }}" class="btn">Файл</button>
+                        <form method="post" action="/teacher/stud_otchet">
+                            @csrf
+                            <button type="submit" name="download" value="{{ $stud_prac->company_path }}"
+                                class="btn">Файл</button>
+                        </form>
                     </td>
                     @switch($stud_prac->status)
                         @case(0)
@@ -95,7 +99,7 @@
                     @endswitch
                     <td class="td">
                         <ul class="action" aria-labelledby="btnGroupDrop1">
-                            <form method="post" action="/teacher/stud_practika">
+                            <form method="post" action="/teacher/stud_otchet">
                                 @csrf
                                 @if ($stud_prac->status == 0 || $stud_prac->status == 2)
                                     <button type="sumbit" name="done" value={{ $stud_prac->id }}
