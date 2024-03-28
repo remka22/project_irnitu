@@ -40,7 +40,7 @@
                     </td>
                     <td class="td">
                         <div class="block-div">
-                            <strong class="strong">{{$stud_prac->student->group->stream->name}}-{{ $stud_prac->student->group }} </strong>
+                            <strong class="strong">{{$stud_prac->student->group->stream->name}}-{{ $stud_prac->student->group->group_number }} </strong>
                         </div>
                     </td>
 
