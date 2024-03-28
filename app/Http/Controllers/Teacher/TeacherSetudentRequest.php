@@ -28,7 +28,7 @@ class TeacherSetudentRequest extends Controller
             $student_practics = StudentPractic::whereIn('teacher_id', $arr_id_tscore)->with('company', 'student.group.stream')->get();
         }
         else{
-            $student_practics = StudentPractic::where('status', "<>", 2)->whereIn('teacher_id', $arr_id_tscore)->where(['status', "<>", 2])->with('company', 'student.group.stream')->get();
+            $student_practics = StudentPractic::where('status', "<>", 2)->whereIn('teacher_id', $arr_id_tscore)->with('company', 'student.group.stream')->get();
         }
 
         
