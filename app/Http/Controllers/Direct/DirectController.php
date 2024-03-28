@@ -14,13 +14,13 @@ class DirectController extends Controller
 {
     public static function get()
     {
-        $stream = Stream::where('name', "ИСТб-20")->get()->first();
-        $group = Group::where([['stream_id', '=', $stream->id], ['group_number', '=', 1]])->get()->first();
-        $teacher = Teachers::where('fio','like', "%Аршинский%")->get()->first();
-        $teachers = GroupScore::where('group_id', $group->id)->with('teacher_score.teacher')->get();
-        dump($teachers);
-        $groups = TeacherScore::where('teacher_id', $teacher->id)->with('group_scores.group.stream')->get();
-        dd($groups);
+        // $stream = Stream::where('name', "ИСТб-20")->get()->first();
+        // $group = Group::where([['stream_id', '=', $stream->id], ['group_number', '=', 1]])->get()->first();
+        // $teacher = Teachers::where('fio','like', "%Аршинский%")->get()->first();
+        // $teachers = GroupScore::where('group_id', $group->id)->with('teacher_score.teacher')->get();
+        // dump($teachers);
+        // $groups = TeacherScore::where('teacher_id', $teacher->id)->with('group_scores.group.stream')->get();
+        // dd($groups);
         return view('direct.direct');
     }
 }

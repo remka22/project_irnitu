@@ -140,7 +140,11 @@ function insert_workload($groupStrTeacher)
                 if ($teacher) {
                     $teacher_score = new TeacherScore();
                     $teacher_score->teacher_id = $teacher->id;
-                    $teacher_score->score = $g[1];
+                    $value = 2;
+                    if (str_contains($g[0], "з-")){
+                        $value = 0.5;
+                    }
+                    $teacher_score->score = $g[1]/$value;
                     $teacher_score->save();
                     preg_match_all('#(\W+-\d+-\d+)(,|\()#', $g[0], $arr);
                     foreach ($arr[1] as $a) {
