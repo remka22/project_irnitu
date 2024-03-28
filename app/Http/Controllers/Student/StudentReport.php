@@ -137,26 +137,26 @@ function add_request_practic($request)
 
 function decriment_work_load($teacher_id)
 {
-    $teachers = Teachers::find($teacher_id);
-    $teachers->update(['work_load' => $teachers->work_load - 1]);
+    $teachers = TeacherScore::find($teacher_id);
+    $teachers->update(['score' => $teachers->score - 1]);
 }
 
 function increase_work_load($teacher_id)
 {
-    $teachers = Teachers::find($teacher_id);
-    $teachers->update(['work_load' => $teachers->work_load + 1]);
+    $teachers = TeacherScore::find($teacher_id);
+    $teachers->update(['score' => $teachers->score + 1]);
 }
 
 function work_load_check($request)
 {
-    $work_load = Teachers::find($request->input('teacher_id'))->get()->first()->work_load;
+    $work_load = TeacherScore::find($request->input('teacher_id'))->get()->first()->score;
     if ($work_load > 0) {
         return True;
     } else {
         return False;
     }
 }
-
+ 
 
 function cancel_request_practic($request)
 {
