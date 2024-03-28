@@ -53,7 +53,7 @@
                     </td>
                     @if ($stud_prac->student->otchet)
                         <td class="td">
-                            <form method="post" action="/teacher/stud_practic">
+                            <form method="post" action="/teacher/stud_otchet">
                                 @csrf
                                 <button type="submit" name="download"
                                     value="{{ $stud_prac->student->otchet->link_ya }}" class="btn">Файл</button>
