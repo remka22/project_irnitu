@@ -89,7 +89,7 @@ class StudentReport extends Controller
             $user = Auth::user();
             $student = Student::where('mira_id', $user->mira_id)->get()->first();
             $student_practic = StudentPractic::where('student_id', $student->id)->get()->first();
-            return Storage::download($student_practic->company_path);
+            return Storage::download($request->input('download'));
         }
         
     }
