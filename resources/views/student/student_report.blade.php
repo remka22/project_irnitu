@@ -48,9 +48,9 @@
                                 <option value={{ $teachers['id'] }}> {{ $teachers['fio'] }} </option>
                             @else
                                 @foreach ($teachers as $teach)
-                                    @if ($teach['work_load'] > 0)
-                                        <option value={{ $teach['id'] }}> {{ $teach['fio'] }} (свободных мест:
-                                            {{ $teach['work_load'] }} )</option>
+                                    @if ($teach->teacher_score->score > 0)
+                                        <option value={{ $teach->teacher_score->id }}> {{ $teach->teacher_score->teacher->fio }} (свободных мест:
+                                            {{ $teach->teacher_score->score }} )</option>
                                     @endif
                                 @endforeach
                             @endif

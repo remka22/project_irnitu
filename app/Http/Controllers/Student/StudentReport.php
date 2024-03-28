@@ -6,11 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\Company;
 use App\Models\Faculty;
 use App\Models\Group;
+use App\Models\GroupScore;
 use App\Models\Profile;
 use App\Models\Stream;
 use App\Models\Student;
 use App\Models\StudentPractic;
 use App\Models\Teachers;
+use App\Models\TeacherScore;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -42,7 +44,8 @@ class StudentReport extends Controller
         $student_practic = StudentPractic::where('student_id', $student->id)->get()->first();
         if ($student_practic) {
             $disabled = "disabled";
-            $teachers = Teachers::find($student_practic->teacher_id);
+            $t_score = TeacherScore::find($student_practic->teacher_id);
+            $teachers = Teachers::find($t_score->teacher_id);
             if (!$student_practic->company_id) {
                 $checked = "checked";
                 $companies = [];
@@ -58,7 +61,8 @@ class StudentReport extends Controller
             $checked = "";
             $displayNone = "";
             $companies = Company::all();
-            $teachers = Teachers::where('fac_id', $faculty->id)->get();
+            $teachers = GroupScore::where('group_id', $group->id)->with('teacher_score.teacher')->get();
+            // $teachers = Teachers::where('fac_id', $faculty->id)->get();
         }
 
 
