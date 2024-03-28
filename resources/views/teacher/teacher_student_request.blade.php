@@ -40,7 +40,9 @@
                     </td>
                     <td class="td">
                         <div class="block-div">
-                            <strong class="strong">{{$stud_prac->student->group->stream->name}}-{{ $stud_prac->student->group->group_number }} </strong>
+                            <strong
+                                class="strong">{{ $stud_prac->student->group->stream->name }}-{{ $stud_prac->student->group->group_number }}
+                            </strong>
                         </div>
                     </td>
 
@@ -64,27 +66,33 @@
                     <td class="td">
                         <button name="download" value={{ $stud_prac->student->id }} class="btn">Файл</button>
                     </td>
+                    @switch($stud_prac->status)
+                        @case(0)
+                            <td class="td td-status">
+                                <div class="block-status_check">
+                                    <span class="status-check">Ожидает</span>
+                                </div>
+                            </td>
+                        @break
 
-                    @if ($stud_prac->status == 0)
-                        <td class="td td-status">
-                            <div class="block-status_check">
-                                <span class="status-check">Ожидает</span>
-                            </div>
-                        </td>
-                    @elseif ($stud_prac->status == 1)
-                        <td class="td td-status">
-                            <div class="block-status_ok">
-                                <span class="status-check_ok">Принят</span>
-                            </div>
-                        </td>
-                    @elseif ($stud_prac->status == 2)
-                        <td class="td td-status">
-                            <div class="block-status_fail">
-                                <span class="status-check_fail">Не принят</span>
-                            </div>
-                        </td>
-                    @endif
+                        @case(1)
+                            <td class="td td-status">
+                                <div class="block-status_ok">
+                                    <span class="status-check_ok">Принят</span>
+                                </div>
+                            </td>
+                        @break
 
+                        @case(2)
+                            <td class="td td-status">
+                                <div class="block-status_fail">
+                                    <span class="status-check_fail">Не принят</span>
+                                </div>
+                            </td>
+                        @break
+
+                        @default
+                    @endswitch
                     <td class="td">
                         <ul class="action" aria-labelledby="btnGroupDrop1">
                             <form method="post" action="/teacher/stud_practika">

@@ -3,14 +3,7 @@
     <div class="remote mt-3">
 
         <div class="remote-rigth">
-            <p class="mar-off">Показать отмененные: </p>
-            <label class="label-check">
-                @if (!$check)
-                    <a class="btn btn-info btn-sm ms-1" href="?check=true">Показать</a>
-                @else
-                    <a class="btn btn-warning btn-sm ms-1" href="/teacher/stud_practika">Убрать</a>
-                @endif
-            </label>
+
         </div>
     </div>
     <table class="table mt-2">
@@ -36,7 +29,9 @@
                     </td>
                     <td class="td">
                         <div class="block-div">
-                            <strong class="strong">{{$stud_prac->student->group->stream->name}}-{{ $stud_prac->student->group->group_number }} </strong>
+                            <strong
+                                class="strong">{{ $stud_prac->student->group->stream->name }}-{{ $stud_prac->student->group->group_number }}
+                            </strong>
                         </div>
                     </td>
 
@@ -56,46 +51,62 @@
                     <td class="td">
                         <div class="block-div"> {{ $stud_prac->theme }} </div">
                     </td>
-
-                    <td class="td">
-                        <button name="download" value={{ $stud_prac->student->id }} class="btn">Файл</button>
-                    </td>
-
-                    @if ($stud_prac->status == 0)
-                        <td class="td td-status">
-                            <div class="block-status_check">
-                                <span class="status-check">Ожидает</span>
-                            </div>
+                    @if ($stud_prac->student->otchet)
+                        <td class="td">
+                            <button name="download" value={{ $stud_prac->student->student_otchet->link_ya }}
+                                class="btn">Файл</button>
                         </td>
-                    @elseif ($stud_prac->status == 1)
-                        <td class="td td-status">
-                            <div class="block-status_ok">
-                                <span class="status-check_ok">Принят</span>
-                            </div>
+                        <td class="td">
                         </td>
-                    @elseif ($stud_prac->status == 2)
-                        <td class="td td-status">
-                            <div class="block-status_fail">
-                                <span class="status-check_fail">Не принят</span>
-                            </div>
+                        <td class="td">
+                        </td>
+                    @else
+                        <td class="td">
+                            <label>Не отправлен</label>
+                        </td>
+                        @switch($stud_prac->student->student_otchet->status)
+                            @case(0)
+                                <td class="td td-status">
+                                    <div class="block-status_check">
+                                        <span class="status-check">Ожидает</span>
+                                    </div>
+                                </td>
+                            @break
+
+                            @case(1)
+                                <td class="td td-status">
+                                    <div class="block-status_ok">
+                                        <span class="status-check_ok">Принят</span>
+                                    </div>
+                                </td>
+                            @break
+
+                            @case(2)
+                                <td class="td td-status">
+                                    <div class="block-status_fail">
+                                        <span class="status-check_fail">Не принят</span>
+                                    </div>
+                                </td>
+                            @break
+
+                            @default
+                        @endswitch
+                        <td class="td">
+                            <ul class="action" aria-labelledby="btnGroupDrop1">
+                                <form method="post" action="/teacher/stud_practika">
+                                    @csrf
+                                    @if ($stud_prac->status == 0 || $stud_prac->status == 2)
+                                        <button type="sumbit" name="done" value={{ $stud_prac->id }}
+                                            class="btn dropdown-item1"></button>
+                                    @endif
+                                    @if ($stud_prac->status == 0 || $stud_prac->status == 1)
+                                        <button type="sumbit" name="remake" value={{ $stud_prac->id }}
+                                            class="btn dropdown-item2"></button>
+                                    @endif
+                                </form>
+                            </ul>
                         </td>
                     @endif
-
-                    <td class="td">
-                        <ul class="action" aria-labelledby="btnGroupDrop1">
-                            <form method="post" action="/teacher/stud_practika">
-                                @csrf
-                                @if ($stud_prac->status == 0 || $stud_prac->status == 2)
-                                    <button type="sumbit" name="done" value={{ $stud_prac->id }}
-                                        class="btn dropdown-item1"></button>
-                                @endif
-                                @if ($stud_prac->status == 0 || $stud_prac->status == 1)
-                                    <button type="sumbit" name="remake" value={{ $stud_prac->id }}
-                                        class="btn dropdown-item2"></button>
-                                @endif
-                            </form>
-                        </ul>
-                    </td>
                 </tr>
             @endforeach
         </tbody>
