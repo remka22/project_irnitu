@@ -55,17 +55,8 @@
                         <td class="td">
                             <button name="download" value={{ $stud_prac->student->student_otchet->link_ya }}
                                 class="btn">Файл</button>
-                        </td>
-                        <td class="td">
-                        </td>
-                        <td class="td">
-                        </td>
-                    @else
-                        <td class="td">
-                            <label>Не отправлен</label>
-                        </td>
-                        @switch($stud_prac->student->student_otchet->status)
-                            @case(0)
+                            @switch($stud_prac->student->student_otchet->status)
+                                @case(0)
                                 <td class="td td-status">
                                     <div class="block-status_check">
                                         <span class="status-check">Ожидает</span>
@@ -105,6 +96,15 @@
                                     @endif
                                 </form>
                             </ul>
+                        </td>
+                    @else
+                        <td class="td">
+                            <label>Не отправлен</label>
+                        </td>
+                        </td>
+                        <td class="td">
+                        </td>
+                        <td class="td">
                         </td>
                     @endif
                 </tr>
