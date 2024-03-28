@@ -87,7 +87,7 @@
                         @endswitch
                         <td class="td">
                             <ul class="action" aria-labelledby="btnGroupDrop1">
-                                <form method="post" action="/teacher/stud_practika">
+                                <form method="post" action="/teacher/stud_otchet">
                                     @csrf
                                     @if ($stud_prac->student->otchet->status == 0 || $stud_prac->student->otchet->status == 2)
                                         <button type="sumbit" name="done"
