@@ -57,7 +57,8 @@ class TeacherSetudentRequest extends Controller
 function done_request_practic($request)
 {
     $user = Auth::user();
-    $stud_prac = StudentPractic::find($request->input('done'));
+    $teacher = Teachers::where('mira_id', $user->mira_id)->get()->first();
+    $stud_prac = StudentPractic::where([['id', '=', $request->input('done')], ['teacher_id', '=', $teacher->id]])->get()->first();
     if($stud_prac->status == 2){
         decriment_work_load($stud_prac->teacher_id);
     }   
@@ -68,7 +69,8 @@ function done_request_practic($request)
 function cancel_request_practic($request)
 {
     $user = Auth::user();
-    $stud_prac = StudentPractic::find($request->input('remake'));
+    $teacher = Teachers::where('mira_id', $user->mira_id)->get()->first();
+    $stud_prac = StudentPractic::where([['id', '=', $request->input('remake')], ['teacher_id', '=', $teacher->id]])->get()->first();
     increase_work_load($stud_prac->teacher_id);
     $stud_prac->update(['status' => 2]);
     $stud_prac->save();
