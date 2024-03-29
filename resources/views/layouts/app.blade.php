@@ -25,240 +25,142 @@
 </head>
 
 <body>
-    {{-- <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-                        @guest
-                        @else
-                            <div>{{ Auth::user()->last_name }} {{ Auth::user()->name }} {{ Auth::user()->second_name }}
-                            </div>
-                        @endguest
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <a href="/admin">admin</a>
-                        @else
-                            <a class='btn btn-primary' href='/logout'>Выход</a>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <div class="row mt-2">
-            @guest
-            <div class="col-2">
-
-                <div class="container  ">
-                    <div class="row gy-2">
-                        <a href="/center/shablon_prikazy" class="btn custom-button btn-lg">Шаблоны приказов</a>
-                        <a href="/center/stud_dogovory" class="btn custom-button btn-lg">Договора студентов</a>
-                    </div>
-                </div>
-
-            </div>
-            @else
-                <div class="col-2">
-
-                    <div class="container  ">
-                        <div class="row gy-2">
-                            @if (Auth::user()->type == 'student' || Auth::user()->type == 'admin')
-                                <a href="/student/practika" class="btn btn-custom ">Заявка</a>
-                                <a href="/student/otchet" class="btn btn-custom ">Отчет</a>
-                            @endif
-                            @if (Auth::user()->type == 'teacher' || Auth::user()->type == 'admin')
-                                <a href="/teacher/stud_practika" class="btn btn-custom ">Заявки студентов</a>
-                                <a href="/teacher/stud_otchet" class="btn btn-custom ">Отчетность студентов</a>
-                            @endif
-                            @if (Auth::user()->type == 'rop' || Auth::user()->type == 'admin')
-                                <a href="/teacher/stud_practika" class="btn btn-custom ">Заявки студентов</a>
-                                <a href="/teacher/stud_otchet" class="btn btn-custom ">Отчетность студентов</a>
-                                <a href="/rop/control_activity_student" class="btn btn-custom ">Контроль активности
-                                    студентов</a>
-                            @endif
-                            @if (Auth::user()->type == 'direct' || Auth::user()->type == 'admin')
-                                <a href="/direct/shablon_prikazy" class="btn btn-custom ">Формирование шаблонов
-                                    приказа</a>
-                            @endif
-                            @if (Auth::user()->type == 'center' || Auth::user()->type == 'admin')
-                                <a href="/center/shablon_prikazy" class="btn btn-custom ">Шаблоны приказов</a>
-                                <a href="/center/stud_dogovory" class="btn btn-custom ">Договора студентов</a>
-                            @endif
-                            <a href="/center/shablon_prikazy" class="btn btn-custom ">Шаблоны приказов</a>
-                            <a href="/center/stud_dogovory" class="btn btn-custom ">Договора студентов</a>
-                        </div>
-                    </div>
-
-                </div>
-            @endguest
-
-
-            <div class="col gy-2">
-                @yield('content')
-            </div>
-
-
-            @guest
-            @else
-                <div class="col-2">
-                    <form method="POST" action="/insert">
-                        @csrf
-                        @if (Auth::user()->type == 'admin')
-                            <div class="container  ">
-                                <div class="row gy-2">
-                                    <input type="submit"class="btn btn-warning" name="insertInst"
-                                        value="Импортить институты">
-                                    <input type="submit"class="btn btn-warning" name="insertProf"
-                                        value="Импортить направления">
-                                    <input type="submit"class="btn btn-warning" name="insertStream"
-                                        value="Импортить потоки">
-                                    <input type="submit"class="btn btn-warning" name="insertStud"
-                                        value="Импортить студентов">
-                                    <input type="submit"class="btn btn-warning" name="insertComp"
-                                        value="Импортить компании">
-                                    <input type="submit"class="btn btn-warning" name="insertTeach"
-                                        value="Импортить преподавателей">
-                                </div>
-                            </div>
-                        @else
-                            <div class="container  ">
-                                <div class="row gy-2">
-                                    <input style="display: none;">
-                                </div>
-                            </div>
-                        @endif
-                    </form>
-                </div>
-            @endguest
-
-        </div> --}}
-
-    <div class="container-fluid">
+    <div class="conteiner-fluid">
         <div class="row">
-            @guest
-            @else
-                <div class="col-2 d-flex justify-content-end">
-                    <div class="d-flex flex-column flex-shrink-0 p-3 text-dark bg-white "
-                        style="width: auto; height: fit-content;">
-                        <ul class="nav nav-pills flex-column">
-                            <span class="fs-4">{{ Auth::user()->last_name }}</span>
-                            <span class="fs-6">{{ Auth::user()->name }}</span>
-                            <span class="fs-6">{{ Auth::user()->second_name }}</span>
-                        </ul>
+            <div class="col-2" style="position: fixed;">
+                <div class="container">
+                    @guest
+                    @else
+                        <div class="col-2 d-flex justify-content-end">
+                            <div class="d-flex flex-column flex-shrink-0 p-3 text-dark bg-white "
+                                style="width: auto; height: fit-content;">
+                                <ul class="nav nav-pills flex-column">
+                                    <span class="fs-4">{{ Auth::user()->last_name }}</span>
+                                    <span class="fs-6">{{ Auth::user()->name }}</span>
+                                    <span class="fs-6">{{ Auth::user()->second_name }}</span>
+                                </ul>
 
-                        <hr>
-                        <ul class="nav nav-pills flex-column ">
-                            @if (Auth::user()->type == 'student' || Auth::user()->type == 'admin')
-                                <li class="nav-item mb-2">
-                                    <a href="/student/practika" class="btn btn-custom ">Подать заявку</a>
-                                </li>
-                                <li class="nav-item mb-2">
-                                    <a href="/student/otchet" class="btn btn-custom ">Отправить отчет</a>
-                                </li>
-                            @endif
-                            @if (Auth::user()->type == 'teacher' || Auth::user()->type == 'admin' || Auth::user()->type == 'rop')
-                                <li class="nav-item mb-2">
-                                    <a href="/teacher/stud_practika" class="btn btn-custom ">Заявки студентов</a>
-                                </li>
-                                <li class="nav-item mb-2">
-                                    <a href="/teacher/stud_otchet" class="btn btn-custom ">Отчетность студентов</a>
-                                </li>
-                                <li class="nav-item mb-2">
-                                    <a href="/center/shablon_prikazy" class="btn btn-custom ">Шаблоны приказов</a>
-                                </li>
-                                <li class="nav-item mb-2">
-                                    <a href="/direct/shablon_prikazy" class="btn btn-custom ">Формирование шаблонов
-                                        приказа</a>
-                                </li>
-                            @endif
-                            @if (Auth::user()->type == 'rop' || Auth::user()->type == 'admin')
-                                <li class="nav-item mb-2">
-                                    <a href="/rop/control_activity_student" class="btn btn-custom ">Контроль активности
-                                        студентов</a>
-                                </li>
-                            @endif
-                            @if (Auth::user()->type == 'direct' || Auth::user()->type == 'admin')
-                                <li class="nav-item mb-2">
-                                    <a href="/direct/shablon_prikazy" class="btn btn-custom ">Формирование шаблонов
-                                        приказа</a>
-                                </li>
-                            @endif
-                            @if (Auth::user()->type == 'center' || Auth::user()->type == 'admin')
-                                <li class="nav-item mb-2">
-                                    <a href="/center/shablon_prikazy" class="btn btn-custom ">Шаблоны приказов</a>
-                                </li>
+                                <hr>
+                                <ul class="nav nav-pills flex-column ">
+                                    @if (Auth::user()->type == 'student' || Auth::user()->type == 'admin')
+                                        <li class="nav-item mb-2">
+                                            <a href="/student/practika" class="btn btn-custom ">Подать заявку</a>
+                                        </li>
+                                        <li class="nav-item mb-2">
+                                            <a href="/student/otchet" class="btn btn-custom ">Отправить отчет</a>
+                                        </li>
+                                    @endif
+                                    @if (Auth::user()->type == 'teacher' || Auth::user()->type == 'admin' || Auth::user()->type == 'rop')
+                                        <li class="nav-item mb-2">
+                                            <a href="/teacher/stud_practika" class="btn btn-custom ">Заявки студентов</a>
+                                        </li>
+                                        <li class="nav-item mb-2">
+                                            <a href="/teacher/stud_otchet" class="btn btn-custom ">Отчетность студентов</a>
+                                        </li>
+                                        <li class="nav-item mb-2">
+                                            <a href="/center/shablon_prikazy" class="btn btn-custom ">Шаблоны приказов</a>
+                                        </li>
+                                        <li class="nav-item mb-2">
+                                            <a href="/direct/shablon_prikazy" class="btn btn-custom ">Формирование шаблонов
+                                                приказа</a>
+                                        </li>
+                                    @endif
+                                    @if (Auth::user()->type == 'rop' || Auth::user()->type == 'admin')
+                                        <li class="nav-item mb-2">
+                                            <a href="/rop/control_activity_student" class="btn btn-custom ">Контроль
+                                                активности
+                                                студентов</a>
+                                        </li>
+                                    @endif
+                                    @if (Auth::user()->type == 'direct' || Auth::user()->type == 'admin')
+                                        <li class="nav-item mb-2">
+                                            <a href="/direct/shablon_prikazy" class="btn btn-custom ">Формирование шаблонов
+                                                приказа</a>
+                                        </li>
+                                    @endif
+                                    @if (Auth::user()->type == 'center' || Auth::user()->type == 'admin')
+                                        <li class="nav-item mb-2">
+                                            <a href="/center/shablon_prikazy" class="btn btn-custom ">Шаблоны приказов</a>
+                                        </li>
 
-                                <li class="nav-item mb-2">
-                                    <a href="/center/stud_dogovory" class="btn btn-custom ">Договора студентов</a>
-                                </li>
-                            @endif
-                        </ul>
+                                        <li class="nav-item mb-2">
+                                            <a href="/center/stud_dogovory" class="btn btn-custom ">Договора студентов</a>
+                                        </li>
+                                    @endif
+                                </ul>
 
-                        <hr>
+                                <hr>
 
-                        <ul class="nav nav-pills flex-column ">
-                            <li class="nav-item">
-                                <a class='btn btn-custom' href='/logout'>Выход</a>
-                            </li>
+                                <ul class="nav nav-pills flex-column ">
+                                    <li class="nav-item">
+                                        <a class='btn btn-custom' href='/logout'>Выход</a>
+                                    </li>
 
-                        </ul>
+                                </ul>
 
-                        <hr>
+                                <hr>
+                            </div>
+                        </div>
+                    @endguest
+                </div>
+            </div>
+            <div class="col-8 gy-2 align-item-center" style="margin: 0 auto;">
+                <div class="row ">
+                    <div class="container ">
+                        @yield('content')
                     </div>
                 </div>
-            @endguest
+            </div>
+            <div class="col-2" style="right: 0px; position: absolute;">
+                <div class="container">
+                    @guest
+                    @else
+                        <div class="col-1">
+                            <form method="POST" action="/insert">
+                                @csrf
+                                @if (Auth::user()->type == 'admin')
+                                    <div class="container  ">
+                                        <div class="row gy-2">
+                                            <input type="submit"class="btn btn-warning" name="insertInst"
+                                                value="Импортить институты">
+                                            <input type="submit"class="btn btn-warning" name="insertProf"
+                                                value="Импортить направления">
+                                            <input type="submit"class="btn btn-warning" name="insertStream"
+                                                value="Импортить потоки">
+                                            <input type="submit"class="btn btn-warning" name="insertStud"
+                                                value="Импортить студентов">
+                                            <input type="submit"class="btn btn-warning" name="insertComp"
+                                                value="Импортить компании">
+                                            <input type="submit"class="btn btn-warning" name="insertTeach"
+                                                value="Импортить преподавателей">
+                                        </div>
+                                    </div>
+                                @else
+                                    <div class="container  ">
+                                        <div class="row gy-2">
+                                            <input style="display: none;">
+                                        </div>
+                                    </div>
+                                @endif
+                            </form>
+                        </div>
+                    @endguest
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- <div class="container-fluid">
+        <div class="row">
+
 
 
             <div class="col">
                 @yield('content')
             </div>
 
-            @guest
-            @else
-                <div class="col-1">
-                    <form method="POST" action="/insert">
-                        @csrf
-                        @if (Auth::user()->type == 'admin')
-                            <div class="container  ">
-                                <div class="row gy-2">
-                                    <input type="submit"class="btn btn-warning" name="insertInst"
-                                        value="Импортить институты">
-                                    <input type="submit"class="btn btn-warning" name="insertProf"
-                                        value="Импортить направления">
-                                    <input type="submit"class="btn btn-warning" name="insertStream"
-                                        value="Импортить потоки">
-                                    <input type="submit"class="btn btn-warning" name="insertStud"
-                                        value="Импортить студентов">
-                                    <input type="submit"class="btn btn-warning" name="insertComp"
-                                        value="Импортить компании">
-                                    <input type="submit"class="btn btn-warning" name="insertTeach"
-                                        value="Импортить преподавателей">
-                                </div>
-                            </div>
-                        @else
-                            <div class="container  ">
-                                <div class="row gy-2">
-                                    <input style="display: none;">
-                                </div>
-                            </div>
-                        @endif
-                    </form>
-                </div>
-            @endguest
+
         </div>
-    </div>
+    </div> --}}
 </body>
 
 </html>
