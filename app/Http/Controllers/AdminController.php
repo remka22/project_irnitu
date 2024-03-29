@@ -15,7 +15,7 @@ class AdminController extends Controller
         ];
 
         if (Auth::attempt($field)) {
-            return redirect('/student');
+            // return redirect('/student');
             $user = Auth::user();
             switch ($user->type) {
                 case "student":
