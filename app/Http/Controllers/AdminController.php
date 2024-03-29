@@ -17,23 +17,23 @@ class AdminController extends Controller
         if (Auth::attempt($field)) {
             return redirect('/student');
             $user = Auth::user();
-            // switch ($user->type) {
-            //     case "student":
-            //         return redirect('/student');
-            //         break;
-            //     case "teacher":
-            //         return redirect('/teacher');
-            //         break;
-            //     case "direct":
-            //         return redirect('/direct');
-            //         break;
-            //     case "center":
-            //         return redirect('/center');
-            //         break;
-            //     case "rop":
-            //         return redirect('/rop');
-            //         break;
-            // }
+            switch ($user->type) {
+                case "student":
+                    return redirect('/student');
+                    break;
+                case "teacher":
+                    return redirect('/teacher');
+                    break;
+                case "direct":
+                    return redirect('/direct');
+                    break;
+                case "center":
+                    return redirect('/center');
+                    break;
+                case "rop":
+                    return redirect('/rop');
+                    break;
+            }
         }
         return redirect('/');
     }
