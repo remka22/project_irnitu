@@ -7,6 +7,7 @@ use App\Http\Controllers\Direct\DirectController;
 use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\Insertcontroller;
 use App\Http\Controllers\Student\StudentReport;
+use App\Http\Controllers\StudentOtchet;
 use App\Http\Controllers\Teacher\TeacherSetudentOtchet;
 use App\Http\Controllers\Teacher\TeacherSetudentRequest;
 use App\Models\GroupScore;
@@ -103,6 +104,12 @@ Route::middleware('auth:sanctum')->group(function () {
         });
         Route::post('/practika', function (Request $request) {
             return StudentReport::post($request);
+        });
+        Route::get('/otchet', function (Request $request) {
+            return StudentOtchet::get($request);
+        });
+        Route::post('/otchet', function (Request $request) {
+            return StudentOtchet::post($request);
         });
     });
 
