@@ -81,7 +81,7 @@ function cancel_request_practic($request)
     foreach ($t_score as $ts) {
         $arr_id_tscore[] = $ts->id;
     }
-    $stud_prac = StudentPractic::whereIn('teacher_id', $arr_id_tscore)->where([['id', '=', $request->input('remake')], ['teacher_id', '=', $teacher->id]])->get()->first();
+    $stud_prac = StudentPractic::whereIn('teacher_id', $arr_id_tscore)->where('id', '=', $request->input('remake'))->get()->first();
     if ($stud_prac) {
         increase_work_load($stud_prac->teacher_id);
         $stud_prac->update(['status' => 2]);
