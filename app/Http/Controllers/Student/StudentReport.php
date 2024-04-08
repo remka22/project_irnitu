@@ -148,6 +148,7 @@ function increase_work_load($teacher_id)
 function work_load_check($teacher_id, $group_id)
 {
     $grp_score = GroupScore::where([['teacher_score_id', '=', $teacher_id], ['group_id', '=', $group_id]])->get();
+    dd($grp_score);
     if ($grp_score) {
         $work_load = TeacherScore::find($teacher_id)->get()->first()->score;
         if ($work_load > 0) {
