@@ -85,28 +85,26 @@ class StudentReport extends Controller
             return add_request_practic($request);
         } elseif ($request->input('cancel')) {
             return cancel_request_practic($request);
-        }elseif ($request->input('download')) {
+        } elseif ($request->input('download')) {
             $user = Auth::user();
             $student = Student::where('mira_id', $user->mira_id)->get()->first();
             $student_practic = StudentPractic::where('student_id', $student->id)->get()->first();
             return Storage::download($request->input('download'));
         }
-        
     }
 }
 
 function add_request_practic($request)
 {
-    if (work_load_check($request)) {
-        $user = Auth::user();
-        $student = Student::where('mira_id', $user->mira_id)->get()->first();
-        $group = Group::find($student->group_id);
-        $stream = Stream::find($group->stream_id);
-
+    $user = Auth::user();
+    $student = Student::where('mira_id', $user->mira_id)->get()->first();
+    $group = Group::find($student->group_id);
+    $stream = Stream::find($group->stream_id);
+    if (work_load_check($request->input('teacher_id'), $group->id)) {
         $path = Storage::putFileAs(
             'student_doc',
             $request->file('company_file'),
-            $student->fio." ".$stream->name."-".$group->group_number.".docx"
+            $student->fio . " " . $stream->name . "-" . $group->group_number . ".docx"
         );
 
         $user = Auth::user();
@@ -147,16 +145,18 @@ function increase_work_load($teacher_id)
     $teachers->update(['score' => $teachers->score + 1]);
 }
 
-function work_load_check($request)
+function work_load_check($teacher_id, $group_id)
 {
-    $work_load = TeacherScore::find($request->input('teacher_id'))->get()->first()->score;
-    if ($work_load > 0) {
-        return True;
-    } else {
-        return False;
+    $grp_score = Group::where([['teacher_score_id', '=', $teacher_id], ['group_id', '=', $group_id]])->get();
+    if ($grp_score) {
+        $work_load = TeacherScore::find($teacher_id)->get()->first()->score;
+        if ($work_load > 0) {
+            return True;
+        }
     }
+    return False;
 }
- 
+
 
 function cancel_request_practic($request)
 {
@@ -169,7 +169,7 @@ function cancel_request_practic($request)
 
         // Увеличиваем рабочую нагрузку учителя, если заявка была отменена студентом
         if ($student_practic->status == 0 || $student_practic->status == 1)
-        increase_work_load($student_practic->teacher_id);
+            increase_work_load($student_practic->teacher_id);
 
         $student_practic->delete();
 

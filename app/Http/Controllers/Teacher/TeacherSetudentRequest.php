@@ -58,12 +58,19 @@ function done_request_practic($request)
 {
     $user = Auth::user();
     $teacher = Teachers::where('mira_id', $user->mira_id)->get()->first();
-    $stud_prac = StudentPractic::where([['id', '=', $request->input('done')], ['teacher_id', '=', $teacher->id]])->get()->first();
-    if($stud_prac->status == 2){
-        decriment_work_load($stud_prac->teacher_id);
-    }   
-    $stud_prac->update(['status' => 1]);
-    $stud_prac->save();
+    $t_score = TeacherScore::where('teacher_id', $teacher->id)->get();
+    $arr_id_tscore = [];
+    foreach ($t_score as $ts){
+        $arr_id_tscore[] = $ts->id;
+    }
+    $stud_prac = StudentPractic::whereIn('teacher_id', $arr_id_tscore)->where('id', '=', $request->input('done'))->get()->first();
+    if($stud_prac){
+        if($stud_prac->status == 2){
+            decriment_work_load($stud_prac->teacher_id);
+        }   
+        $stud_prac->update(['status' => 1]);
+        $stud_prac->save();
+    }    
 }
 
 function cancel_request_practic($request)

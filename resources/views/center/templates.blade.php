@@ -38,11 +38,11 @@
                                                         @break
 
                                                         @case('Magis')
-                                                            {{ view('center.templates_stream_accord', ['inst' => $inst, 'streams' => $prof->streams_b, 'form' => $form_key]) }}
+                                                            {{ view('center.templates_stream_accord', ['inst' => $inst, 'streams' => $prof->streams_m, 'form' => $form_key]) }}
                                                         @break
 
                                                         @case('Zaoch')
-                                                            {{ view('center.templates_stream_accord', ['inst' => $inst, 'streams' => $prof->streams_b, 'form' => $form_key]) }}
+                                                            {{ view('center.templates_stream_accord', ['inst' => $inst, 'streams' => $prof->streams_z, 'form' => $form_key]) }}
                                                         @break
 
                                                         @default
