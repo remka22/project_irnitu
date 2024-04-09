@@ -48,6 +48,10 @@ class StudentOtchet extends Controller
 
         // }
         $student_request = StudentPractic::where('student_id', $student->id)->first();
+        if (!$student_request){
+            return view('student_otchet_ban');
+        }
+
         $teacher_practic = Teachers::find($student_request->teacher_id);
         $company_practic = Company::find($student_request->company_id);
 
