@@ -48,7 +48,7 @@ class StudentOtchet extends Controller
 
         // }
         $student_request = StudentPractic::where('student_id', $student->id)->first();
-        if (!$student_request){
+        if (!$student_request || $student_request->status == 0){
             return view('student.student_otchet_ban');
         }
 
