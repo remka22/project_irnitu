@@ -20,6 +20,6 @@ class EnsureUserHasRole
                 return $next($request);
             }
         }
-        return redirect('/');
+        return redirect('/in');
     }
 }
