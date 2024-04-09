@@ -49,7 +49,7 @@ class StudentOtchet extends Controller
         // }
         $student_request = StudentPractic::where('student_id', $student->id)->first();
         if (!$student_request){
-            return view('student_otchet_ban');
+            return view('student.student_otchet_ban');
         }
 
         $teacher_practic = Teachers::find($student_request->teacher_id);
@@ -106,7 +106,7 @@ class StudentOtchet extends Controller
             }
         }
 
-        return view('student_otchet', [
+        return view('student.student_otchet', [
             'disabled' => $disabled,
             'teacher' => $teacher,
             'name' => $name,
