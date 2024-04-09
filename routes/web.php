@@ -72,6 +72,7 @@ Route::get('/', function (Request $request) {
 });
 Route::get('/in', function (Request $request) {
     return AuthController::check_auth();
+    // return view('goest');
 });
 Route::get('/bitrix', function (Request $request) {
     return AuthController::campus_auth($request);
@@ -97,7 +98,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::prefix('student')->middleware('role:student,admin')->group(function () {
         Route::get('/', function (Request $request) {
-            return view('student.student');
+            return redirect('/student/practika');//view('student.student');
         });
         Route::get('/practika', function (Request $request) {
             return StudentReport::get($request);
@@ -115,7 +116,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::prefix('teacher')->middleware('role:teacher,rop,admin')->group(function () {
         Route::get('/', function (Request $request) {
-            return view('teacher.teacher');
+            return redirect('/teacher/stud_practika');//view('teacher.teacher');
         });
         Route::get('/stud_practika', function (Request $request) {
             return TeacherSetudentRequest::get($request);

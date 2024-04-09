@@ -139,6 +139,7 @@ function route_auth()
                 break;
         }
     } else {
-        return redirect('/bitrix');
+        // return redirect('/bitrix');
+        return view('goest');
     }
 }
