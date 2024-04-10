@@ -132,10 +132,7 @@ class ControllerStudentOtchet extends Controller
             //     return Storage::download($student_practic->company_path);
             // }
         } elseif ($request->input('download')) {
-            $user = (object) [
-                'mira_id' => '3'
-              ];
-              // $user = Auth::user();
+            $user = Auth::user();
             $student = Student::where('mira_id', $user->mira_id)->get()->first();
             $student_otchet = ModelsStudentOtchet::where('student_id', $student -> stud_id)->first();
             if ($student_otchet) {
