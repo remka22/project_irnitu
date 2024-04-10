@@ -89,8 +89,9 @@
                             {{ $disabled }} style="display: none">
 
 
-                        <div class="row">
-                            @if (!$disabled)
+
+                        @if (!$disabled)
+                            <div class="row">
                                 <div class="col-10">
                                     <label {{ $displayNone }}>Свой договор</label>
                                 </div>
@@ -98,16 +99,17 @@
                                     <input type="checkbox" name="cbMyCompany" id="cbMyCompany" {{ $checked }}
                                         {{ $disabled }} onchange="change_company_format()">
                                 </div>
-                            @else
-                                @if (!$student_practic->company_id)
-                                    <div class="col-10">
-                                        {{-- <input type="submit" class="btn btn-success" name="download" value="Скачать договор"> --}}
-                                        <button type="submit" name="download" value="{{ $student_practic->id }}"
-                                            class="btn btn-success">Скачать договор</button>
-                                    </div>
-                                @endif
+                            </div>
+                        @else
+                            @if (!$student_practic->company_id)
+                                <div class="d-flex justify-content-center">
+                                    {{-- <input type="submit" class="btn btn-success" name="download" value="Скачать договор"> --}}
+                                    <button type="submit" name="download" value="{{ $student_practic->id }}"
+                                        class="btn btn-success">Скачать договор</button>
+                                </div>
                             @endif
-                        </div>
+                        @endif
+
 
                         <div class="invalid-feedback">
                             Пожалуйста, выберите компанию.
