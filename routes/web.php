@@ -73,7 +73,7 @@ Route::get('/', function (Request $request) {
 Route::get('/in', function (Request $request) {
     return AuthController::check_auth();
     // return view('goest');
-});
+})->name('login');
 Route::get('/bitrix', function (Request $request) {
     return AuthController::campus_auth($request);
 });
