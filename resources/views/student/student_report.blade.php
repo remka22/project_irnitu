@@ -81,7 +81,7 @@
                                 @endif
                             </select>
                         @endif
-                        <input type="file" required name="company_file" class="company_file" id="company_file"
+                        <input type="file" name="company_file" class="company_file" id="company_file"
                             accept=".docx" {{ $disabled }} style="display: none">
 
 
