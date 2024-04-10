@@ -52,7 +52,8 @@
                             @else
                                 @foreach ($teachers as $teach)
                                     @if ($teach->teacher_score->score > 0)
-                                        <option value={{ $teach->teacher_score->id }}> {{ $teach->teacher_score->teacher->fio }} (свободных мест:
+                                        <option value={{ $teach->teacher_score->id }}>
+                                            {{ $teach->teacher_score->teacher->fio }} (свободных мест:
                                             {{ $teach->teacher_score->score }} )</option>
                                     @endif
                                 @endforeach
@@ -64,18 +65,25 @@
 
                     <div class="block">
                         <label for="company" class="form-label">Компания:</label>
-                        <select class="form-select zxc" id="company" name="company_id" required {{ $disabled }}
-                            {{ $displayNone }}>
-                            @if ($disabled && !$checked)
-                                <option value={{ $companies['id'] }}> {{ $companies['name'] }} </option>
-                            @else
-                                <option value="" disabled selected>Выбрать</option>
-                                <option value="custom" style="display: none;">Своя компания</option>
-                                @foreach ($companies as $comp)
-                                    <option value={{ $comp['id'] }}>{{ $comp['name'] }}</option>
-                                @endforeach
-                            @endif
-                        </select>
+                        @if (!$checked)
+                            <select class="form-select zxc" id="company" name="company_id" required {{ $disabled }}
+                                {{ $displayNone }}>
+                                @if ($disabled)
+                                    <option value={{ $companies['id'] }}> {{ $companies['name'] }} </option>
+                                @else
+                                    <option value="" disabled selected>Выбрать</option>
+                                    <option value="custom" style="display: none;">Своя компания</option>
+                                    @foreach ($companies as $comp)
+                                        <option value={{ $comp['id'] }}>{{ $comp['name'] }}</option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        @else
+                            <input type="file" required name="company_file" class="company_file" id="company_file"
+                                accept=".docx" {{ $disabled }} style="display: none">
+                        @endif
+
+
 
                         <div class="row">
                             <div class="col-10">
@@ -88,12 +96,10 @@
                             </div>
                         </div>
 
-                        <input type="file" required name="company_file" class="company_file" id="company_file"
-                            accept=".docx" {{ $disabled }} style="display: none">
-
-                        @if ($disabled && $student_practic->company_id)
+                        @if ($disabled && !$student_practic->company_id)
                             {{-- <input type="submit" class="btn btn-success" name="download" value="Скачать договор"> --}}
-                            <button type="submit" name="download" value="{{ $student_practic->id }}" class="btn btn-success">Скачать договор</button>
+                            <button type="submit" name="download" value="{{ $student_practic->id }}"
+                                class="btn btn-success">Скачать договор</button>
                         @endif
 
                         <div class="invalid-feedback">
@@ -155,7 +161,6 @@
         </div>
     </div>
     <style>
-
         .all_fragments {
             display: flex;
             flex-direction: row-reverse;
