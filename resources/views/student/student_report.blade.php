@@ -85,21 +85,26 @@
                                 @endif
                             </select>
                         @endif
-                        <input type="file" name="company_file" class="company_file" id="company_file"
-                            accept=".docx" {{ $disabled }} style="display: none">
+                        <input type="file" name="company_file" class="company_file" id="company_file" accept=".docx"
+                            {{ $disabled }} style="display: none">
 
 
                         <div class="row">
-                            <div class="col-10">
-                                <label {{ $displayNone }}>Свой договор</label>
-                            </div>
-
-                            <div class="col-2 d-flex align-item-center">
-                                @if (!$disabled)
+                            @if (!$disabled)
+                                <div class="col-10">
+                                    <label {{ $displayNone }}>Свой договор</label>
+                                </div>
+                                <div class="col-2 d-flex align-item-center">
                                     <input type="checkbox" name="cbMyCompany" id="cbMyCompany" {{ $checked }}
                                         {{ $disabled }} onchange="change_company_format()">
+                                </div>
+                            @else
+                                @if (!$student_practic->company_id)
+                                    {{-- <input type="submit" class="btn btn-success" name="download" value="Скачать договор"> --}}
+                                    <button type="submit" name="download" value="{{ $student_practic->id }}"
+                                        class="btn btn-success">Скачать договор</button>
                                 @endif
-                            </div>
+                            @endif
                         </div>
 
                         @if ($disabled && !$student_practic->company_id)
