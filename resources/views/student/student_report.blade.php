@@ -15,7 +15,7 @@
                 // selectTheme.options[0].defaultSelected = true;
                 // selectTheme.style.display = 'none';
                 selectCompany.style.display = 'none';
-                selectCompany.value = 'custom';
+                // selectCompany.value = 'custom';
                 selectCompany.required = false;
 
                 inputFile.style.display = 'block';
