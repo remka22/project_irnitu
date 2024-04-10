@@ -100,18 +100,14 @@
                                 </div>
                             @else
                                 @if (!$student_practic->company_id)
-                                    {{-- <input type="submit" class="btn btn-success" name="download" value="Скачать договор"> --}}
-                                    <button type="submit" name="download" value="{{ $student_practic->id }}"
-                                        class="btn btn-success">Скачать договор</button>
+                                    <div class="col-10">
+                                        {{-- <input type="submit" class="btn btn-success" name="download" value="Скачать договор"> --}}
+                                        <button type="submit" name="download" value="{{ $student_practic->id }}"
+                                            class="btn btn-success">Скачать договор</button>
+                                    </div>
                                 @endif
                             @endif
                         </div>
-
-                        @if ($disabled && !$student_practic->company_id)
-                            {{-- <input type="submit" class="btn btn-success" name="download" value="Скачать договор"> --}}
-                            <button type="submit" name="download" value="{{ $student_practic->id }}"
-                                class="btn btn-success">Скачать договор</button>
-                        @endif
 
                         <div class="invalid-feedback">
                             Пожалуйста, выберите компанию.
