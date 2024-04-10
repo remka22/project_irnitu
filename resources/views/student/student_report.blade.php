@@ -17,11 +17,13 @@
                 selectCompany.style.display = 'none';
                 selectCompany.value = 'custom';
                 inputFile.style.display = 'block';
+                inputFile.attr('required', '');
             } else {
                 // selectTheme.options[0].defaultSelected = true;
                 // selectTheme.style.display = 'block';
                 selectCompany.style.display = 'block';
                 inputFile.style.display = 'none';
+                inputFile.removeAttr('required')
             }
 
         }
@@ -89,8 +91,10 @@
                             </div>
 
                             <div class="col-2 d-flex align-item-center">
-                                <input type="checkbox" name="cbMyCompany" id="cbMyCompany" {{ $checked }}
-                                    {{ $disabled }} onchange="change_company_format()">
+                                @if (!$disabled)
+                                    <input type="checkbox" name="cbMyCompany" id="cbMyCompany" {{ $checked }}
+                                        {{ $disabled }} onchange="change_company_format()">
+                                @endif
                             </div>
                         </div>
 
