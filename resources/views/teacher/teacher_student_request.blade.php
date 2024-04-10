@@ -46,7 +46,7 @@
                         </div>
                     </td>
 
-                    @if ($stud_prac->company->name)
+                    @if ($stud_prac->company)
                         <td class="td">
                             <div class="block-div"> {{ $stud_prac->company->name }} </div>
                         </td>
