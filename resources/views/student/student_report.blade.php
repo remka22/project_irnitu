@@ -16,14 +16,18 @@
                 // selectTheme.style.display = 'none';
                 selectCompany.style.display = 'none';
                 selectCompany.value = 'custom';
+                selectCompany.required = false;
+
                 inputFile.style.display = 'block';
-                inputFile.attr('required', '');
+                inputFile.required = true;
             } else {
                 // selectTheme.options[0].defaultSelected = true;
                 // selectTheme.style.display = 'block';
                 selectCompany.style.display = 'block';
+                selectCompany.required = true;
+
                 inputFile.style.display = 'none';
-                inputFile.removeAttr('required')
+                inputFile.required = false;
             }
 
         }
