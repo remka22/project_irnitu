@@ -78,11 +78,9 @@
                                     @endforeach
                                 @endif
                             </select>
-                        @else
-                            <input type="file" required name="company_file" class="company_file" id="company_file"
-                                accept=".docx" {{ $disabled }} style="display: none">
                         @endif
-
+                        <input type="file" required name="company_file" class="company_file" id="company_file"
+                            accept=".docx" {{ $disabled }} style="display: none">
 
 
                         <div class="row">
