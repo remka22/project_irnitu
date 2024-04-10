@@ -101,12 +101,7 @@ function add_request_practic($request)
     $group = Group::find($student->group_id);
     $stream = Stream::find($group->stream_id);
     if (work_load_check($request->input('teacher_id'), $group->id)) {
-        $path = Storage::putFileAs(
-            'student_doc',
-            $request->file('company_file'),
-            $student->fio . " " . $stream->name . "-" . $group->group_number . ".docx"
-        );
-
+        
         $user = Auth::user();
         $student = Student::where('mira_id', $user->mira_id)->get()->first();
         $stud_prac = new StudentPractic();
@@ -114,15 +109,23 @@ function add_request_practic($request)
         $stud_prac->teacher_id = $request->input('teacher_id');
         $stud_prac->theme = $request->input('theme_field');
         $stud_prac->status = 0;
-        $stud_prac->company_path = $path;
+        
 
         decriment_work_load($stud_prac->teacher_id);
 
         if ($request->input('cbMyCompany')) {
             $stud_prac->company_id = null;
+            $path = Storage::putFileAs(
+                'student_doc',
+                $request->file('company_file'),
+                $student->fio . " " . $stream->name . "-" . $group->group_number . ".docx"
+            );
+            $stud_prac->company_path = $path;
         } else {
             $stud_prac->company_id = $request->input('company_id');
+            $stud_prac->company_path = null;
         }
+        
         $stud_prac->save();
 
         return redirect('/student/practika');
@@ -165,6 +168,7 @@ function cancel_request_practic($request)
     $student_practic = StudentPractic::where('student_id', $student->id)->get()->first();
     if ($student_practic) {
         // Удаляется файл, если он существует
+        if(!$student_practic->company_id)
         Storage::delete($student_practic->company_path);
 
         // Увеличиваем рабочую нагрузку учителя, если заявка была отменена студентом

@@ -8,6 +8,7 @@
 
         function change_company_format() {
             let cbMyCompany = document.getElementById("cbMyCompany");
+            let inputFile = document.getElementById("company_file");
             // let selectTheme = document.getElementById("theme");
             let selectCompany = document.getElementById("company");
             if (cbMyCompany.checked == true) {
@@ -15,10 +16,12 @@
                 // selectTheme.style.display = 'none';
                 selectCompany.style.display = 'none';
                 selectCompany.value = 'custom';
+                inputFile.style.display = 'block';
             } else {
                 // selectTheme.options[0].defaultSelected = true;
                 // selectTheme.style.display = 'block';
                 selectCompany.style.display = 'block';
+                inputFile.style.display = 'none';
             }
 
         }
@@ -86,9 +89,9 @@
                         </div>
 
                         <input type="file" required name="company_file" class="company_file" id="company_file"
-                            accept=".docx" {{ $disabled }}>
+                            accept=".docx" {{ $disabled }} style="display: none">
 
-                        @if ($disabled)
+                        @if ($disabled && $student_practic->company_id)
                             {{-- <input type="submit" class="btn btn-success" name="download" value="Скачать договор"> --}}
                             <button type="submit" name="download" value="{{ $student_practic['company_path'] }}" class="btn btn-success">Скачать договор</button>
                         @endif

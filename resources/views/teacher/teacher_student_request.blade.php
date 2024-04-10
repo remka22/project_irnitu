@@ -66,8 +66,12 @@
                     <td class="td">
                         <form method="post" action="/teacher/stud_practika">
                             @csrf
-                            <button type="submit" name="download" value="{{ $stud_prac->company_path }}"
-                                class="btn">Файл</button>
+                            @if ($stud_prac->company_id)
+                                <label>Долгосрочный</label>
+                            @else
+                                <button type="submit" name="download" value="{{ $stud_prac->id }}"
+                                    class="btn">Файл</button>
+                            @endif
                         </form>
                     </td>
                     @switch($stud_prac->status)

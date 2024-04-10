@@ -45,7 +45,7 @@ class TeacherSetudentOtchet extends Controller
         } elseif ($request->input('remake')) {
             cancel_request_otchet($request);
         }elseif ($request->input('download')) {
-            return Storage::download($request->input('download'));
+            return download($request->input('download'));
         }
         return redirect('/teacher/stud_otchet');
     }
@@ -67,3 +67,17 @@ function cancel_request_otchet($request)
     $stud_otchet->save();
 }
 
+function download($stud_otchet_id)
+{
+    $user = Auth::user();
+    $teacher = Teachers::where('mira_id', $user->mira_id)->get()->first();
+    $t_score = TeacherScore::where('teacher_id', $teacher->id)->get();
+    $arr_id_tscore = [];
+    foreach ($t_score as $ts) {
+        $arr_id_tscore[] = $ts->id;
+    }
+    $stud_prac = StudentPractic::whereIn('teacher_id', $arr_id_tscore)->where('id', '=', $stud_otchet_id)->get()->first();
+    if ($stud_prac) {
+        return Storage::download($stud_prac->company_path);
+    }
+}

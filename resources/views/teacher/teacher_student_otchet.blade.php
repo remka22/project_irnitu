@@ -56,7 +56,7 @@
                             <form method="post" action="/teacher/stud_otchet">
                                 @csrf
                                 <button type="submit" name="download"
-                                    value="{{ $stud_prac->student->otchet->link_ya }}" class="btn">Файл</button>
+                                    value="{{ $stud_prac->student->otchet->id }}" class="btn">Файл</button>
                             </form>
                             @switch($stud_prac->student->otchet->status)
                                 @case(0)
