@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Direct;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ExcelController;
 use App\Models\Group;
 use App\Models\GroupScore;
 use App\Models\Stream;
@@ -11,6 +12,8 @@ use App\Models\TeacherScore;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use function App\Http\Controllers\workload_check;
+
 class DirectController extends Controller
 {
     public function index(){
@@ -18,6 +21,7 @@ class DirectController extends Controller
         $name = 'Ya nichego ne ponimau';
         //////////////////////////////
         // $user = Auth::user();
+        $workload = workload_check();
 
         $faculties = DB::table('faculty')
         -> where('id', '=', 5) -> get();        //после авторизации человека из дирекции последний аргумент должен вставить id дирекции
@@ -37,7 +41,7 @@ class DirectController extends Controller
         $companies = DB::table('companies')->get();
         return view('direct.direct', ['faculties' => $faculties, 'streams' => $streams, 'profiles' => $profiles, 'formEducation' => $formEducation,
         /*'formRus' => $formRusArr,*/ 'groups' => $groups, 'templates' => $templates, 'student_practic' => $student_practic, 'students' => $students, 'teacher_score' => $teacher_score,
-        'teachers' => $teachers, 'companies' => $companies]);
+        'teachers' => $teachers, 'companies' => $companies, 'workload' => $workload]);
         //@if ($stream -> profile_id == $profile -> id) @if ($faculty -> id == $profile -> faculty_id)
     }
     public function handler(Request $request)

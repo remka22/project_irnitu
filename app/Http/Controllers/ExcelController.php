@@ -15,7 +15,7 @@ class ExcelController extends Controller
 {
     public static function work_load_teacher(Request $request)
     {
-        if (Storage::exists('teacher_workload/teacher_workload.xlsx')) {
+        if (!workload_check()) {
             return response('Нагрузка уже загружена', 500);
         }
         $path = Storage::putFileAs(
@@ -111,6 +111,13 @@ class MyReadFilter implements \PhpOffice\PhpSpreadsheet\Reader\IReadFilter
         }
         return false;
     }
+}
+
+function workload_check(){
+    if (Storage::exists('teacher_workload/teacher_workload.xlsx')) {
+        return false;
+    }
+    return true;
 }
 
 function insert_workload($groupStrTeacher)

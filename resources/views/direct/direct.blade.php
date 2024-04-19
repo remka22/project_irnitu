@@ -12,6 +12,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Загрузка нагрузки преподавателей</h5>
                 </div>
+                @if ($workload)
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="formFile" class="form-label">Выберете xlsx файл</label>
@@ -21,6 +22,13 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary">Загрузить</button>
                 </div>
+                @else
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Загрузка уже загружена! Обратитесь к администратору</label>
+                    </div>
+                </div>
+                @endif
             </div>
 
         </div>
