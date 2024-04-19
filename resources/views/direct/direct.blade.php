@@ -13,10 +13,9 @@
                     <h5 class="modal-title" id="exampleModalLabel">Загрузка нагрузки преподавателей</h5>
                 </div>
                 <div class="modal-body">
-                    <div class="custom-file">
-                        <input type="file" required class="custom-file-input" id="customFile"
-                            name="teacher_workload_file" accept=".xlsx">
-                        <label class="custom-file-label" for="customFile">Выберете файл</label>
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Выберете xlsx файл</label>
+                        <input class="form-control" type="file" id="formFile"  name="teacher_workload_file" accept=".xlsx">
                     </div>
                 </div>
                 <div class="modal-footer">
