@@ -11,6 +11,7 @@ use App\Models\Teachers;
 use App\Models\TeacherScore;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 use function App\Http\Controllers\workload_check;
 
@@ -21,7 +22,10 @@ class DirectController extends Controller
         $name = 'Ya nichego ne ponimau';
         //////////////////////////////
         // $user = Auth::user();
-        $workload = workload_check();
+        $workload = true;
+        if (Storage::exists('teacher_workload/teacher_workload.xlsx')) {
+            $workload = false;
+        }
 
         $faculties = DB::table('faculty')
         -> where('id', '=', 5) -> get();        //после авторизации человека из дирекции последний аргумент должен вставить id дирекции
