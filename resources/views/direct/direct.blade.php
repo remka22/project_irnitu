@@ -31,7 +31,7 @@
                 @foreach ($profiles as $profile)
                   @if ($faculty->id == $profile->faculty_id)
                     @foreach($streams as $stream)
-                      @if ($stream->profile_id == $profile->id && strpos($stream->name, "б") && (date("Y") - $stream->year_in < 5 and date("Y") - $stream->year_in > 0) && $stream->full_name != '' && $form=="Бакалавриат")
+                      @if ($stream->profile_id == $profile->id && strpos($stream->name, "б") && (date("Y") - $stream->year < 5 and date("Y") - $stream->year > 0) && $stream->full_name != '' && $form=="Бакалавриат")
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                           @foreach($groups as $gr)
                             @if ($gr->stream_id == $stream->id && $stream->full_name != '' )
@@ -122,7 +122,7 @@
                           @endif
                         @endforeach
                         </div>
-                      @elseif($stream->profile_id == $profile->id && strpos($stream->name, "м") && (date("Y") - $stream->year_in < 3 and date("Y") - $stream->year_in > 0) && $stream->full_name != '' && $form=="Магистратура")
+                      @elseif($stream->profile_id == $profile->id && strpos($stream->name, "м") && (date("Y") - $stream->year < 3 and date("Y") - $stream->year > 0) && $stream->full_name != '' && $form=="Магистратура")
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                           <li class="nav-item" role="presentation">
                             <button class="nav-link active" id="tab{{ $stream->id }}-tab" data-bs-toggle="tab" data-bs-target="#tab{{ $stream->id }}"

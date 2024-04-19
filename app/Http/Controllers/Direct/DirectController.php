@@ -24,7 +24,7 @@ class DirectController extends Controller
         $streams = DB::table('streams')
         -> orderBy('streams.name')
         -> get();
-        dump($streams);
+        // dump($streams);
         $profiles = DB::table('profiles') -> get();
         $student_practic = DB::table('student_practic') -> get();
 
