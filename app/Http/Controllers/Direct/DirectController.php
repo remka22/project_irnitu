@@ -9,6 +9,7 @@ use App\Models\Stream;
 use App\Models\Teachers;
 use App\Models\TeacherScore;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DirectController extends Controller
 {
@@ -16,7 +17,7 @@ class DirectController extends Controller
         //////////////////////////////
         $name = 'Ya nichego ne ponimau';
         //////////////////////////////
-        $user = Auth::user();
+        // $user = Auth::user();
 
         $faculties = DB::table('faculty')
         -> where('id', '=', 5) -> get();        //после авторизации человека из дирекции последний аргумент должен вставить id дирекции
