@@ -1,29 +1,30 @@
 @extends('layouts.app')
 @section('content')
-      <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-               data-bs-target="#exampleModalWorkload">Загрузить нагрузку преподавателей</button>
+<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModalWorkload">Загрузить
+    нагрузку преподавателей</button>
 
-    <form method="post" action="/direct/twl" enctype="multipart/form-data">
-        @csrf
- 
+<form method="post" action="/direct/twl" enctype="multipart/form-data">
+    @csrf
     <div class="modal fade" id="exampleModalWorkload" tabindex="-1" data-bs-backdrop="static"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Загрузка нагрузки преподавателей</h5>
+                </div>
                 <div class="modal-body">
                     <div class="custom-file">
-                        <input type="file" required class="custom-file-input" id="customFile" name="teacher_workload_file" accept=".xlsx">
+                        <input type="file" required class="custom-file-input" id="customFile"
+                            name="teacher_workload_file" accept=".xlsx">
                         <label class="custom-file-label" for="customFile">Выберете файл</label>
-                      </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button  type="button" class="btn btn-primary">Загрузить</button>
+                    <button type="button" class="btn btn-primary">Загрузить</button>
                 </div>
             </div>
+
         </div>
-    </div>
     </div>
 </form>
 
