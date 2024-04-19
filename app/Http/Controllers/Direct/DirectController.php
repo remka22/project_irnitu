@@ -48,15 +48,4 @@ class DirectController extends Controller
             echo($value);
         }
     }
-
-    public function test(Request $request){
-        $id = $request->id;
-        return view($id);
-    }
-}
-
-function Select_instituts()
-{
-    $resultset = DB::table('faculty')->where('id', 1)->get();
-    return $resultset;
 }

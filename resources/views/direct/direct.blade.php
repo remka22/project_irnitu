@@ -1,14 +1,32 @@
 @extends('layouts.app')
 @section('content')
+      <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+               data-bs-target="#exampleModalWorkload">Загрузить нагрузку преподавателей</button>
+
     <form method="post" action="/direct/twl" enctype="multipart/form-data">
         @csrf
-        <input type="file" required name="teacher_workload_file" class="teacher_workload" id="teacher_workload_file"
-            accept=".xlsx">
-        <button class="btn btn-primary" type="submit">Отправить</button>
-    </form>
-    <form class="d-flex justify-content-end mb-2">
-        <button name="upload_teacher" class="btn btn-warning">Загрузить нагрузку преподавателей</button>
-    </form>
+ 
+    <div class="modal fade" id="exampleModalWorkload" tabindex="-1" data-bs-backdrop="static"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Загрузка нагрузки преподавателей</h5>
+                <div class="modal-body">
+                    <div class="custom-file">
+                        <input type="file" required class="custom-file-input" id="customFile" name="teacher_workload_file" accept=".xlsx">
+                        <label class="custom-file-label" for="customFile">Выберете файл</label>
+                      </div>
+                </div>
+                <div class="modal-footer">
+                    <button  type="button" class="btn btn-primary">Загрузить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
     <div class="accordion accordion-flush" id="accordionFlushExample">
       @foreach ($faculties as $faculty)
       <h2>{{$faculty->name}}</h2>
