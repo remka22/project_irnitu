@@ -39,7 +39,7 @@
 
     <div class="accordion accordion-flush" id="accordionFlushExample">
       @foreach ($faculties as $faculty)
-      <h2>{{$faculty->name}}</h2>
+      <h3>{{$faculty->name}}</h3>
         @foreach($formEducation as $form)
           <div class="accordion-item">
             <h2 class="accordion-header" id="heading{{ $form }}{{ $faculty->id }}">
@@ -139,25 +139,62 @@
                             </tbody>
                           </table>
                         </body>
-    
-                            <!---->
-                            <form class="d-flex justify-content-end">
-                            <button name="download" value="{{ $gr->id }}" href="excel_php/direktsiya/download.php?{{$gr->id}}" class="btn btn-primary"  role="button" type="submit">Сформировать приказ</button>
-                            </form>
-                            <!---->
-                          </script>
+                          @php ($showButton = true)
+                          @foreach($templates as $template)
+                            @if($template->group_id == $gr->id)
+                              @if($template->decanat_check == 0)                         
+                              <div class="d-flex flex-row bd-highlight">
+                                  <div class="badge bg-primary text-wrap" style="width: 25rem;">
+                                      <h6>В ожидании проверки</h6>
+                                  </div>
+                                </div>
+                              @elseif($template->decanat_check == 1)
+                                <div class="d-flex flex-row-reverse bd-highlight">
+                                  <div class="badge bg-primary text-wrap" style="width: 10rem;">
+                                      <h6>Принят</h6>
+                                  </div>
+                                </div>
+                              @php($showButton = false)
+                              @elseif($template->decanat_check == 2 && $template->comment != NULL)
+                                <div class="d-flex flex-row bd-highlight">
+                                  <div class="badge bg-primary text-wrap" style="width: 50rem;">
+                                      <h6>Не принят - {{$template->comment}}</h6>
+                                  </div>
+                                </div>
+                              @elseif($template->decanat_check == 2 && $template->comment == NULL)
+                                <div class="d-flex flex-row bd-highlight">
+                                  <div class="badge bg-primary text-wrap" style="width: 10rem;">
+                                      <h6>Не принят</h6>
+                                  </div>
+                                </div>  
+                              @endif
+                              @break
+                            @endif
+                          @endforeach
+                            @if ($showButton)
+                              <form method="post" action="/direct" class="d-flex justify-content-end">
+                                <div class="d-flex flex-row-reverse bd-highlight">
+                                  <div class="badge bg-primary text-wrap" style="width: 15rem;">
+                                    @csrf
+                                    <button name="download" value="{{ $gr->id }}" class="btn btn-primary" type="submit"> <h6> Сформировать приказ </h6> </button>
+                                  </div>
+                                </div>
+                              </form>
+                            @endif
                           </div>
                           @endif
                         @endforeach
                         </div>
                       @elseif($stream->profile_id == $profile->id && strpos($stream->name, "м") && (date("Y") - $stream->year < 3 and date("Y") - $stream->year > 0) && $stream->full_name != '' && $form=="Магистратура")
-                        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                          <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="tab{{ $stream->id }}-tab" data-bs-toggle="tab" data-bs-target="#tab{{ $stream->id }}"
-                              type="button" role="tab" aria-controls="home" aria-selected="true">Скрыть</button>
-                          </li>
+                      <ul class="nav nav-tabs" id="myTab" role="tablist">
                           @foreach($groups as $gr)
                             @if ($gr->stream_id == $stream->id && $stream->full_name != '' )
+                              @if($gr->group_number == 1)
+                                <li class="nav-item" role="presentation">
+                                  <button class="nav-link active" id="tab{{ $stream->id }}-tab" data-bs-toggle="tab" data-bs-target="#tab{{ $stream->id }}"
+                                    type="button" role="tab" aria-controls="home" aria-selected="true">Скрыть</button>
+                                </li>
+                              @endif
                               <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="tab{{ $gr->id }}-tab" data-bs-toggle="tab" data-bs-target="#tab{{ $gr->id }}"
                                 type="button" role="tab" aria-controls="home" aria-selected="true">{{ $stream->name }}-{{ $gr->group_number }}</button>
@@ -206,7 +243,7 @@
                                         @endif
                                         @switch($studPrac->status)
                                           @case(0)
-                                            <td class="td" style="width: 100px; font-family: Helvetica Neue OTS, sans-serif; text-align: center; vertical-align: middle;"><strong class="strong">Обрабатывается</strong></td>
+                                            <td class="td" style="width: 100px; font-family: Helvetica Neue OTS, sans-serif; text-align: center; vertical-align: middle;"><strong class="strong">Ожидается ответ</strong></td>
                                             @break
                                           @case(1)
                                             <td class="td" style="width: 100px; font-family: Helvetica Neue OTS, sans-serif; text-align: center; vertical-align: middle;"><strong class="strong">Принят</strong></td>
@@ -228,13 +265,48 @@
                             </tbody>
                           </table>
                         </body>
-    
-                            <!---->
-                            <form class="d-flex justify-content-end">
-                              
-                            </form>
-                            <!---->
-    
+                          @php ($showButton = true)
+                          @foreach($templates as $template)
+                            @if($template->group_id == $gr->id)
+                              @if($template->decanat_check == 0)                         
+                              <div class="d-flex flex-row bd-highlight">
+                                  <div class="badge bg-primary text-wrap" style="width: 25rem;">
+                                      <h6>В ожидании проверки</h6>
+                                  </div>
+                                </div>
+                              @elseif($template->decanat_check == 1)
+                                <div class="d-flex flex-row-reverse bd-highlight">
+                                  <div class="badge bg-primary text-wrap" style="width: 10rem;">
+                                      <h6>Принят</h6>
+                                  </div>
+                                </div>
+                              @php($showButton = false)
+                              @elseif($template->decanat_check == 2 && $template->comment != NULL)
+                                <div class="d-flex flex-row bd-highlight">
+                                  <div class="badge bg-primary text-wrap" style="width: 50rem;">
+                                      <h6>Не принят - {{$template->comment}}</h6>
+                                  </div>
+                                </div>
+                              @elseif($template->decanat_check == 2 && $template->comment == NULL)
+                                <div class="d-flex flex-row bd-highlight">
+                                  <div class="badge bg-primary text-wrap" style="width: 10rem;">
+                                      <h6>Не принят</h6>
+                                  </div>
+                                </div>
+                              @endif
+                              @break
+                            @endif
+                          @endforeach
+                            @if ($showButton)
+                              <form method="post" action="/direct" class="d-flex justify-content-end">
+                                <div class="d-flex flex-row-reverse bd-highlight">
+                                  <div class="badge bg-primary text-wrap" style="width: 15rem;">
+                                    @csrf
+                                    <button name="download" value="{{ $gr->id }}" class="btn btn-primary" type="submit"> <h6> Сформировать приказ </h6> </button>
+                                  </div>
+                                </div>
+                              </form>
+                            @endif
                           </div>
                           @endif
                         @endforeach
