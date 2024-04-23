@@ -285,7 +285,7 @@
                                   </div>
                                   <div class="alert alert-success" role="alert">
                                       Принят
-                                  </div>  
+                                    </div>  
                                 </div>
                               @php($showButton = false)
                               @elseif($template->decanat_check == 2)
