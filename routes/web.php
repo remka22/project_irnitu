@@ -145,7 +145,12 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     Route::prefix('direct')->middleware('role:direct,teacher,admin')->group(function () {
-        Route::get('/', [DirectController::class, 'index']);
+        Route::get('/shablon_prikazy', function (Request $request) {
+            return DirectController::index();
+        });
+        Route::post('/shablon_prikazy', function (Request $request) {
+            return DirectController::post($request);
+        });
         Route::post('/twl', function (Request $request) {
             return ExcelController::work_load_teacher($request);
         });

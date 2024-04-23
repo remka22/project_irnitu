@@ -172,7 +172,7 @@
                             @endif
                           @endforeach
                             @if ($showButton)
-                              <form method="post" action="/direct" class="d-flex justify-content-end">
+                              <form method="post" action="/direct/shablon_prikazy" class="d-flex justify-content-end">
                                 <div class="d-flex flex-row-reverse bd-highlight">
                                   <div class="badge bg-primary text-wrap" style="width: 15rem;">
                                     @csrf
@@ -253,13 +253,14 @@
                                             @break
                                         @endswitch
                                       </tr>
+                                    @else
+                                      <tr class="tr">
+                                          <td class="td" style="width: 100px; font-family: Helvetica Neue OTS, sans-serif; text-align: center; vertical-align: middle;"><strong class="strong">{{ $student->fio}}</strong></td>
+                                          <td class="td" style="width: 100px; font-family: Helvetica Neue OTS, sans-serif; text-align: center; vertical-align: middle;"><strong class="strong">-</strong></td>
+                                          <td class="td" style="width: 100px; font-family: Helvetica Neue OTS, sans-serif; text-align: center; vertical-align: middle;"><strong class="strong">-</strong></td>
+                                      </tr>
                                     @endif
                                   @endforeach
-                                  <tr class="tr">
-                                      <td class="td" style="width: 100px; font-family: Helvetica Neue OTS, sans-serif; text-align: center; vertical-align: middle;"><strong class="strong">{{ $student->fio}}</strong></td>
-                                      <td class="td" style="width: 100px; font-family: Helvetica Neue OTS, sans-serif; text-align: center; vertical-align: middle;"><strong class="strong">-</strong></td>
-                                      <td class="td" style="width: 100px; font-family: Helvetica Neue OTS, sans-serif; text-align: center; vertical-align: middle;"><strong class="strong">-</strong></td>
-                                    </tr>
                                 @endif
                               @endforeach
                             </tbody>
@@ -273,32 +274,40 @@
                                   <div class="badge bg-primary text-wrap" style="width: 25rem;">
                                       <h6>В ожидании проверки</h6>
                                   </div>
+                                  <div class="alert alert-info" role="alert">
+                                      В ожидании проверки
+                                  </div>
                                 </div>
                               @elseif($template->decanat_check == 1)
                                 <div class="d-flex flex-row-reverse bd-highlight">
                                   <div class="badge bg-primary text-wrap" style="width: 10rem;">
                                       <h6>Принят</h6>
                                   </div>
+                                  <div class="alert alert-success" role="alert">
+                                      Принят
+                                  </div>  
                                 </div>
                               @php($showButton = false)
-                              @elseif($template->decanat_check == 2 && $template->comment != NULL)
+                              @elseif($template->decanat_check == 2)
                                 <div class="d-flex flex-row bd-highlight">
                                   <div class="badge bg-primary text-wrap" style="width: 50rem;">
                                       <h6>Не принят - {{$template->comment}}</h6>
                                   </div>
-                                </div>
-                              @elseif($template->decanat_check == 2 && $template->comment == NULL)
-                                <div class="d-flex flex-row bd-highlight">
-                                  <div class="badge bg-primary text-wrap" style="width: 10rem;">
-                                      <h6>Не принят</h6>
-                                  </div>
+                                  <div class="alert alert-warning" role="alert">
+                                      Не принят
+                                  </div> 
+                                  @if ($template->comment != NULL)
+                                      <div class="alert alert-secondary" role="alert">
+                                          {{$template->comment}}
+                                      </div> 
+                                  @endif
                                 </div>
                               @endif
                               @break
                             @endif
                           @endforeach
                             @if ($showButton)
-                              <form method="post" action="/direct" class="d-flex justify-content-end">
+                              <form method="post" action="/direct/shablon_prikazy" class="d-flex justify-content-end">
                                 <div class="d-flex flex-row-reverse bd-highlight">
                                   <div class="badge bg-primary text-wrap" style="width: 15rem;">
                                     @csrf
