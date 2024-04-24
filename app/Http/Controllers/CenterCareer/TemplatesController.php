@@ -31,8 +31,8 @@ class TemplatesController extends Controller
   public static function post(Request $request)
   {
     if ($request->input('download')) {
-      $templates= Template::find($request->input('download'));
-      return Storage::download($templates->name);
+      $template = Template::find($request->input('download'));
+      return Storage::download($template->name);
     }
     if ($request->input('done')) {
       Template::find($request->input('done'))->update(['decanat_check' => 1]);

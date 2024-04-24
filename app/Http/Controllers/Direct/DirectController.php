@@ -59,7 +59,7 @@ class DirectController extends Controller
             $templatesModel = Template::where('group_id', $group_id)->first();
             
             if ($templatesModel) {
-                Storage::delete($templatesModel->name);
+                //Storage::delete($templatesModel->name);
             } else {
                 $templatesModel = new Template;
                 $templatesModel->group_id = $group_id;
