@@ -73,7 +73,7 @@ class DirectController extends Controller
                 $templatesModel->save();
             }
 
-            self::index();
+            redirect('/direct/shablon_prikazy');
         }
     }
 }
