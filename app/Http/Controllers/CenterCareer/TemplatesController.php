@@ -31,8 +31,8 @@ class TemplatesController extends Controller
   public static function post(Request $request)
   {
     if ($request->input('download')) {
-      $student_practic = StudentPractic::find($request->input('download'));
-      return Storage::download($student_practic->company_path);
+      $templates= Template::find($request->input('download'));
+      return Storage::download($templates->name);
     }
     if ($request->input('done')) {
       Template::find($request->input('done'))->update(['decanat_check' => 1]);
