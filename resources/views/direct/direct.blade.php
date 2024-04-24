@@ -147,7 +147,7 @@
                       @foreach($templates as $template)
                             @if($template->group_id == $gr->id)
                               @if($template->decanat_check == 0)                         
-                              <div class="d-flex flex-row bd-highlight">
+                              <div class="d-flex flex-row-reverse bd-highlight">
                                   <div class="alert alert-info" role="alert">
                                       В ожидании проверки
                                   </div>
@@ -160,7 +160,7 @@
                                 </div>
                               @php($showButton = false)
                               @elseif($template->decanat_check == 2)
-                                <div class="d-flex flex-row bd-highlight">
+                                <div class="d-flex flex-row-reverse bd-highlight">
                                   <div class="alert alert-warning" role="alert">
                                       Не принят
                                   </div> 
@@ -272,7 +272,7 @@
                       @foreach($templates as $template)
                             @if($template->group_id == $gr->id)
                               @if($template->decanat_check == 0)                         
-                              <div class="d-flex flex-row bd-highlight">
+                              <div class="d-flex flex-row-reverse bd-highlight">
                                   <div class="alert alert-info" role="alert">
                                       В ожидании проверки
                                   </div>
@@ -285,7 +285,7 @@
                                 </div>
                               @php($showButton = false)
                               @elseif($template->decanat_check == 2)
-                                <div class="d-flex flex-row bd-highlight">
+                                <div class="d-flex flex-row-reverse bd-highlight">
                                   <div class="alert alert-warning" role="alert">
                                       Не принят
                                   </div> 
