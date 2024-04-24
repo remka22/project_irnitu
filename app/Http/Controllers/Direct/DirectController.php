@@ -58,9 +58,7 @@ class DirectController extends Controller
             $group_id = $request->input("download");
             $templatesModel = Template::where('group_id', $group_id)->first();
             
-            if ($templatesModel) {
-                //Storage::delete($templatesModel->name);
-            } else {
+            if (!$templatesModel) {
                 $templatesModel = new Template;
                 $templatesModel->group_id = $group_id;
                 $templatesModel->comment = null;
@@ -155,7 +153,7 @@ function create_excel($group_id)
                     }
                 }
                 foreach($teacher_score as $score){
-                    if($score->score == $practic->teacher_id){
+                    if($score->teacher_id == $practic->teacher_id){
                         foreach($teachers as $teacher){
                             if ($teacher->id == $score->teacher_id){
                                 $active->setCellValue('H' . $count+16, $teacher->fio);
