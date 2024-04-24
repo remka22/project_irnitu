@@ -174,6 +174,6 @@ function create_excel($group_id)
         $count++;
     }
     $writer = new Xlsx($spreadsheet);
-    $writer->save('../storage/templates_upload/'.$name_group.'.xlsx');
+    $writer->save('../storage/app/templates_upload/'.$name_group.'.xlsx');
     return 'templates_upload/'.$name_group.'.xlsx';    
 }
