@@ -89,6 +89,7 @@ function create_excel($group_id)
     $faculty = DB::table('faculty')->where('id', $profile->faculty_id)->first();
     $students = DB::table('students')->where('group_id', $group_id)->get();
     $teachers = DB::table('teachers')->where('fac_id', $faculty->id)->get();
+    $teacher_score = DB::table('teacher_score')->get();
     $practics = DB::table('student_practic')->get();
     $companies = DB::table('companies')->get();
 
@@ -148,37 +149,28 @@ function create_excel($group_id)
         $active->setCellValue('B' . $count + 16, $student->id);
         $active->setCellValue('C' . $count + 16, $student->fio);
         $active->setCellValue('D' . $count + 16, 'Общий');
-        foreach ($practics as $practic) {
-            if ($practic->student_id == $student->id) {
-                foreach ($companies as $company) {
-                    if ($company->id == $practic->company_id) {
-                        $active->setCellValue('E' . $count + 16, $company->name);
+        foreach($practics as $practic){
+            if($practic->student_id == $student->id){
+                foreach($companies as $company){
+                    if($company->id == $practic->company_id){
+                        $active->setCellValue('E' . $count+16, $company->name);
                         break;
+                    }
+                }
+                foreach($teacher_score as $score){
+                    if($score->teacher_score == $practic->teacher_id){
+                        foreach($teachers as $teacher){
+                            if ($teacher->id == $score->teacher_id){
+                                $active->setCellValue('H' . $count+16, $teacher->fio);
+                                $active->setCellValue('I' . $count+16, $teacher->post);
+                                break 2;
+                            }
+                        }
                     }
                 }
                 break;
             }
         }
-        foreach ($practics as $practic) {
-            foreach ($teachers as $teacher) {
-                if ($practic->teacher_id == $teacher->id) {
-                    $active->setCellValue('H' . $count + 16, $teacher->fio);
-                    break 2;
-                }
-            }
-        }
-
-        foreach ($practics as $practic) {
-            foreach ($teachers as $teacher) {
-                if ($practic->teacher_id == $teacher->id) {
-                    $active->setCellValue('I' . $count + 16, $teacher->post);
-                    break 2;
-                }
-            }
-        }
-        //$active->setCellValue('H'.$count+16, function(){
-
-        //}); 
         $count++;
     }
     $writer = new Xlsx($spreadsheet);
