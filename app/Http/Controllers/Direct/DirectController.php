@@ -153,7 +153,7 @@ function create_excel($group_id)
                     }
                 }
                 foreach($teacher_score as $score){
-                    if($score->teacher_id == $practic->teacher_id){
+                    if($score->id == $practic->teacher_id){
                         foreach($teachers as $teacher){
                             if ($teacher->id == $score->teacher_id){
                                 $active->setCellValue('H' . $count+16, $teacher->fio);
