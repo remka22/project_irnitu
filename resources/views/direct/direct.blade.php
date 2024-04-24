@@ -175,7 +175,7 @@
                             @endif
                           @endforeach
                         @if ($showButton)
-                          <form method="post" action="/" class="d-flex justify-content-end">
+                          <form method="post" action="/direct/shablon_prikazy" class="d-flex justify-content-end">
                             <div class="d-flex flex-row-reverse bd-highlight">
                               <div class="badge bg-primary text-wrap" style="width: 15rem;">
                                 @csrf
@@ -300,7 +300,7 @@
                             @endif
                           @endforeach
                         @if ($showButton)
-                          <form method="post" action="/" class="d-flex justify-content-end">
+                          <form method="post" action="/direct/shablon_prikazy" class="d-flex justify-content-end">
                             <div class="d-flex flex-row-reverse bd-highlight">
                               <div class="badge bg-primary text-wrap" style="width: 15rem;">
                                 @csrf
