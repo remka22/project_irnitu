@@ -60,24 +60,21 @@ class DirectController extends Controller
             
             if ($templatesModel) {
                 Storage::delete($templatesModel->name);
-                create_excel($group_id);
             } else {
-                $path = create_excel($group_id);
-
                 $templatesModel = new Template;
                 $templatesModel->group_id = $group_id;
-                $templatesModel->name = $path;
-                $templatesModel->decanat_check = 0;
                 $templatesModel->comment = null;
-                $templatesModel->date = date("Y-m-d") . " " . date("H:i:s");
-                $templatesModel->save();
             }
+            $path = create_excel($group_id);
+            $templatesModel->decanat_check = 0;
+            $templatesModel->name = $path;
+            $templatesModel->date = date("Y-m-d") . " " . date("H:i:s");
+            $templatesModel->save();
 
             return redirect('/direct/shablon_prikazy');
         }
     }
 }
-
 
 function create_excel($group_id)
 {
