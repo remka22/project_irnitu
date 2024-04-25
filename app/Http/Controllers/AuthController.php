@@ -80,7 +80,6 @@ class AuthController extends Controller
 
 function auth($return)
 {
-    dd($return);
     if (User::where('mira_id', $return['mira_id'][0])->get()->count() == 0) {
         $user = new User;
         $user->name = $return['name'];
