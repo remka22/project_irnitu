@@ -89,6 +89,7 @@ function auth($return)
 
         if ($return['is_student']) {
             $user->type = 'student';
+            dump($return);
         }
         if ($return['is_teacher']) {
             if (strpos($return['data_teacher']['dep'], 'Отдел по работе со студентами') === true) {
