@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Psy\Readline\Hoa\Console;
 
 class AuthController extends Controller
 {
@@ -89,7 +90,7 @@ function auth($return)
 
         if ($return['is_student']) {
             $user->type = 'student';
-            dump($return);
+            dd($return);
         }
         if ($return['is_teacher']) {
             if (strpos($return['data_teacher']['dep'], 'Отдел по работе со студентами') === true) {
