@@ -35,7 +35,6 @@
                         <span class="fs-6 text-white">{{ Auth::user()->name }}</span>
                         <span class="fs-6 text-white">{{ Auth::user()->second_name }}</span>
                     </ul>
-                    <hr>
                     <ul class="nav nav-pills flex-column ">
                         @if (Auth::user()->type == 'student' || Auth::user()->type == 'admin')
                             <li class="nav-item mb-2">
@@ -68,7 +67,6 @@
                             </li>
                         @endif
                     </ul>
-                    <hr>
                     <ul class="nav nav-pills flex-column ">
                         <li class="nav-item">
                             <a class='btn btn-custom' href='/logout'>Выход</a>
