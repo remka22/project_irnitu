@@ -162,15 +162,15 @@
                     </div>
                 </div>
             @endguest
-
-            <div class="col-8" style="">
+            <div class="col-2"></div>
+            <div class="col" style="">
                 <div class="row">
                     <div class="container">
                         @yield('content')
                     </div>
                 </div>
             </div>
-
+            <div class="col-2"></div>
             @guest
             @else
                 <div class="col-2" style="right: 0px; position: absolute;">
@@ -228,13 +228,14 @@
     }
 
     .my_nav_tab_mobile {
-            display: none;
-        }
+        display: none;
+    }
 
     @media (max-width: 600px) {
         .my_nav_tab {
             display: none;
         }
+
         .my_nav_tab_mobile {
             display: block;
         }
