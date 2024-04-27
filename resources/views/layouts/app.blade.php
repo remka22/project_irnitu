@@ -31,7 +31,7 @@
             @else
                 <div class="my_nav_tab">
                     <div class="col-2" style="position: fixed;">
-                        <div class="container">
+                        <div class="container" style="min-width: 180px;">
                             <div class="d-flex flex-column flex-shrink-0 p-3 text-dark bg-white "
                                 style="width: auto; height: fit-content;">
                                 <ul class="nav nav-pills flex-column">
@@ -167,9 +167,6 @@
     @media (max-width: 600px) {
         .my_nav_tab {
             display: none;
-        }
-        container {
-            min-width: 180px;
         }
     }
 </style>
