@@ -13,6 +13,7 @@ use App\Models\StudentPractic;
 use App\Models\student_Otchet;
 use App\Models\StudentOtchet as ModelsStudentOtchet;
 use App\Models\Teachers;
+use App\Models\TeacherScore;
 use Illuminate\Database\Events\ModelsPruned;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -51,8 +52,8 @@ class ControllerStudentOtchet extends Controller
         if (!$student_request || $student_request->status == 0){
             return view('student.student_otchet_ban');
         }
-
-        $teacher_practic = Teachers::find($student_request->teacher_id);
+        $teacher_score = TeacherScore::find($student_request->teacher_id);
+        $teacher_practic = Teachers::find($teacher_score->teacher_id);
         $company_practic = Company::find($student_request->company_id);
 
         $name = $student->fio;
