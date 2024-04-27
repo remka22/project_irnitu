@@ -161,8 +161,9 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-2 my_custom_column"></div>
             @endguest
-            <div class="col-2 my_custom_column"></div>
+            
             <div class="col" style="">
                 <div class="row">
                     <div class="container">
