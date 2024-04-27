@@ -171,7 +171,6 @@
     </div>
     <style>
         .all_fragments {
-            display: flex;
             flex-direction: row-reverse;
             align-items: stretch;
             justify-content: center;
