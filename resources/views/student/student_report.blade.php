@@ -246,5 +246,11 @@
             color: #4169E1;
             /* Цвет текста */
         }
+
+        @media (max-width: 600px) {
+            .my_content {
+                min-width: 180px;
+            }
+        }
     </style>
 @endsection

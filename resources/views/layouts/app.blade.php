@@ -100,7 +100,7 @@
                 </div>
             @endguest
 
-            <div class="col-8" style="">
+            <div class="col" style="">
                 <div class="row">
                     <div class="container">
                         @yield('content')
@@ -168,6 +168,5 @@
         .my_nav_tab {
             display: none;
         }
-
     }
 </style>
