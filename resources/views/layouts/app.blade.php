@@ -162,7 +162,7 @@
                     </div>
                 </div>
             @endguest
-            <div class="col-2"></div>
+            <div class="col-2 my_custom_column"></div>
             <div class="col" style="">
                 <div class="row">
                     <div class="container">
@@ -170,7 +170,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-2"></div>
+            <div class="col-2 my_custom_column"></div>
             @guest
             @else
                 <div class="col-2" style="right: 0px; position: absolute;">
@@ -238,6 +238,10 @@
 
         .my_nav_tab_mobile {
             display: block;
+        }
+
+        .my_custom_column{
+            display: none;
         }
     }
 </style>
