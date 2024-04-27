@@ -36,37 +36,65 @@
                         <span class="fs-6 text-white">{{ Auth::user()->second_name }}</span>
                     </ul>
                     <ul class="nav nav-pills flex-column ">
-                        @if (Auth::user()->type == 'student' || Auth::user()->type == 'admin')
-                            <li class="nav-item mb-2">
-                                <a href="/student/practika" class="btn btn-custom ">Подать заявку</a>
-                            </li>
-                            <li class="nav-item mb-2">
-                                <a href="/student/otchet" class="btn btn-custom ">Отправить отчет</a>
-                            </li>
-                        @endif
-                        @if (Auth::user()->type == 'teacher' || Auth::user()->type == 'admin' || Auth::user()->type == 'rop')
-                            <li class="nav-item mb-2">
-                                <a href="/teacher/stud_practika" class="btn btn-custom ">Заявки студентов</a>
-                            </li>
-                            <li class="nav-item mb-2">
-                                <a href="/teacher/stud_otchet" class="btn btn-custom ">Отчетность студентов</a>
-                            </li>
-                            <li class="nav-item mb-2">
-                                <a href="/center/shablon_prikazy" class="btn btn-custom ">Шаблоны приказов</a>
-                            </li>
-                            <li class="nav-item mb-2">
-                                <a href="/direct/shablon_prikazy" class="btn btn-custom ">Формирование шаблонов
-                                    приказа</a>
-                            </li>
-                        @endif
-                        @if (Auth::user()->type == 'rop' || Auth::user()->type == 'admin')
-                            <li class="nav-item mb-2">
-                                <a href="/rop/control_activity_student" class="btn btn-custom ">Контроль
-                                    активности
-                                    студентов</a>
-                            </li>
-                        @endif
-                    </ul>
+                                    @if (Auth::user()->type == 'student' || Auth::user()->type == 'admin')
+                                        <li class="nav-item mb-2">
+                                            <a href="/student/practika" class="btn btn-custom ">Подать заявку</a>
+                                        </li>
+                                        <li class="nav-item mb-2">
+                                            <a href="/student/otchet" class="btn btn-custom ">Отправить отчет</a>
+                                        </li>
+                                        <li class="nav-item mb-2">
+                                            <a href="https://t.me/ForStudentIRNITUbot"><img
+                                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/1200px-Telegram_logo.svg.png"
+                                                    style="height:35px;width:35px;"></a>
+                                        </li>
+                                    @endif
+                                    @if (Auth::user()->type == 'teacher' || Auth::user()->type == 'admin' || Auth::user()->type == 'rop')
+                                        <li class="nav-item mb-2">
+                                            <a href="/teacher/stud_practika" class="btn btn-custom ">Заявки студентов</a>
+                                        </li>
+                                        <li class="nav-item mb-2">
+                                            <a href="/teacher/stud_otchet" class="btn btn-custom ">Отчетность
+                                                студентов</a>
+                                        </li>
+                                        <li class="nav-item mb-2">
+                                            <a href="/center/shablon_prikazy" class="btn btn-custom ">Шаблоны приказов</a>
+                                        </li>
+                                        <li class="nav-item mb-2">
+                                            <a href="/direct/shablon_prikazy" class="btn btn-custom ">Формирование
+                                                шаблонов
+                                                приказа</a>
+                                        </li>
+                                        <li class="nav-item mb-2">
+                                            <a href="https://t.me/ForStudentIRNITUbot"><img
+                                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/1200px-Telegram_logo.svg.png"
+                                                    style="height:35px;width:35px;"></a>
+                                        </li>
+                                    @endif
+                                    @if (Auth::user()->type == 'rop' || Auth::user()->type == 'admin')
+                                        <li class="nav-item mb-2">
+                                            <a href="/rop/control_activity_student" class="btn btn-custom ">Контроль
+                                                активности
+                                                студентов</a>
+                                        </li>
+                                    @endif
+                                    @if (Auth::user()->type == 'direct' || Auth::user()->type == 'admin')
+                                        <li class="nav-item mb-2">
+                                            <a href="/direct/shablon_prikazy" class="btn btn-custom ">Формирование
+                                                шаблонов
+                                                приказа</a>
+                                        </li>
+                                    @endif
+                                    @if (Auth::user()->type == 'center' || Auth::user()->type == 'admin')
+                                        <li class="nav-item mb-2">
+                                            <a href="/center/shablon_prikazy" class="btn btn-custom ">Шаблоны приказов</a>
+                                        </li>
+
+                                        <li class="nav-item mb-2">
+                                            <a href="/center/stud_dogovory" class="btn btn-custom ">Договора студентов</a>
+                                        </li>
+                                    @endif
+                                </ul>
                     <ul class="nav nav-pills flex-column ">
                         <li class="nav-item">
                             <a class='btn btn-custom' href='/logout'>Выход</a>
@@ -81,9 +109,6 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <a href="https://t.me/ForStudentIRNITUbot"><img
-                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/1200px-Telegram_logo.svg.png"
-                            style="height:35px;width:35px;"></a>
                 </div>
             </nav>
         </div>
