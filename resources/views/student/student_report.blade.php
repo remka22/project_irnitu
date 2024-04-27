@@ -248,8 +248,14 @@
         }
 
         @media (max-width: 600px) {
-            .my_content {
-                
+
+            .block label,
+            input {
+                padding-right: 10px;
+                margin: 2px;
+                font-size: 15px;
+                margin-bottom: 5px;
+                width 100%;
             }
         }
     </style>
