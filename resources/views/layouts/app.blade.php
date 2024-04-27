@@ -25,69 +25,72 @@
 </head>
 
 <body>
+    @guest
+    @else
+        <div class="my_nav_tab_mobile">
+            <div class="collapse" id="navbarToggleExternalContent">
+                <div class="bg-dark p-3">
+                    <ul class="nav nav-pills flex-column">
+                        <span class="fs-4 text-white">{{ Auth::user()->last_name }}</span>
+                        <span class="fs-6 text-white">{{ Auth::user()->name }}</span>
+                        <span class="fs-6 text-white">{{ Auth::user()->second_name }}</span>
+                    </ul>
+                    <hr>
+                    <ul class="nav nav-pills flex-column ">
+                        @if (Auth::user()->type == 'student' || Auth::user()->type == 'admin')
+                            <li class="nav-item mb-2">
+                                <a href="/student/practika" class="btn btn-custom ">Подать заявку</a>
+                            </li>
+                            <li class="nav-item mb-2">
+                                <a href="/student/otchet" class="btn btn-custom ">Отправить отчет</a>
+                            </li>
+                        @endif
+                        @if (Auth::user()->type == 'teacher' || Auth::user()->type == 'admin' || Auth::user()->type == 'rop')
+                            <li class="nav-item mb-2">
+                                <a href="/teacher/stud_practika" class="btn btn-custom ">Заявки студентов</a>
+                            </li>
+                            <li class="nav-item mb-2">
+                                <a href="/teacher/stud_otchet" class="btn btn-custom ">Отчетность студентов</a>
+                            </li>
+                            <li class="nav-item mb-2">
+                                <a href="/center/shablon_prikazy" class="btn btn-custom ">Шаблоны приказов</a>
+                            </li>
+                            <li class="nav-item mb-2">
+                                <a href="/direct/shablon_prikazy" class="btn btn-custom ">Формирование шаблонов
+                                    приказа</a>
+                            </li>
+                        @endif
+                        @if (Auth::user()->type == 'rop' || Auth::user()->type == 'admin')
+                            <li class="nav-item mb-2">
+                                <a href="/rop/control_activity_student" class="btn btn-custom ">Контроль
+                                    активности
+                                    студентов</a>
+                            </li>
+                        @endif
+                    </ul>
+                    <hr>
+                    <ul class="nav nav-pills flex-column ">
+                        <li class="nav-item">
+                            <a class='btn btn-custom' href='/logout'>Выход</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <nav class="navbar navbar-dark bg-dark">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    @endguest
     <div class="container-fluid">
         <div class="row justify-content-center">
             @guest
             @else
-                <div class="my_nav_tab_mobile">
-                    <div class="collapse" id="navbarToggleExternalContent">
-                        <div class="bg-dark p-4">
-                            <ul class="nav nav-pills flex-column">
-                                <span class="fs-4">{{ Auth::user()->last_name }}</span>
-                                <span class="fs-6">{{ Auth::user()->name }}</span>
-                                <span class="fs-6">{{ Auth::user()->second_name }}</span>
-                            </ul>
-                            <hr>
-                            <ul class="nav nav-pills flex-column ">
-                                @if (Auth::user()->type == 'student' || Auth::user()->type == 'admin')
-                                    <li class="nav-item mb-2">
-                                        <a href="/student/practika" class="btn btn-custom ">Подать заявку</a>
-                                    </li>
-                                    <li class="nav-item mb-2">
-                                        <a href="/student/otchet" class="btn btn-custom ">Отправить отчет</a>
-                                    </li>
-                                @endif
-                                @if (Auth::user()->type == 'teacher' || Auth::user()->type == 'admin' || Auth::user()->type == 'rop')
-                                    <li class="nav-item mb-2">
-                                        <a href="/teacher/stud_practika" class="btn btn-custom ">Заявки студентов</a>
-                                    </li>
-                                    <li class="nav-item mb-2">
-                                        <a href="/teacher/stud_otchet" class="btn btn-custom ">Отчетность студентов</a>
-                                    </li>
-                                    <li class="nav-item mb-2">
-                                        <a href="/center/shablon_prikazy" class="btn btn-custom ">Шаблоны приказов</a>
-                                    </li>
-                                    <li class="nav-item mb-2">
-                                        <a href="/direct/shablon_prikazy" class="btn btn-custom ">Формирование шаблонов
-                                            приказа</a>
-                                    </li>
-                                @endif
-                                @if (Auth::user()->type == 'rop' || Auth::user()->type == 'admin')
-                                    <li class="nav-item mb-2">
-                                        <a href="/rop/control_activity_student" class="btn btn-custom ">Контроль
-                                            активности
-                                            студентов</a>
-                                    </li>
-                                @endif
-                            </ul>
-                            <hr>
-                            <ul class="nav nav-pills flex-column ">
-                                <li class="nav-item">
-                                    <a class='btn btn-custom' href='/logout'>Выход</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <nav class="navbar navbar-dark bg-dark">
-                        <div class="container-fluid">
-                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
-                                aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                        </div>
-                    </nav>
-                </div>
                 <div class="my_nav_tab">
                     <div class="col-2" style="position: fixed;">
                         <div class="container" style="min-width: 180px;">
