@@ -29,7 +29,7 @@
         <div class="row justify-content-center">
             @guest
             @else
-                <div>
+                <div class="my_nav_tab">
                     <div class="col-2" style="position: fixed;">
                         <div class="container">
                             <div class="d-flex flex-column flex-shrink-0 p-3 text-dark bg-white "
@@ -164,5 +164,10 @@
         background-image: linear-gradient(to right, rgba(192, 217, 214, 0.2) 10%, rgba(167, 207, 206, 0.6) 40%, rgb(40, 93, 126) 80%);
     }
 
+    @media (max-width: 600px) {
+        .my_nav_tab {
+            display: none;
+        }
 
+    }
 </style>
