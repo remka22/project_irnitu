@@ -229,9 +229,16 @@
         background-image: linear-gradient(to right, rgba(192, 217, 214, 0.2) 10%, rgba(167, 207, 206, 0.6) 40%, rgb(40, 93, 126) 80%);
     }
 
+    .my_nav_tab_mobile {
+            display: none;
+        }
+
     @media (max-width: 600px) {
         .my_nav_tab {
             display: none;
+        }
+        .my_nav_tab_mobile {
+            display: block;
         }
     }
 </style>
