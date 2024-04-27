@@ -26,78 +26,81 @@
 
 <body>
     <div class="container-fluid">
-        <div class="row">
+        <div class="row justify-content-center">
             @guest
             @else
-                <div class="col-2" style="position: fixed;">
-                    <div class="container">
-                        <div class="d-flex flex-column flex-shrink-0 p-3 text-dark bg-white "
-                            style="width: auto; height: fit-content;">
-                            <ul class="nav nav-pills flex-column">
-                                <span class="fs-4">{{ Auth::user()->last_name }}</span>
-                                <span class="fs-6">{{ Auth::user()->name }}</span>
-                                <span class="fs-6">{{ Auth::user()->second_name }}</span>
-                            </ul>
-                            <hr>
-                            <ul class="nav nav-pills flex-column ">
-                                @if (Auth::user()->type == 'student' || Auth::user()->type == 'admin')
-                                    <li class="nav-item mb-2">
-                                        <a href="/student/practika" class="btn btn-custom ">Подать заявку</a>
-                                    </li>
-                                    <li class="nav-item mb-2">
-                                        <a href="/student/otchet" class="btn btn-custom ">Отправить отчет</a>
-                                    </li>
-                                @endif
-                                @if (Auth::user()->type == 'teacher' || Auth::user()->type == 'admin' || Auth::user()->type == 'rop')
-                                    <li class="nav-item mb-2">
-                                        <a href="/teacher/stud_practika" class="btn btn-custom ">Заявки студентов</a>
-                                    </li>
-                                    <li class="nav-item mb-2">
-                                        <a href="/teacher/stud_otchet" class="btn btn-custom ">Отчетность студентов</a>
-                                    </li>
-                                    <li class="nav-item mb-2">
-                                        <a href="/center/shablon_prikazy" class="btn btn-custom ">Шаблоны приказов</a>
-                                    </li>
-                                    <li class="nav-item mb-2">
-                                        <a href="/direct/shablon_prikazy" class="btn btn-custom ">Формирование шаблонов
-                                            приказа</a>
-                                    </li>
-                                @endif
-                                @if (Auth::user()->type == 'rop' || Auth::user()->type == 'admin')
-                                    <li class="nav-item mb-2">
-                                        <a href="/rop/control_activity_student" class="btn btn-custom ">Контроль активности
-                                            студентов</a>
-                                    </li>
-                                @endif
-                                @if (Auth::user()->type == 'direct' || Auth::user()->type == 'admin')
-                                    <li class="nav-item mb-2">
-                                        <a href="/direct/shablon_prikazy" class="btn btn-custom ">Формирование шаблонов
-                                            приказа</a>
-                                    </li>
-                                @endif
-                                @if (Auth::user()->type == 'center' || Auth::user()->type == 'admin')
-                                    <li class="nav-item mb-2">
-                                        <a href="/center/shablon_prikazy" class="btn btn-custom ">Шаблоны приказов</a>
-                                    </li>
+                <div>
+                    <div class="col-2" style="position: fixed;">
+                        <div class="container">
+                            <div class="d-flex flex-column flex-shrink-0 p-3 text-dark bg-white "
+                                style="width: auto; height: fit-content;">
+                                <ul class="nav nav-pills flex-column">
+                                    <span class="fs-4">{{ Auth::user()->last_name }}</span>
+                                    <span class="fs-6">{{ Auth::user()->name }}</span>
+                                    <span class="fs-6">{{ Auth::user()->second_name }}</span>
+                                </ul>
+                                <hr>
+                                <ul class="nav nav-pills flex-column ">
+                                    @if (Auth::user()->type == 'student' || Auth::user()->type == 'admin')
+                                        <li class="nav-item mb-2">
+                                            <a href="/student/practika" class="btn btn-custom ">Подать заявку</a>
+                                        </li>
+                                        <li class="nav-item mb-2">
+                                            <a href="/student/otchet" class="btn btn-custom ">Отправить отчет</a>
+                                        </li>
+                                    @endif
+                                    @if (Auth::user()->type == 'teacher' || Auth::user()->type == 'admin' || Auth::user()->type == 'rop')
+                                        <li class="nav-item mb-2">
+                                            <a href="/teacher/stud_practika" class="btn btn-custom ">Заявки студентов</a>
+                                        </li>
+                                        <li class="nav-item mb-2">
+                                            <a href="/teacher/stud_otchet" class="btn btn-custom ">Отчетность студентов</a>
+                                        </li>
+                                        <li class="nav-item mb-2">
+                                            <a href="/center/shablon_prikazy" class="btn btn-custom ">Шаблоны приказов</a>
+                                        </li>
+                                        <li class="nav-item mb-2">
+                                            <a href="/direct/shablon_prikazy" class="btn btn-custom ">Формирование шаблонов
+                                                приказа</a>
+                                        </li>
+                                    @endif
+                                    @if (Auth::user()->type == 'rop' || Auth::user()->type == 'admin')
+                                        <li class="nav-item mb-2">
+                                            <a href="/rop/control_activity_student" class="btn btn-custom ">Контроль
+                                                активности
+                                                студентов</a>
+                                        </li>
+                                    @endif
+                                    @if (Auth::user()->type == 'direct' || Auth::user()->type == 'admin')
+                                        <li class="nav-item mb-2">
+                                            <a href="/direct/shablon_prikazy" class="btn btn-custom ">Формирование шаблонов
+                                                приказа</a>
+                                        </li>
+                                    @endif
+                                    @if (Auth::user()->type == 'center' || Auth::user()->type == 'admin')
+                                        <li class="nav-item mb-2">
+                                            <a href="/center/shablon_prikazy" class="btn btn-custom ">Шаблоны приказов</a>
+                                        </li>
 
-                                    <li class="nav-item mb-2">
-                                        <a href="/center/stud_dogovory" class="btn btn-custom ">Договора студентов</a>
+                                        <li class="nav-item mb-2">
+                                            <a href="/center/stud_dogovory" class="btn btn-custom ">Договора студентов</a>
+                                        </li>
+                                    @endif
+                                </ul>
+                                <hr>
+                                <ul class="nav nav-pills flex-column ">
+                                    <li class="nav-item">
+                                        <a class='btn btn-custom' href='/logout'>Выход</a>
                                     </li>
-                                @endif
-                            </ul>
-                            <hr>
-                            <ul class="nav nav-pills flex-column ">
-                                <li class="nav-item">
-                                    <a class='btn btn-custom' href='/logout'>Выход</a>
-                                </li>
-                            </ul>
-                            <hr>
+                                </ul>
+                                <hr>
+                            </div>
                         </div>
                     </div>
                 </div>
             @endguest
 
-            <div class="col-8" style="margin: 0 auto;">
+            <div class="col-8" style="">
                 <div class="row">
                     <div class="container">
                         @yield('content')
@@ -160,4 +163,6 @@
     body {
         background-image: linear-gradient(to right, rgba(192, 217, 214, 0.2) 10%, rgba(167, 207, 206, 0.6) 40%, rgb(40, 93, 126) 80%);
     }
+
+
 </style>
