@@ -250,7 +250,7 @@
         @media (max-width: 600px) {
 
             .block label,
-            input {
+            input, select {
                 padding-right: 10px;
                 margin: 2px;
                 font-size: 15px;
