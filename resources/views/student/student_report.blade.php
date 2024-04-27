@@ -174,7 +174,7 @@
             display: flex;
             flex-direction: row-reverse;
             align-items: stretch;
-            justify-content: space-evenly;
+            justify-content: center;
         }
 
         .fragment {
