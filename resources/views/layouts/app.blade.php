@@ -157,9 +157,9 @@
                                 </ul>
                                 <hr>
                                 <ul>
-                                    <a href="https://t.me/ForStudentIRNITUbot"><button class="hat_butt"><img
-                                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/1200px-Telegram_logo.svg.png"
-                                                style="height:35px;width:35px;"></button></a>
+                                    <a href="https://t.me/ForStudentIRNITUbot"><img
+                                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/1200px-Telegram_logo.svg.png"
+                                            style="height:35px;width:35px;"></a>
                                 </ul>
                                 <hr>
                                 <ul class="nav nav-pills flex-column ">
