@@ -58,12 +58,12 @@
                                                 студентов</a>
                                         </li>
                                         <li class="nav-item mb-2">
-                                            <a href="/center/shablon_prikazy" class="btn btn-custom ">Шаблоны приказов</a>
+                                            <a href="/center/shablon_prikazy" class="btn btn-custom ">Шаблоны приказов - Центр</a>
                                         </li>
                                         <li class="nav-item mb-2">
                                             <a href="/direct/shablon_prikazy" class="btn btn-custom ">Формирование
                                                 шаблонов
-                                                приказа</a>
+                                                приказа - Дирекция</a>
                                         </li>
                                         <li class="nav-item mb-2">
                                             <a href="https://t.me/ForStudentIRNITUbot"><img
