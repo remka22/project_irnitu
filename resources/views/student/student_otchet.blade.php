@@ -85,10 +85,9 @@
             background-image: linear-gradient(to right, rgba(192, 217, 214, 0.2) 10%, rgba(167, 207, 206, 0.6) 40%, rgba(27, 62, 84) 80%);
         }
         .all_fragments {
-            display: flex;
             flex-direction: row-reverse;
             align-items: stretch;
-            justify-content: space-evenly;
+            justify-content: center;
         }
 
         .fragment {
