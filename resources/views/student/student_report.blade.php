@@ -249,7 +249,7 @@
 
         @media (max-width: 600px) {
             .my_content {
-                min-width: 180px;
+                
             }
         }
     </style>

@@ -168,5 +168,8 @@
         .my_nav_tab {
             display: none;
         }
+        container {
+            min-width: 180px;
+        }
     }
 </style>
