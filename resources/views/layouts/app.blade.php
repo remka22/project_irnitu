@@ -111,6 +111,11 @@
                                         <li class="nav-item mb-2">
                                             <a href="/student/otchet" class="btn btn-custom ">Отправить отчет</a>
                                         </li>
+                                        <li class="nav-item mb-2">
+                                            <a href="https://t.me/ForStudentIRNITUbot"><img
+                                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/1200px-Telegram_logo.svg.png"
+                                                    style="height:35px;width:35px;"></a>
+                                        </li>
                                     @endif
                                     @if (Auth::user()->type == 'teacher' || Auth::user()->type == 'admin' || Auth::user()->type == 'rop')
                                         <li class="nav-item mb-2">
@@ -127,6 +132,11 @@
                                             <a href="/direct/shablon_prikazy" class="btn btn-custom ">Формирование
                                                 шаблонов
                                                 приказа</a>
+                                        </li>
+                                        <li class="nav-item mb-2">
+                                            <a href="https://t.me/ForStudentIRNITUbot"><img
+                                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/1200px-Telegram_logo.svg.png"
+                                                    style="height:35px;width:35px;"></a>
                                         </li>
                                     @endif
                                     @if (Auth::user()->type == 'rop' || Auth::user()->type == 'admin')
@@ -153,10 +163,6 @@
                                         </li>
                                     @endif
                                 </ul>
-                                <hr>
-                                <a href="https://t.me/ForStudentIRNITUbot"><img
-                                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/1200px-Telegram_logo.svg.png"
-                                        style="height:35px;width:35px;"></a>
                                 <hr>
                                 <ul class="nav nav-pills flex-column ">
                                     <li class="nav-item">
