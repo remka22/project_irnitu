@@ -57,7 +57,7 @@ class ControllerStudentOtchet extends Controller
 
         $name = $student->fio;
         $teacher = $teacher_practic->fio;
-        $company = $company_practic->name;
+        $company = $company_practic->name ?? "Своя компания";
         $theme = $student_request->theme;
         $group = Group::find($student->group_id);
         $stream = Stream::find($group->stream_id);
