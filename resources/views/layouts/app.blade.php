@@ -67,11 +67,6 @@
                             </li>
                         @endif
                     </ul>
-                    <ul>
-                        <a href="https://t.me/ForStudentIRNITUbot"><button class="hat_butt"><img
-                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/1200px-Telegram_logo.svg.png"
-                                    style="height:35px;width:35px;"></button></a>
-                    </ul>
                     <ul class="nav nav-pills flex-column ">
                         <li class="nav-item">
                             <a class='btn btn-custom' href='/logout'>Выход</a>
@@ -86,6 +81,9 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
+                    <a href="https://t.me/ForStudentIRNITUbot"><img
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/1200px-Telegram_logo.svg.png"
+                            style="height:35px;width:35px;"></a>
                 </div>
             </nav>
         </div>
@@ -156,11 +154,9 @@
                                     @endif
                                 </ul>
                                 <hr>
-                                <ul>
-                                    <a href="https://t.me/ForStudentIRNITUbot"><img
-                                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/1200px-Telegram_logo.svg.png"
-                                            style="height:35px;width:35px;"></a>
-                                </ul>
+                                <a href="https://t.me/ForStudentIRNITUbot"><img
+                                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/1200px-Telegram_logo.svg.png"
+                                        style="height:35px;width:35px;"></a>
                                 <hr>
                                 <ul class="nav nav-pills flex-column ">
                                     <li class="nav-item">
