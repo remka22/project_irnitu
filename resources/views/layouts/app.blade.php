@@ -163,7 +163,7 @@
                 </div>
             @endguest
 
-            <div class="col" style="">
+            <div class="col-8" style="">
                 <div class="row">
                     <div class="container">
                         @yield('content')
