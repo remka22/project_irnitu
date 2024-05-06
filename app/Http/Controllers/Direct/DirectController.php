@@ -57,7 +57,7 @@ class DirectController extends Controller
         if ($request->input("download")) {
             $group_id = $request->input("download");
             $templatesModel = Template::where('group_id', $group_id)->first();
-            
+
             if (!$templatesModel) {
                 $templatesModel = new Template;
                 $templatesModel->group_id = $group_id;
@@ -68,6 +68,8 @@ class DirectController extends Controller
             $templatesModel->name = $path;
             $templatesModel->date = date("Y-m-d") . " " . date("H:i:s");
             $templatesModel->save();
+            $template = Template::find($request->input('download'));
+            return Storage::download($template->name);
 
             return redirect('/direct/shablon_prikazy');
         }
@@ -76,7 +78,7 @@ class DirectController extends Controller
 
 function create_excel($group_id)
 {
-    
+
     date_default_timezone_set('Asia/Irkutsk');
     $group = DB::table('groups')->where('id', $group_id)->first();
     $stream = DB::table('streams')->where('id', $group->stream_id)->first();
@@ -144,20 +146,20 @@ function create_excel($group_id)
         $active->setCellValue('B' . $count + 16, $student->id);
         $active->setCellValue('C' . $count + 16, $student->fio);
         $active->setCellValue('D' . $count + 16, 'Общий');
-        foreach($practics as $practic){
-            if($practic->student_id == $student->id){
-                foreach($companies as $company){
-                    if($company->id == $practic->company_id){
-                        $active->setCellValue('E' . $count+16, $company->name);
+        foreach ($practics as $practic) {
+            if ($practic->student_id == $student->id) {
+                foreach ($companies as $company) {
+                    if ($company->id == $practic->company_id) {
+                        $active->setCellValue('E' . $count + 16, $company->name);
                         break;
                     }
                 }
-                foreach($teacher_score as $score){
-                    if($score->id == $practic->teacher_id){
-                        foreach($teachers as $teacher){
-                            if ($teacher->id == $score->teacher_id){
-                                $active->setCellValue('H' . $count+16, $teacher->fio);
-                                $active->setCellValue('I' . $count+16, $teacher->post);
+                foreach ($teacher_score as $score) {
+                    if ($score->id == $practic->teacher_id) {
+                        foreach ($teachers as $teacher) {
+                            if ($teacher->id == $score->teacher_id) {
+                                $active->setCellValue('H' . $count + 16, $teacher->fio);
+                                $active->setCellValue('I' . $count + 16, $teacher->post);
                                 break 2;
                             }
                         }
@@ -169,6 +171,6 @@ function create_excel($group_id)
         $count++;
     }
     $writer = new Xlsx($spreadsheet);
-    $writer->save('../storage/app/templates_upload/'.$name_group.'.xlsx');
-    return 'templates_upload/'.$name_group.'.xlsx';    
+    $writer->save('../storage/app/templates_upload/' . $name_group . '.xlsx');
+    return 'templates_upload/' . $name_group . '.xlsx';
 }
