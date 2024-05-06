@@ -95,7 +95,7 @@
                         </div>
                     </div>
                     <div>
-                        <a href="/out" class="btn btn-primary mt-3 form-control">Для компаний</a>
+                        <a href="/out/auth" class="btn btn-primary mt-3 form-control">Для компаний</a>
                     </div>
 
                     <div>
