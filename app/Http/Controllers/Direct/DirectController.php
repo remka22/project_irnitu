@@ -68,7 +68,7 @@ class DirectController extends Controller
             $templatesModel->name = $path;
             $templatesModel->date = date("Y-m-d") . " " . date("H:i:s");
             $templatesModel->save(); 
-            return Storage::download($templatesModel->name);
+            Storage::download($templatesModel->name);
 
             return redirect('/direct/shablon_prikazy');
         }
