@@ -67,9 +67,8 @@ class DirectController extends Controller
             $templatesModel->decanat_check = 0;
             $templatesModel->name = $path;
             $templatesModel->date = date("Y-m-d") . " " . date("H:i:s");
-            $templatesModel->save();
-            $template = Template::find($request->input('download'));
-            return Storage::download($template->name);
+            $templatesModel->save(); 
+            return Storage::download($templatesModel->name);
 
             return redirect('/direct/shablon_prikazy');
         }
