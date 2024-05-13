@@ -164,50 +164,50 @@ function insertStud()
     $stud_delete = Student::whereNotIn('mira_id', $stud_arr_id)->delete();
     // dd($studs = Student::where("mira_id", 2423779)->get()->first());
 
-    foreach ($stud["RecordSet"] as $name => $value) {
-        $id = $value["id"];
-        // $name = $value["name"];
-        $studs = Student::where("mira_id", $id)->get(); //->orderBy('id', 'DESC')
-        // dd($studs->last());
-        if($studs->count() > 1){
-            $studs->last()->delete();
-        }
-    }
-
-
     // foreach ($stud["RecordSet"] as $name => $value) {
     //     $id = $value["id"];
-    //     $name = $value["name"];
-    //     $group = $value["grup"];
-    //     $stud = Student::where("mira_id", $id)->first();
-    //     if (!$stud) {
-    //         //Парсер группы
-    //         $name_group = explode('-', $group);
-    //         //
-    //         $id_stream = DB::connection('mariadb')->select("SELECT id FROM streams WHERE name = '" . $name_group[0] . "-" . $name_group[1] . "'")[0]->id;
-
-    //         if (empty(DB::connection('mariadb')->select("select id from groups where stream_id = " . $id_stream . " and group_number = '" . $name_group[2] . "'"))) {
-    //             DB::connection('mariadb')->insert("insert into groups (group_number, stream_id) values (" . $name_group[2] . ", " . $id_stream . ")");
-    //         }
-    //         $id_group = DB::connection('mariadb')->select("select id from groups where stream_id = " . $id_stream . " and group_number = '" . $name_group[2] . "'")[0]->id;
-
-    //         DB::connection('mariadb')->insert("insert into students (fio, mira_id, category, group_id) values ('" . $name . "', " . $id . ", 'test', " . $id_group . ")");
-    //     } else {
-    //         //Парсер группы
-    //         $name_group = explode('-', $group);
-    //         //
-    //         $id_stream = DB::connection('mariadb')->select("SELECT id FROM streams WHERE name = '" . $name_group[0] . "-" . $name_group[1] . "'")[0]->id;
-    //         if ($id_stream) {
-    //             $id_group = DB::connection('mariadb')->select("select id from groups where stream_id = " . $id_stream . " and group_number = '" . $name_group[2] . "'")[0]->id;
-    //             if ($id_group) {
-    //                 if ($stud->group_id != $id_group) {
-    //                     $stud->group_id = $id_group;
-    //                     $stud->save();
-    //                 }
-    //             }
-    //         }
+    //     // $name = $value["name"];
+    //     $studs = Student::where("mira_id", $id)->get(); //->orderBy('id', 'DESC')
+    //     // dd($studs->last());
+    //     if($studs->count() > 1){
+    //         $studs->last()->delete();
     //     }
     // }
+
+
+    foreach ($stud["RecordSet"] as $name => $value) {
+        $id = $value["id"];
+        $name = $value["name"];
+        $group = $value["grup"];
+        $stud = Student::where("mira_id", $id)->first();
+        if (!$stud) {
+            //Парсер группы
+            $name_group = explode('-', $group);
+            //
+            $id_stream = DB::connection('mariadb')->select("SELECT id FROM streams WHERE name = '" . $name_group[0] . "-" . $name_group[1] . "'")[0]->id;
+
+            if (empty(DB::connection('mariadb')->select("select id from groups where stream_id = " . $id_stream . " and group_number = '" . $name_group[2] . "'"))) {
+                DB::connection('mariadb')->insert("insert into groups (group_number, stream_id) values (" . $name_group[2] . ", " . $id_stream . ")");
+            }
+            $id_group = DB::connection('mariadb')->select("select id from groups where stream_id = " . $id_stream . " and group_number = '" . $name_group[2] . "'")[0]->id;
+
+            DB::connection('mariadb')->insert("insert into students (fio, mira_id, category, group_id) values ('" . $name . "', " . $id . ", 'test', " . $id_group . ")");
+        } else {
+            //Парсер группы
+            $name_group = explode('-', $group);
+            //
+            $id_stream = DB::connection('mariadb')->select("SELECT id FROM streams WHERE name = '" . $name_group[0] . "-" . $name_group[1] . "'")[0]->id;
+            if ($id_stream) {
+                $id_group = DB::connection('mariadb')->select("select id from groups where stream_id = " . $id_stream . " and group_number = '" . $name_group[2] . "'")[0]->id;
+                if ($id_group) {
+                    if ($stud->group_id != $id_group) {
+                        $stud->group_id = $id_group;
+                        $stud->save();
+                    }
+                }
+            }
+        }
+    }
     return redirect("/");
 }
 
