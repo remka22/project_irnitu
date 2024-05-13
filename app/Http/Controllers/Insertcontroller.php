@@ -162,14 +162,16 @@ function insertStud()
         $stud_arr_id[] = $value["id"];
     }
     $stud_delete = Student::whereNotIn('mira_id', $stud_arr_id)->delete();
-    dd($studs = Student::where("mira_id", 2423779)->get()->first());
+    // dd($studs = Student::where("mira_id", 2423779)->get()->first());
 
     foreach ($stud["RecordSet"] as $name => $value) {
         $id = $value["id"];
         // $name = $value["name"];
         $studs = Student::where("mira_id", $id)->get();
-        dd($studs->first());
-        // if($studs->first())
+        // dd($studs->last());
+        if($studs->count() > 1){
+            $stud->last()->delete();
+        }
     }
 
 
