@@ -167,10 +167,10 @@ function insertStud()
     foreach ($stud["RecordSet"] as $name => $value) {
         $id = $value["id"];
         // $name = $value["name"];
-        $studs = Student::where("mira_id", $id)->get();
+        $studs = Student::where("mira_id", $id)->get(); //->orderBy('id', 'DESC')
         // dd($studs->last());
         if($studs->count() > 1){
-            $stud->last()->delete();
+            $studs->last()->delete();
         }
     }
 
