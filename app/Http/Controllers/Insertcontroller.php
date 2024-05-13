@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Student;
 use App\Models\Teachers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -156,21 +157,45 @@ function insertStud()
 {
     $stud = getPortal('3e927995-75ee-4c90-a9dc-b1c9e775e034', 'mNNxbKiXS9', 'stud.fac', array('id' => 46));
     //dd($stud);
+    $stud_arr_id = [];
+    foreach ($stud["RecordSet"] as $name => $value) {
+        $stud_arr_id[] = $value["id"];
+    }
+    $stud_delete = Student::whereNotIn('mira_id', $stud_arr_id)->delete();
+
+
     foreach ($stud["RecordSet"] as $name => $value) {
         $id = $value["id"];
         $name = $value["name"];
         $group = $value["grup"];
-        //Парсер группы
-        $name_group = explode('-', $group);
-        //
-        $id_stream = DB::connection('mariadb')->select("SELECT id FROM streams WHERE name = '" . $name_group[0] . "-" . $name_group[1] . "'")[0]->id;
+        $stud = Student::where("id", $id)->first();
+        if (!$stud) {
+            //Парсер группы
+            $name_group = explode('-', $group);
+            //
+            $id_stream = DB::connection('mariadb')->select("SELECT id FROM streams WHERE name = '" . $name_group[0] . "-" . $name_group[1] . "'")[0]->id;
 
-        if (empty(DB::connection('mariadb')->select("select id from groups where stream_id = " . $id_stream . " and group_number = '" . $name_group[2] . "'"))) {
-            DB::connection('mariadb')->insert("insert into groups (group_number, stream_id) values (" . $name_group[2] . ", " . $id_stream . ")");
+            if (empty(DB::connection('mariadb')->select("select id from groups where stream_id = " . $id_stream . " and group_number = '" . $name_group[2] . "'"))) {
+                DB::connection('mariadb')->insert("insert into groups (group_number, stream_id) values (" . $name_group[2] . ", " . $id_stream . ")");
+            }
+            $id_group = DB::connection('mariadb')->select("select id from groups where stream_id = " . $id_stream . " and group_number = '" . $name_group[2] . "'")[0]->id;
+
+            DB::connection('mariadb')->insert("insert into students (fio, mira_id, category, group_id) values ('" . $name . "', " . $id . ", 'test', " . $id_group . ")");
+        } else {
+            //Парсер группы
+            $name_group = explode('-', $group);
+            //
+            $id_stream = DB::connection('mariadb')->select("SELECT id FROM streams WHERE name = '" . $name_group[0] . "-" . $name_group[1] . "'")[0]->id;
+            if ($id_stream) {
+                $id_group = DB::connection('mariadb')->select("select id from groups where stream_id = " . $id_stream . " and group_number = '" . $name_group[2] . "'")[0]->id;
+                if ($id_group) {
+                    if ($stud->group_id != $id_group) {
+                        $stud->group_id = $id_group;
+                        $stud->save();
+                    }
+                }
+            }
         }
-        $id_group = DB::connection('mariadb')->select("select id from groups where stream_id = " . $id_stream . " and group_number = '" . $name_group[2] . "'")[0]->id;
-
-        //DB::connection('mariadb')->insert("insert into students (fio, stud_id, category, group_id) values ('" . $name . "', " . $id . ", 'test', " . $id_group . ")");
     }
     return redirect("/");
 }
