@@ -92,9 +92,9 @@ function auth($return)
             $user->type = 'student';
         }
         if ($return['is_teacher']) {
-            if (strpos($return['data_teacher']['dep'], 'Отдел по работе со студентами') === true) {
+            if (str_contains($return['data_teacher']['dep'], 'Отдел по работе со студентами') === true) {
                 $user->type = 'direct';
-            } elseif (strpos($return['data_teacher']['dep'], 'Центр карьеры') === true) {
+            } elseif (str_contains($return['data_teacher']['dep'], 'Центр карьеры') === true) {
                 $user->type = 'center';
             } else {
                 $user->type = 'teacher';
